@@ -456,232 +456,81 @@ h3 {
   font-size: clamp(40px, 5.2vw, 68px);
 }
 
-.candidate-board {
-  position: relative;
-  display: grid;
-  gap: 16px;
-  overflow: hidden;
-  padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 30px;
-  background:
-    radial-gradient(circle at 16% 18%, rgba(99, 242, 255, 0.22), transparent 30%),
-    radial-gradient(circle at 88% 78%, rgba(168, 140, 255, 0.18), transparent 34%),
-    linear-gradient(135deg, rgba(120, 183, 255, 0.08), rgba(255, 255, 255, 0.035));
-}
-
-.candidate-board::before {
-  position: absolute;
-  inset: 18px;
-  content: "";
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  pointer-events: none;
-}
-
-.candidate-board > * {
-  position: relative;
-  z-index: 1;
-}
-
-.board-main {
-  padding: 18px;
-  border-radius: 24px;
-  background: rgba(5, 8, 16, 0.55);
-}
-
-.board-main span,
-.board-grid span {
-  display: block;
-  margin-bottom: 10px;
-  color: var(--cyan);
-  font-family: var(--font-geist-mono), Consolas, monospace;
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-}
-
-.board-main strong {
-  display: block;
-  margin-bottom: 12px;
-  color: #fff;
-  font-size: clamp(22px, 3vw, 34px);
-  line-height: 1.15;
-  letter-spacing: -0.045em;
-}
-
-.board-main p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.75;
-}
-
-.board-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.board-grid div {
-  min-height: 112px;
-  padding: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.055);
-}
-
-.board-grid strong {
-  display: block;
-  color: rgba(245, 248, 255, 0.92);
-  line-height: 1.45;
-}
-
-.prototype-map {
-  position: relative;
-  min-height: 300px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 30px;
-  background:
-    radial-gradient(circle at 20% 18%, rgba(99, 242, 255, 0.22), transparent 28%),
-    radial-gradient(circle at 80% 72%, rgba(168, 140, 255, 0.18), transparent 32%),
-    linear-gradient(135deg, rgba(120, 183, 255, 0.08), rgba(255, 255, 255, 0.035));
-}
-
-.prototype-map::before {
-  position: absolute;
-  inset: 20px;
-  content: "";
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 24px;
-}
-
-.map-spine {
-  position: absolute;
-  left: 50%;
-  top: 34px;
-  bottom: 34px;
-  width: 1px;
-  background: linear-gradient(to bottom, transparent, rgba(99, 242, 255, 0.55), rgba(168, 140, 255, 0.48), transparent);
-}
-
-.map-node {
-  position: absolute;
-  z-index: 1;
-  width: min(46%, 210px);
-  padding: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 20px;
-  background: rgba(5, 8, 16, 0.64);
-  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.24);
-  backdrop-filter: blur(18px);
-}
-
-.map-node span {
-  display: inline-flex;
-  margin-bottom: 10px;
-  color: var(--cyan);
-  font-family: var(--font-geist-mono), Consolas, monospace;
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.map-node strong,
-.map-node em {
-  display: block;
-}
-
-.map-node strong {
-  margin-bottom: 6px;
-  color: #fff;
-  font-size: 17px;
-}
-
-.map-node em {
-  color: var(--muted);
-  font-size: 12px;
-  font-style: normal;
-}
-
-.node-a {
-  top: 24px;
-  left: 24px;
-}
-
-.node-b {
-  top: 88px;
-  right: 24px;
-}
-
-.node-c {
-  left: 24px;
-  bottom: 72px;
-}
-
-.node-d {
-  right: 24px;
-  bottom: 24px;
-}
-
-.map-metric {
-  position: absolute;
-  z-index: 2;
-  display: inline-flex;
-  padding: 9px 12px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, rgba(255, 216, 137, 0.95), rgba(99, 242, 255, 0.82));
-  color: #07111b;
-  font-size: 12px;
-  font-weight: 950;
-  box-shadow: 0 16px 45px rgba(99, 242, 255, 0.16);
-}
-
-.metric-a {
-  left: 50%;
-  top: 42%;
-  transform: translate(-50%, -50%);
-}
-
-.metric-b {
-  left: 50%;
-  top: 58%;
-  transform: translate(-50%, -50%);
-}
-
-.tech-orbit {
+.signal-chart {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 176px;
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  border-radius: 28px;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(99, 242, 255, 0.2), transparent 28%),
-    linear-gradient(135deg, rgba(120, 183, 255, 0.08), rgba(168, 140, 255, 0.08));
   overflow: hidden;
+  min-height: 390px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(99, 242, 255, 0.28), transparent 22%),
+    radial-gradient(circle at 12% 12%, rgba(35, 255, 209, 0.14), transparent 32%),
+    radial-gradient(circle at 88% 82%, rgba(168, 140, 255, 0.22), transparent 34%),
+    linear-gradient(135deg, rgba(120, 183, 255, 0.08), rgba(255, 255, 255, 0.035));
 }
 
-.tech-orbit::before,
-.tech-orbit::after {
+.signal-chart::before {
   position: absolute;
+  inset: 26px;
   content: "";
-  border: 1px solid rgba(99, 242, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 26px;
+}
+
+.signal-chart::after {
+  position: relative;
+  content: "";
+  width: min(72%, 380px);
+  aspect-ratio: 1;
+  border: 1px dashed rgba(99, 242, 255, 0.2);
   border-radius: 50%;
 }
 
-.tech-orbit::before {
+.chart-ring,
+.chart-axis {
+  position: absolute;
+  pointer-events: none;
+}
+
+.chart-ring {
+  border: 1px solid rgba(99, 242, 255, 0.16);
+  border-radius: 50%;
+}
+
+.chart-ring-a {
+  width: 82%;
+  height: 45%;
+  transform: rotate(-8deg);
+}
+
+.chart-ring-b {
+  width: 58%;
+  height: 34%;
+  border-color: rgba(168, 140, 255, 0.2);
+  transform: rotate(21deg);
+}
+
+.chart-axis {
+  left: 50%;
+  top: 50%;
   width: 72%;
-  height: 72%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99, 242, 255, 0.32), transparent);
+  transform-origin: center;
 }
 
-.tech-orbit::after {
-  width: 48%;
-  height: 48%;
-  border-color: rgba(168, 140, 255, 0.22);
+.chart-axis-a {
+  transform: translate(-50%, -50%) rotate(0deg);
 }
 
-.orbit-core,
-.orbit-chip {
+.chart-axis-b {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.chart-core,
+.chart-node {
   position: relative;
   z-index: 1;
   display: inline-flex;
@@ -691,62 +540,60 @@ h3 {
   font-weight: 950;
 }
 
-.orbit-core {
-  width: 104px;
-  height: 104px;
+.chart-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  flex-direction: column;
+  width: 112px;
+  height: 112px;
   background: linear-gradient(135deg, rgba(99, 242, 255, 0.94), rgba(168, 140, 255, 0.9));
   color: #06101a;
   letter-spacing: -0.04em;
   box-shadow: 0 24px 70px rgba(99, 242, 255, 0.2);
+  transform: translate(-50%, -50%);
 }
 
-.orbit-chip {
+.chart-core strong {
+  font-size: 28px;
+}
+
+.chart-core span {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.chart-node {
   position: absolute;
-  padding: 8px 12px;
+  padding: 12px 15px;
   background: rgba(5, 8, 16, 0.74);
   color: rgba(245, 248, 255, 0.9);
-  font-size: 12px;
+  font-size: 13px;
   border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(16px);
 }
 
-.chip-a {
-  top: 20px;
-  left: 24px;
+.node-power {
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.chip-b {
-  top: 30px;
-  right: 42px;
+.node-hardware {
+  right: 9%;
+  top: 45%;
 }
 
-.chip-c {
-  bottom: 22px;
-  left: 52px;
+.node-dsp {
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.chip-d {
-  right: 28px;
-  bottom: 34px;
-}
-
-.signal-lines {
-  display: grid;
-}
-
-.signal-line {
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 15px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.11);
-}
-
-.signal-line span {
-  color: var(--muted);
-}
-
-.signal-line strong {
-  color: var(--amber);
+.node-debug {
+  left: 9%;
+  top: 45%;
 }
 
 .signal-grid {
@@ -1236,56 +1083,13 @@ h3 {
     min-height: 0;
   }
 
-  .tech-orbit {
-    min-height: 210px;
+  .signal-chart {
+    min-height: 330px;
   }
 
-  .board-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .prototype-map {
-    min-height: 520px;
-  }
-
-  .map-spine {
-    left: 28px;
-  }
-
-  .map-node {
-    left: 56px;
-    right: 20px;
-    width: auto;
-  }
-
-  .node-a {
-    top: 24px;
-  }
-
-  .node-b {
-    top: 140px;
-  }
-
-  .node-c {
-    top: 256px;
-    bottom: auto;
-  }
-
-  .node-d {
-    bottom: 24px;
-  }
-
-  .map-metric {
-    left: 56px;
-    transform: none;
-  }
-
-  .metric-a {
-    top: 372px;
-  }
-
-  .metric-b {
-    top: 420px;
+  .chart-node {
+    padding: 10px 12px;
+    font-size: 12px;
   }
 }
 

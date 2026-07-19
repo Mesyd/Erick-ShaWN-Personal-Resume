@@ -173,7 +173,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
 
   const featuredTags = useMemo(
-    () => ["常州大学硕士", "数字电源", "C2000", "DAB", "SiC / GaN", "PLECS", "Matlab", "LVGL"],
+    () => ["数字电源", "硬件设计", "DSP 控制", "功率调试"],
     [],
   );
 
@@ -260,8 +260,7 @@ export default function Home() {
             </span>
           </h1>
           <p className="hero-lede hero-indent">
-            常州大学新一代电子信息技术硕士，2027 届应届生。求职方向包括硬件设计、数字电源、电力电子控制、
-            DSP 控制、功率硬件调试与嵌入式软硬件设计；项目经历覆盖控制算法、底层驱动、功率硬件、磁件设计与样机调试。
+            常州大学硕士，2027 届应届生。求职方向聚焦硬件设计、数字电源、DSP 控制、功率硬件调试与嵌入式软硬件设计。
           </p>
           <div className="hero-actions">
             <a className="primary-button magnetic" href="#snapshot">
@@ -287,46 +286,20 @@ export default function Home() {
               <span />
             </div>
             <div className="signal-panel">
-              <p className="panel-kicker">Candidate Snapshot</p>
-              <h2>常州大学 · 新一代电子信息技术</h2>
-              <div className="candidate-board" aria-label="个人核心信息">
-                <div className="board-main">
-                  <span>2027 届硕士应届生</span>
-                  <strong>数字电源 / 硬件设计 / DSP 控制</strong>
-                  <p>研究与项目方向集中在电力电子控制、功率硬件、嵌入式软硬件和样机调试。</p>
+              <p className="panel-kicker">Engineering Signal</p>
+              <div className="signal-chart" aria-label="工程能力图谱">
+                <div className="chart-ring chart-ring-a" />
+                <div className="chart-ring chart-ring-b" />
+                <div className="chart-axis chart-axis-a" />
+                <div className="chart-axis chart-axis-b" />
+                <div className="chart-core">
+                  <strong>SYD</strong>
+                  <span>2027</span>
                 </div>
-                <div className="board-grid">
-                  <div>
-                    <span>硕士方向</span>
-                    <strong>新一代电子信息技术</strong>
-                  </div>
-                  <div>
-                    <span>本科专业</span>
-                    <strong>电子信息工程</strong>
-                  </div>
-                  <div>
-                    <span>核心平台</span>
-                    <strong>TI C2000 / STM32</strong>
-                  </div>
-                  <div>
-                    <span>工程侧重</span>
-                    <strong>仿真 · 固件 · 硬件 · 调试</strong>
-                  </div>
-                </div>
-              </div>
-              <div className="signal-lines">
-                <div className="signal-line">
-                  <span>求职方向</span>
-                  <strong>数字电源 · 功率硬件 · 嵌入式</strong>
-                </div>
-                <div className="signal-line">
-                  <span>代表项目</span>
-                  <strong>DAB 复合控制 · SiC 离网逆变</strong>
-                </div>
-                <div className="signal-line">
-                  <span>展示材料</span>
-                  <strong>CSDN 技术文章 · Gitee 项目</strong>
-                </div>
+                <span className="chart-node node-power">数字电源</span>
+                <span className="chart-node node-hardware">硬件设计</span>
+                <span className="chart-node node-dsp">DSP 控制</span>
+                <span className="chart-node node-debug">功率调试</span>
               </div>
             </div>
             <div className="signal-grid">
