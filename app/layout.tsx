@@ -13,15 +13,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Erick.ShaWn | 嵌入式与电源硬件技术博客",
-  description: "Erick.ShaWn 的个人技术博客，沉淀 C2000、DSP、F280049C、逆变器控制、电源硬件和嵌入式调试文章。",
+  title: "Erick.ShaWn | 电子行业嵌入式与电源控制简历",
+  description: "Erick.ShaWn 的在线简历与技术博客入口，聚焦 C2000、DSP、数字电源、逆变器控制、电源硬件和嵌入式调试。",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
   },
   openGraph: {
-    title: "Erick.ShaWn | 嵌入式与电源硬件技术博客",
-    description: "从 CSDN 迁移而来的嵌入式、DSP、数字电源和控制算法知识库。",
+    title: "Erick.ShaWn | 电子行业嵌入式与电源控制简历",
+    description: "在线简历、项目证据与技术文章入口，面向电子行业求职展示。",
     type: "website",
   },
 };
