@@ -202,6 +202,37 @@ h1 {
   letter-spacing: -0.07em;
 }
 
+.hero-title {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 28px;
+  letter-spacing: -0.06em;
+}
+
+.hero-name {
+  display: block;
+  font-size: clamp(86px, 13vw, 178px);
+  line-height: 0.82;
+}
+
+.hero-role {
+  display: block;
+  width: fit-content;
+  padding: 8px 18px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+  color: rgba(245, 248, 255, 0.92);
+  font-size: clamp(28px, 3.4vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  backdrop-filter: blur(16px);
+}
+
+.hero-role + .hero-role {
+  margin-left: clamp(18px, 4vw, 72px);
+}
+
 h2 {
   margin-bottom: 18px;
   font-size: clamp(34px, 5vw, 64px);
@@ -232,6 +263,10 @@ h3 {
 .hero-lede {
   max-width: 700px;
   font-size: 19px;
+}
+
+.hero-indent {
+  text-indent: 2em;
 }
 
 .hero-actions {
@@ -411,7 +446,119 @@ h3 {
 .signal-panel h2 {
   max-width: 520px;
   margin-bottom: 0;
-  font-size: clamp(46px, 6.6vw, 78px);
+  font-size: clamp(40px, 5.2vw, 68px);
+}
+
+.prototype-map {
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(99, 242, 255, 0.22), transparent 28%),
+    radial-gradient(circle at 80% 72%, rgba(168, 140, 255, 0.18), transparent 32%),
+    linear-gradient(135deg, rgba(120, 183, 255, 0.08), rgba(255, 255, 255, 0.035));
+}
+
+.prototype-map::before {
+  position: absolute;
+  inset: 20px;
+  content: "";
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 24px;
+}
+
+.map-spine {
+  position: absolute;
+  left: 50%;
+  top: 34px;
+  bottom: 34px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(99, 242, 255, 0.55), rgba(168, 140, 255, 0.48), transparent);
+}
+
+.map-node {
+  position: absolute;
+  z-index: 1;
+  width: min(46%, 210px);
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 20px;
+  background: rgba(5, 8, 16, 0.64);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(18px);
+}
+
+.map-node span {
+  display: inline-flex;
+  margin-bottom: 10px;
+  color: var(--cyan);
+  font-family: var(--font-geist-mono), Consolas, monospace;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.map-node strong,
+.map-node em {
+  display: block;
+}
+
+.map-node strong {
+  margin-bottom: 6px;
+  color: #fff;
+  font-size: 17px;
+}
+
+.map-node em {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+}
+
+.node-a {
+  top: 24px;
+  left: 24px;
+}
+
+.node-b {
+  top: 88px;
+  right: 24px;
+}
+
+.node-c {
+  left: 24px;
+  bottom: 72px;
+}
+
+.node-d {
+  right: 24px;
+  bottom: 24px;
+}
+
+.map-metric {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 216, 137, 0.95), rgba(99, 242, 255, 0.82));
+  color: #07111b;
+  font-size: 12px;
+  font-weight: 950;
+  box-shadow: 0 16px 45px rgba(99, 242, 255, 0.16);
+}
+
+.metric-a {
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+}
+
+.metric-b {
+  left: 50%;
+  top: 58%;
+  transform: translate(-50%, -50%);
 }
 
 .tech-orbit {
@@ -937,6 +1084,18 @@ h3 {
     font-size: 17px;
   }
 
+  .hero-name {
+    font-size: clamp(72px, 23vw, 120px);
+  }
+
+  .hero-role {
+    font-size: 27px;
+  }
+
+  .hero-role + .hero-role {
+    margin-left: 0;
+  }
+
   .skills-grid {
     grid-template-columns: 1fr;
   }
@@ -977,6 +1136,50 @@ h3 {
 
   .tech-orbit {
     min-height: 210px;
+  }
+
+  .prototype-map {
+    min-height: 520px;
+  }
+
+  .map-spine {
+    left: 28px;
+  }
+
+  .map-node {
+    left: 56px;
+    right: 20px;
+    width: auto;
+  }
+
+  .node-a {
+    top: 24px;
+  }
+
+  .node-b {
+    top: 140px;
+  }
+
+  .node-c {
+    top: 256px;
+    bottom: auto;
+  }
+
+  .node-d {
+    bottom: 24px;
+  }
+
+  .map-metric {
+    left: 56px;
+    transform: none;
+  }
+
+  .metric-a {
+    top: 372px;
+  }
+
+  .metric-b {
+    top: 420px;
   }
 }
 

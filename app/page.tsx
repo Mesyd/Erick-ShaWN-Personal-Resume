@@ -251,11 +251,15 @@ export default function Home() {
 
       <section className="hero section-wrap" id="home" data-section="home">
         <div className="hero-copy" data-reveal>
-          <p className="eyebrow">Resume Landing / Digital Power / Embedded Hardware</p>
-          <h1>沙宇栋，面向电子行业的数字电源与嵌入式控制工程师。</h1>
-          <p className="hero-lede">
-            常州大学新一代电子信息技术硕士，2027 届应届生。求职方向聚焦数字电源、嵌入式软硬件、电力电子控制与功率硬件调试。
-            项目经历覆盖控制算法、DSP 底层驱动、功率硬件、磁件设计与样机调试。
+          <p className="eyebrow">Resume Landing / Electronics / Power Control</p>
+          <h1 className="hero-title">
+            <span className="hero-name">沙宇栋</span>
+            <span className="hero-role">数字电源工程师</span>
+            <span className="hero-role">嵌入式软硬件工程师</span>
+          </h1>
+          <p className="hero-lede hero-indent">
+            常州大学新一代电子信息技术硕士，2027 届应届生。求职方向包括硬件设计、数字电源、电力电子控制、
+            DSP 控制、功率硬件调试与嵌入式软硬件设计；项目经历覆盖控制算法、底层驱动、功率硬件、磁件设计与样机调试。
           </p>
           <div className="hero-actions">
             <a className="primary-button magnetic" href="#snapshot">
@@ -284,27 +288,45 @@ export default function Home() {
               <span />
             </div>
             <div className="signal-panel">
-              <p className="panel-kicker">Engineering Profile</p>
-              <h2>Power Control Stack</h2>
-              <div className="tech-orbit" aria-hidden="true">
-                <span className="orbit-core">C2000</span>
-                <span className="orbit-chip chip-a">PLECS</span>
-                <span className="orbit-chip chip-b">DAB</span>
-                <span className="orbit-chip chip-c">SiC</span>
-                <span className="orbit-chip chip-d">EPWM</span>
+              <p className="panel-kicker">Engineering Path</p>
+              <h2>从算法到样机验证</h2>
+              <div className="prototype-map" aria-label="工程闭环路径">
+                <div className="map-spine" aria-hidden="true" />
+                <div className="map-node node-a">
+                  <span>01</span>
+                  <strong>建模仿真</strong>
+                  <em>PLECS / Matlab</em>
+                </div>
+                <div className="map-node node-b">
+                  <span>02</span>
+                  <strong>控制部署</strong>
+                  <em>C2000 / STM32</em>
+                </div>
+                <div className="map-node node-c">
+                  <span>03</span>
+                  <strong>功率硬件</strong>
+                  <em>SiC / PCB / 磁件</em>
+                </div>
+                <div className="map-node node-d">
+                  <span>04</span>
+                  <strong>样机验证</strong>
+                  <em>效率 / 动态 / 波形</em>
+                </div>
+                <div className="map-metric metric-a">95% 峰值效率</div>
+                <div className="map-metric metric-b">400μs 恢复时间</div>
               </div>
               <div className="signal-lines">
                 <div className="signal-line">
-                  <span>目标岗位</span>
-                  <strong>数字电源 / 嵌入式软硬件</strong>
+                  <span>工程路径</span>
+                  <strong>控制策略 → 固件 → 硬件 → 测试</strong>
                 </div>
                 <div className="signal-line">
-                  <span>核心平台</span>
-                  <strong>TI C2000 · STM32</strong>
+                  <span>代表项目</span>
+                  <strong>DAB 复合控制 · SiC 离网逆变</strong>
                 </div>
                 <div className="signal-line">
-                  <span>项目关键词</span>
-                  <strong>DAB · SiC · 逆变控制</strong>
+                  <span>展示材料</span>
+                  <strong>PDF 简历 · CSDN 技术文章</strong>
                 </div>
               </div>
             </div>
