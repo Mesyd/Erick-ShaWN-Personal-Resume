@@ -479,7 +479,7 @@ export default function Home() {
         <div className="contact-card" data-reveal>
           <p className="eyebrow">Resume PDF</p>
           <h2>PDF 简历下载</h2>
-          <p>PDF 简历已放入站点。当前网站保持 private，公开前建议确认手机号、邮箱等个人信息是否按你的预期展示。</p>
+          <p>PDF 简历已放入站点。当前网站保持 private。公开前建议确认邮箱、GitHub、Gitee 和 PDF 简历中的个人信息是否按你的预期展示。</p>
           <a className="primary-button magnetic" href="/resume-shayudong.pdf" target="_blank" rel="noreferrer">
             打开 / 下载 PDF 简历
             <span>↗</span>
@@ -490,11 +490,15 @@ export default function Home() {
           <h2>联系方式与可信入口</h2>
           <div className="link-list">
             <a href="mailto:2290864133@qq.com">邮箱：2290864133@qq.com</a>
-            <a href="tel:17315150814">手机：17315150814</a>
+            <a href="https://github.com/Mesyd" target="_blank" rel="noreferrer">
+              GitHub：github.com/Mesyd
+            </a>
+            <a href="https://gitee.com/Erick_ShaWn" target="_blank" rel="noreferrer">
+              Gitee：gitee.com/Erick_ShaWn（项目沉淀更多）
+            </a>
             <a href="https://blog.csdn.net/qq_46560315" target="_blank" rel="noreferrer">
               CSDN：blog.csdn.net/qq_46560315
             </a>
-            <span>GitHub：待补充</span>
             <span>所在地：江苏常州</span>
           </div>
         </div>
