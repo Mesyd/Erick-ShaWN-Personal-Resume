@@ -440,17 +440,17 @@ export default function Home() {
           <p className="eyebrow">Technical Articles</p>
           <h2>技术文章入口</h2>
           <p>
-            已把“技术文章精选”和“CSDN 文章迁移区”合并为一个技术文章部分。当前先保留精选索引，后续迁移正文、图片和代码块后切换为站内详情页。
+            这里作为 CSDN 技术文章索引。每篇文章保留主题摘要、技术标签和原文链接，方便面试官快速跳转查看。
           </p>
         </div>
         <div className="article-grid">
           {articles.map((article, index) => (
             <article className="article-card magnetic" data-reveal key={article.href} style={{ "--delay": `${index * 60}ms` } as CSSProperties}>
-              <div>
-                <div className="article-meta">
-                  <span>{article.date}</span>
-                  <strong>来自 CSDN</strong>
-                </div>
+              <div className="article-meta">
+                <span>{article.date}</span>
+                <strong>来自 CSDN</strong>
+              </div>
+              <div className="article-main">
                 <h3>{article.title}</h3>
                 <p>{article.summary}</p>
               </div>
@@ -469,10 +469,6 @@ export default function Home() {
             </article>
           ))}
         </div>
-        <div className="migration-note" data-reveal>
-          <span>迁移状态</span>
-          <p>文章索引已迁入；正文、图片、代码块仍建议后续从 CSDN 导出 Markdown/HTML 或由我逐篇抓取并清洗为站内内容。</p>
-        </div>
       </section>
 
       <section className="section-wrap contact-grid" id="contact" data-section="contact">
@@ -490,11 +486,11 @@ export default function Home() {
           <h2>联系方式与可信入口</h2>
           <div className="link-list">
             <a href="mailto:2290864133@qq.com">邮箱：2290864133@qq.com</a>
-            <a href="https://github.com/Mesyd" target="_blank" rel="noreferrer">
-              GitHub：github.com/Mesyd
-            </a>
             <a href="https://gitee.com/Erick_ShaWn" target="_blank" rel="noreferrer">
               Gitee：gitee.com/Erick_ShaWn（项目沉淀更多）
+            </a>
+            <a href="https://github.com/Mesyd" target="_blank" rel="noreferrer">
+              GitHub：github.com/Mesyd
             </a>
             <a href="https://blog.csdn.net/qq_46560315" target="_blank" rel="noreferrer">
               CSDN：blog.csdn.net/qq_46560315
