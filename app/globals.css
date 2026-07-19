@@ -347,7 +347,8 @@ h3 {
 }
 
 .resume-panel,
-.profile-panel {
+.profile-panel,
+.signal-panel {
   min-height: 300px;
   padding: 28px;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -356,6 +357,12 @@ h3 {
     radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(99, 242, 255, 0.18), transparent 36%),
     rgba(3, 6, 12, 0.72);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.13);
+}
+
+.signal-panel {
+  display: grid;
+  gap: 24px;
+  min-height: 430px;
 }
 
 .profile-panel {
@@ -399,6 +406,97 @@ h3 {
 .resume-panel h2 {
   margin-bottom: 32px;
   font-size: 42px;
+}
+
+.signal-panel h2 {
+  max-width: 520px;
+  margin-bottom: 0;
+  font-size: clamp(46px, 6.6vw, 78px);
+}
+
+.tech-orbit {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 176px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(99, 242, 255, 0.2), transparent 28%),
+    linear-gradient(135deg, rgba(120, 183, 255, 0.08), rgba(168, 140, 255, 0.08));
+  overflow: hidden;
+}
+
+.tech-orbit::before,
+.tech-orbit::after {
+  position: absolute;
+  content: "";
+  border: 1px solid rgba(99, 242, 255, 0.18);
+  border-radius: 50%;
+}
+
+.tech-orbit::before {
+  width: 72%;
+  height: 72%;
+}
+
+.tech-orbit::after {
+  width: 48%;
+  height: 48%;
+  border-color: rgba(168, 140, 255, 0.22);
+}
+
+.orbit-core,
+.orbit-chip {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-weight: 950;
+}
+
+.orbit-core {
+  width: 104px;
+  height: 104px;
+  background: linear-gradient(135deg, rgba(99, 242, 255, 0.94), rgba(168, 140, 255, 0.9));
+  color: #06101a;
+  letter-spacing: -0.04em;
+  box-shadow: 0 24px 70px rgba(99, 242, 255, 0.2);
+}
+
+.orbit-chip {
+  position: absolute;
+  padding: 8px 12px;
+  background: rgba(5, 8, 16, 0.74);
+  color: rgba(245, 248, 255, 0.9);
+  font-size: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.chip-a {
+  top: 20px;
+  left: 24px;
+}
+
+.chip-b {
+  top: 30px;
+  right: 42px;
+}
+
+.chip-c {
+  bottom: 22px;
+  left: 52px;
+}
+
+.chip-d {
+  right: 28px;
+  bottom: 34px;
+}
+
+.signal-lines {
+  display: grid;
 }
 
 .signal-line {
@@ -459,6 +557,7 @@ h3 {
 .snapshot-grid,
 .content-section,
 .experience-section,
+.education-section,
 .contact-grid {
   padding: 92px 0;
 }
@@ -533,8 +632,9 @@ h3 {
 .project-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 310px;
+  justify-content: flex-start;
+  gap: 22px;
+  min-height: 0;
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 
@@ -544,6 +644,14 @@ h3 {
   background-color: var(--panel-strong);
 }
 
+.project-card .project-status {
+  margin-bottom: 18px;
+}
+
+.project-card p {
+  margin-bottom: 0;
+}
+
 .project-card footer {
   margin-top: 28px;
   color: var(--green);
@@ -551,10 +659,24 @@ h3 {
 }
 
 .experience-grid,
+.internship-list,
+.education-achievement-grid,
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 18px;
+}
+
+.internship-list {
+  grid-template-columns: 1fr;
+}
+
+.internship-list .experience-card {
+  max-width: none;
+}
+
+.education-achievement-grid {
+  align-items: stretch;
 }
 
 .experience-card ul {
@@ -568,7 +690,7 @@ h3 {
 }
 
 .project-bullets {
-  margin: 26px 0 0;
+  margin: 0;
   padding-left: 20px;
   color: var(--muted);
   line-height: 1.75;
@@ -609,7 +731,7 @@ h3 {
 }
 
 .achievement-card {
-  margin-top: 18px;
+  margin-top: 0;
   padding: 26px;
   border-radius: 34px;
 }
@@ -785,6 +907,8 @@ h3 {
   .snapshot-grid,
   .project-list,
   .experience-grid,
+  .internship-list,
+  .education-achievement-grid,
   .contact-grid {
     grid-template-columns: 1fr;
   }
@@ -847,13 +971,12 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .profile-panel {
-    grid-template-columns: 1fr;
+  .signal-panel {
+    min-height: 0;
   }
 
-  .profile-photo-wrap,
-  .profile-photo {
-    min-height: 360px;
+  .tech-orbit {
+    min-height: 210px;
   }
 }
 

@@ -14,10 +14,11 @@ type Article = {
 
 const navItems: NavItem[] = [
   ["home", "首页"],
-  ["snapshot", "30 秒"],
+  ["snapshot", "概览"],
   ["skills", "技能"],
   ["projects", "项目"],
-  ["experience", "经历"],
+  ["experience", "实习"],
+  ["education", "教育"],
   ["articles", "文章"],
   ["contact", "联系"],
 ];
@@ -106,7 +107,7 @@ const experienceItems = [
     bullets: [
       "参与 1000W 基于碳化硅的 Cyclo 转换器单相离网逆变数字电源研发。",
       "承担仿真验证、磁件设计、DSP 驱动算法、功率硬件研发与样机调试相关工作。",
-      "岗位表达重点：数字电源控制、C2000 底层驱动、SiC 高频开关硬件、软硬件联调闭环。",
+      "形成数字电源控制、C2000 底层驱动、SiC 高频开关硬件和软硬件联调闭环经验。",
     ],
   },
 ];
@@ -254,11 +255,11 @@ export default function Home() {
           <h1>沙宇栋，面向电子行业的数字电源与嵌入式控制工程师。</h1>
           <p className="hero-lede">
             常州大学新一代电子信息技术硕士，2027 届应届生。求职方向聚焦数字电源、嵌入式软硬件、电力电子控制与功率硬件调试。
-            我更适合需要把控制算法、DSP 底层驱动、功率硬件和样机调试打通的工程岗位。
+            项目经历覆盖控制算法、DSP 底层驱动、功率硬件、磁件设计与样机调试。
           </p>
           <div className="hero-actions">
             <a className="primary-button magnetic" href="#snapshot">
-              30 秒了解我
+              核心概览
               <span>→</span>
             </a>
             <a className="ghost-button magnetic" href="/resume-shayudong.pdf" target="_blank" rel="noreferrer">
@@ -282,24 +283,28 @@ export default function Home() {
               <span />
               <span />
             </div>
-            <div className="profile-panel">
-              <div className="profile-photo-wrap">
-                <img src="/profile/shayudong.webp" alt="沙宇栋证件照" className="profile-photo" />
+            <div className="signal-panel">
+              <p className="panel-kicker">Engineering Profile</p>
+              <h2>Power Control Stack</h2>
+              <div className="tech-orbit" aria-hidden="true">
+                <span className="orbit-core">C2000</span>
+                <span className="orbit-chip chip-a">PLECS</span>
+                <span className="orbit-chip chip-b">DAB</span>
+                <span className="orbit-chip chip-c">SiC</span>
+                <span className="orbit-chip chip-d">EPWM</span>
               </div>
-              <div className="profile-copy">
-                <p className="panel-kicker">Candidate Signal</p>
-                <h2>Digital Power + Embedded</h2>
+              <div className="signal-lines">
                 <div className="signal-line">
                   <span>目标岗位</span>
                   <strong>数字电源 / 嵌入式软硬件</strong>
                 </div>
                 <div className="signal-line">
-                  <span>学校学历</span>
-                  <strong>常州大学硕士</strong>
+                  <span>核心平台</span>
+                  <strong>TI C2000 · STM32</strong>
                 </div>
                 <div className="signal-line">
-                  <span>当前状态</span>
-                  <strong>Private Draft</strong>
+                  <span>项目关键词</span>
+                  <strong>DAB · SiC · 逆变控制</strong>
                 </div>
               </div>
             </div>
@@ -318,8 +323,7 @@ export default function Home() {
       <section className="section-wrap snapshot-grid" id="snapshot" data-section="snapshot">
         <div className="section-heading" data-reveal>
           <p className="eyebrow">30 Seconds</p>
-          <h2>30 秒了解我</h2>
-          <p>这部分用于让 HR 或面试官快速判断岗位匹配度：方向明确、项目可追问、技术证据可以落到芯片、拓扑、算法和调试闭环。</p>
+          <h2>核心概览</h2>
         </div>
 
         <article className="snapshot-card primary" data-reveal>
@@ -351,7 +355,7 @@ export default function Home() {
         <div className="section-heading" data-reveal>
           <p className="eyebrow">Core Skills</p>
           <h2>核心技能</h2>
-          <p>针对电子行业招聘，技能区不做泛泛堆叠，优先展示可以被项目和调试经历证明的能力。</p>
+          <p>控制算法、DSP 底层开发、功率硬件、样机调试与工程工具。</p>
         </div>
         <div className="skills-grid">
           {skillGroups.map((group, index) => (
@@ -371,7 +375,6 @@ export default function Home() {
         <div className="section-heading" data-reveal>
           <p className="eyebrow">Projects</p>
           <h2>项目经历</h2>
-          <p>项目按面试追问逻辑组织：做什么、用什么平台、解决什么问题、结果如何验证。</p>
         </div>
         <div className="project-list">
           {projects.map((project, index) => (
@@ -393,11 +396,10 @@ export default function Home() {
 
       <section className="section-wrap experience-section" id="experience" data-section="experience">
         <div className="section-heading" data-reveal>
-          <p className="eyebrow">Experience & Education</p>
-          <h2>实习经历与教育背景</h2>
-          <p>电子行业简历中，实习经历负责证明工程落地能力，教育与竞赛负责证明基础能力和持续投入。</p>
+          <p className="eyebrow">Internship</p>
+          <h2>实习经历</h2>
         </div>
-        <div className="experience-grid">
+        <div className="internship-list">
           {experienceItems.map((item) => (
             <article className="experience-card" data-reveal key={item.title}>
               <p className="experience-meta">{item.meta}</p>
@@ -409,6 +411,15 @@ export default function Home() {
               </ul>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="section-wrap education-section" id="education" data-section="education">
+        <div className="section-heading" data-reveal>
+          <p className="eyebrow">Education / Awards</p>
+          <h2>教育背景、竞赛、专利与证书</h2>
+        </div>
+        <div className="education-achievement-grid">
           <article className="experience-card education-card" data-reveal>
             <p className="experience-meta">Education</p>
             <h3>教育背景</h3>
@@ -422,15 +433,15 @@ export default function Home() {
               ))}
             </div>
           </article>
-        </div>
 
-        <div className="achievement-card" data-reveal>
-          <p className="experience-meta">Awards / Patents / Certificates</p>
-          <h3>竞赛、专利与证书</h3>
-          <div className="achievement-list">
-            {achievements.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
+          <div className="achievement-card" data-reveal>
+            <p className="experience-meta">Awards / Patents / Certificates</p>
+            <h3>竞赛、专利与证书</h3>
+            <div className="achievement-list">
+              {achievements.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -440,7 +451,7 @@ export default function Home() {
           <p className="eyebrow">Technical Articles</p>
           <h2>技术文章入口</h2>
           <p>
-            这里作为 CSDN 技术文章索引。每篇文章保留主题摘要、技术标签和原文链接，方便面试官快速跳转查看。
+            这里作为 CSDN 技术文章索引。每篇文章保留主题摘要、技术标签和原文链接。
           </p>
         </div>
         <div className="article-grid">
