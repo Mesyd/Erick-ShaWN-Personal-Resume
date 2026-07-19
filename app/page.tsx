@@ -254,8 +254,10 @@ export default function Home() {
           <p className="eyebrow">Resume Landing / Electronics / Power Control</p>
           <h1 className="hero-title">
             <span className="hero-name">沙宇栋</span>
-            <span className="hero-role">数字电源工程师</span>
-            <span className="hero-role">嵌入式软硬件工程师</span>
+            <span className="hero-role-row">
+              <span className="hero-role">数字电源工程师</span>
+              <span className="hero-role">嵌入式软硬件工程师</span>
+            </span>
           </h1>
           <p className="hero-lede hero-indent">
             常州大学新一代电子信息技术硕士，2027 届应届生。求职方向包括硬件设计、数字电源、电力电子控制、
@@ -265,9 +267,6 @@ export default function Home() {
             <a className="primary-button magnetic" href="#snapshot">
               核心概览
               <span>→</span>
-            </a>
-            <a className="ghost-button magnetic" href="/resume-shayudong.pdf" target="_blank" rel="noreferrer">
-              下载 PDF 简历
             </a>
             <a className="ghost-button magnetic" href="#articles">
               查看技术文章
@@ -288,37 +287,37 @@ export default function Home() {
               <span />
             </div>
             <div className="signal-panel">
-              <p className="panel-kicker">Engineering Path</p>
-              <h2>从算法到样机验证</h2>
-              <div className="prototype-map" aria-label="工程闭环路径">
-                <div className="map-spine" aria-hidden="true" />
-                <div className="map-node node-a">
-                  <span>01</span>
-                  <strong>建模仿真</strong>
-                  <em>PLECS / Matlab</em>
+              <p className="panel-kicker">Candidate Snapshot</p>
+              <h2>常州大学 · 新一代电子信息技术</h2>
+              <div className="candidate-board" aria-label="个人核心信息">
+                <div className="board-main">
+                  <span>2027 届硕士应届生</span>
+                  <strong>数字电源 / 硬件设计 / DSP 控制</strong>
+                  <p>研究与项目方向集中在电力电子控制、功率硬件、嵌入式软硬件和样机调试。</p>
                 </div>
-                <div className="map-node node-b">
-                  <span>02</span>
-                  <strong>控制部署</strong>
-                  <em>C2000 / STM32</em>
+                <div className="board-grid">
+                  <div>
+                    <span>硕士方向</span>
+                    <strong>新一代电子信息技术</strong>
+                  </div>
+                  <div>
+                    <span>本科专业</span>
+                    <strong>电子信息工程</strong>
+                  </div>
+                  <div>
+                    <span>核心平台</span>
+                    <strong>TI C2000 / STM32</strong>
+                  </div>
+                  <div>
+                    <span>工程侧重</span>
+                    <strong>仿真 · 固件 · 硬件 · 调试</strong>
+                  </div>
                 </div>
-                <div className="map-node node-c">
-                  <span>03</span>
-                  <strong>功率硬件</strong>
-                  <em>SiC / PCB / 磁件</em>
-                </div>
-                <div className="map-node node-d">
-                  <span>04</span>
-                  <strong>样机验证</strong>
-                  <em>效率 / 动态 / 波形</em>
-                </div>
-                <div className="map-metric metric-a">95% 峰值效率</div>
-                <div className="map-metric metric-b">400μs 恢复时间</div>
               </div>
               <div className="signal-lines">
                 <div className="signal-line">
-                  <span>工程路径</span>
-                  <strong>控制策略 → 固件 → 硬件 → 测试</strong>
+                  <span>求职方向</span>
+                  <strong>数字电源 · 功率硬件 · 嵌入式</strong>
                 </div>
                 <div className="signal-line">
                   <span>代表项目</span>
@@ -326,7 +325,7 @@ export default function Home() {
                 </div>
                 <div className="signal-line">
                   <span>展示材料</span>
-                  <strong>PDF 简历 · CSDN 技术文章</strong>
+                  <strong>CSDN 技术文章 · Gitee 项目</strong>
                 </div>
               </div>
             </div>
@@ -505,16 +504,7 @@ export default function Home() {
       </section>
 
       <section className="section-wrap contact-grid" id="contact" data-section="contact">
-        <div className="contact-card" data-reveal>
-          <p className="eyebrow">Resume PDF</p>
-          <h2>PDF 简历下载</h2>
-          <p>PDF 简历已放入站点。当前网站保持 private。公开前建议确认邮箱、GitHub、Gitee 和 PDF 简历中的个人信息是否按你的预期展示。</p>
-          <a className="primary-button magnetic" href="/resume-shayudong.pdf" target="_blank" rel="noreferrer">
-            打开 / 下载 PDF 简历
-            <span>↗</span>
-          </a>
-        </div>
-        <div className="contact-card" data-reveal>
+        <div className="contact-card contact-card-wide" data-reveal>
           <p className="eyebrow">Contact</p>
           <h2>联系方式与可信入口</h2>
           <div className="link-list">
