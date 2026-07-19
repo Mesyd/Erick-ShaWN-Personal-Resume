@@ -13,15 +13,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Erick.dev | 个人技术博客",
-  description: "Erick 的个人技术博客，记录前端架构、AI 工程化、性能优化、交互实验和产品化思考。",
+  title: "Erick.ShaWn | 嵌入式与电源硬件技术博客",
+  description: "Erick.ShaWn 的个人技术博客，沉淀 C2000、DSP、F280049C、逆变器控制、电源硬件和嵌入式调试文章。",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
   },
   openGraph: {
-    title: "Erick.dev | 个人技术博客",
-    description: "记录工程判断，构建有质感的前端体验。",
+    title: "Erick.ShaWn | 嵌入式与电源硬件技术博客",
+    description: "从 CSDN 迁移而来的嵌入式、DSP、数字电源和控制算法知识库。",
     type: "website",
   },
 };
