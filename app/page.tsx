@@ -17,80 +17,109 @@ const navItems: NavItem[] = [
   ["snapshot", "30 秒"],
   ["skills", "技能"],
   ["projects", "项目"],
+  ["experience", "经历"],
   ["articles", "文章"],
   ["contact", "联系"],
 ];
 
 const quickStats = [
-  ["22", "CSDN 原创文章"],
-  ["6 年", "CSDN 码龄"],
-  ["718", "CSDN 粉丝"],
-  ["电子行业", "求职方向"],
+  ["2027", "硕士应届生"],
+  ["Top 2%", "本科专业排名"],
+  ["2 项", "发明专利"],
+  ["22 篇", "CSDN 原创文章"],
 ];
 
-const roleTargets = ["嵌入式软件工程师", "数字电源控制工程师", "电力电子控制工程师", "硬件调试 / 应用工程师"];
+const roleTargets = ["数字电源工程师", "嵌入式软硬件工程师", "电力电子控制工程师", "硬件调试 / 应用工程师"];
 
 const skillGroups = [
   {
-    title: "MCU / DSP 控制",
-    items: ["TI C2000", "F280049C / F2800137", "SysConfig", "C2000Ware", "中断 / Timer / SCI FIFO"],
+    title: "数字电源与控制算法",
+    items: ["电压电流双闭环", "PI 参数整定", "扰动观测器 DOB", "DOMC 复合控制", "SFRA 频域验证"],
   },
   {
-    title: "电力电子与电源",
-    items: ["H 桥逆变器", "CBC 逐波限流", "SiC MOSFET 驱动", "电子保险丝", "PFC / DAB 基础"],
+    title: "DSP / MCU 底层开发",
+    items: ["TI C2000 F280049C", "STM32 H7/F4/F1", "EPWM / HRPWM", "ADC 同步采样", "CAN / SPI / UART"],
   },
   {
-    title: "控制算法与外设",
-    items: ["EPWM / HRPWM", "CMPSS + Trip Zone", "SOGI-PLL", "SFO / CLA / SFRA", "DAC / ADC 调试"],
+    title: "功率硬件与电力电子",
+    items: ["DAB 双有源桥", "全桥逆变", "SiC / GaN 器件", "高频磁件设计", "4 层功率 PCB Layout"],
   },
   {
-    title: "工程工具",
-    items: ["Embedded C", "MATLAB", "Python 自动化", "示波器调试思路", "技术文档沉淀"],
+    title: "调试与工程工具",
+    items: ["PLECS / Matlab", "示波器 / 逻辑分析仪", "RCA 根因分析", "LVGL 图形界面", "Python 上位机"],
+  },
+];
+
+const educationItems = [
+  {
+    degree: "硕士 · 新一代电子信息技术",
+    school: "常州大学 · 2027 届",
+    detail: "专业排名 9/42；获校一等奖学金、校二等奖学金。",
+  },
+  {
+    degree: "本科 · 电子信息工程",
+    school: "常州大学 · 2024 届",
+    detail: "专业排名 2/82，前 2%；获校一等奖学金、院三好学生、优秀毕业生。",
   },
 ];
 
 const projects = [
   {
-    name: "C2000 SCI + FIFO 工业通信移植",
-    status: "技术文章已沉淀",
+    name: "1000W 基于 SiC 的 Cyclo 转换器单相离网逆变数字电源研发",
+    status: "数字电源研发实习",
     summary:
-      "基于 SysConfig 快速生成 F2800137 SCI 配置，梳理 115200 8-N-1、GPIO 复用、FIFO 水位中断、ISR 读取和异常帧处理策略。",
-    proof: "可展示：初始化代码、FIFO 中断处理、残留字节与错位处理方案",
+      "在常州市红光电能科技股份有限公司实习联培期间，参与 1000W 单相离网逆变数字电源研发，覆盖 PLECS 仿真、磁件设计、DSP 驱动算法与功率硬件研发。",
+    bullets: [
+      "使用 PLECS 搭建功率拓扑与闭环控制系统仿真，复现文献控制策略，为 DSP 底层驱动和控制律整定提供依据。",
+      "基于 TI C2000 F280049C 完成 8 个开关管复杂 EPWM 驱动时序、移相及频率调制代码编写。",
+      "主导原理图、4 层功率 PCB Layout、SiC 负压关断与驱动回路优化，降低高频开关下的寄生电感风险。",
+    ],
   },
   {
-    name: "H 桥逆变器短路保护与 CBC 逐波限流",
-    status: "电子行业重点项目表达",
+    name: "200W 高效率 DAB 变换器复合控制策略研究与实现",
+    status: "科研项目 · 核心研发 / 第一作者",
     summary:
-      "分析短路工况下电流上升、母线扰动和器件风险，对比外部比较器、CMPSS + DAC、ePWM Trip Zone 等硬件级保护路径。",
-    proof: "可展示：保护链路、故障关断、周期复位、自动恢复逻辑",
+      "研制 200W 双有源桥 DAB 变换器样机，基于自主提出的 DOMC 复合控制策略，实现峰值效率 95%，负载阶跃恢复时间缩短至 400μs。",
+    bullets: [
+      "针对 MCSO 调制的非线性增益问题，构建二阶降阶扰动观测器，将内部增益波动和负载突变等效为集总扰动并前馈补偿。",
+      "在 PLECS 中完成系统建模与频域验证，将连续域观测器离散化并部署到 TI C2000 F280049C。",
+      "独立完成 SiC MOS 选型、驱动设计、4 层功率板 Layout 和 AP 法高频变压器参数计算与绕制。",
+    ],
   },
   {
-    name: "F280049C 高分辨率 PWM / SFO / 同步链路调试",
-    status: "可作为面试深挖主题",
+    name: "信号调制方式识别与参数估计装置",
+    status: "全国大学生电子设计竞赛 · 队长",
     summary:
-      "围绕 EPWM 同步、HRPWM、DBREDHR / DBFEDHR、MEP_ScaleFactor 校准等问题，整理底层寄存器和库移植经验。",
-    proof: "可展示：同步架构理解、SFO 移植、HRPWM 死区控制注意事项",
-  },
-  {
-    name: "SOGI-PLL 与逆变器正弦参考信号生成",
-    status: "控制算法方向",
-    summary:
-      "整理 SOGI 正交信号、Park 变换、PI 锁相、查表法与实时计算法的取舍，面向单相逆变器同步与调制场景。",
-    proof: "可展示：算法框图、离散化思路、RampGen / 正弦参考实现",
+      "面向 AM/FM/CW、ASK/FSK/PSK 调制信号完成解调、AGC 幅值控制、调制类型识别、参数估计和 LCD 波形显示。",
+    bullets: [
+      "使用 Tina-TI / Multisim 完成硬件解调电路仿真与原理图设计，搭建放大、衰减、跟随、比较、有源滤波等模拟电路。",
+      "基于 STM32F407 编写可控采样频率算法和信号处理代码，通过 FFT、寻峰算法和 THD 判断实现小信号测频与波形识别。",
+      "基于 LVGL8 实现 LCD 触摸屏波形频谱和数据显示，提升系统交互性与现场可展示性。",
+    ],
   },
 ];
 
 const experienceItems = [
   {
-    title: "工作 / 实习经历待补充",
-    meta: "建议填入：公司/实验室、岗位、时间、项目职责",
-    bullets: ["我已预留正式经历模块。你提供真实经历后，我会改成 HR 能直接阅读的 STAR 结构。", "电子行业简历建议优先写：负责模块、使用芯片、调试工具、问题闭环、量化结果。"],
+    title: "常州市红光电能科技股份有限公司（实习联培）",
+    meta: "数字电源研发工程师 · 2025.10 - 2026.5",
+    bullets: [
+      "参与 1000W 基于碳化硅的 Cyclo 转换器单相离网逆变数字电源研发。",
+      "承担仿真验证、磁件设计、DSP 驱动算法、功率硬件研发与样机调试相关工作。",
+      "岗位表达重点：数字电源控制、C2000 底层驱动、SiC 高频开关硬件、软硬件联调闭环。",
+    ],
   },
-  {
-    title: "电子行业简历优化重点",
-    meta: "比泛泛写技术栈更有效",
-    bullets: ["突出 C2000、数字电源、逆变器保护、PWM、控制算法和硬件调试证据。", "每个项目都要能回答：电路/控制目标是什么，问题是什么，你如何定位，结果如何验证。"],
-  },
+];
+
+const achievements = [
+  "2023 年江苏省大学生电子设计大赛二等奖：信号调制方式识别与参数估计装置",
+  "2023 年常州大学电子设计大赛校赛一等奖（个人参赛）",
+  "2021 年江苏省大学生电子设计大赛二等奖：周期信号波形识别及参数测量装置",
+  "2020 年江苏省大学生电子设计大赛二等奖：放大器非线性失真研究装置",
+  "2020 年江苏省大学生机器人大赛三等奖：机器人阵地攻防项目",
+  "发明专利：一种基于 LVGL 的便携式多功能数字示波器（公开审查中）",
+  "发明专利：一种多自由度调制下双有源桥变换器的动态前馈补偿控制方法（实质审查中）",
+  "证书：嵌入式系统设计师、AUTO-CAD、中级技工、英语 CET-4",
 ];
 
 const articles: Article[] = [
@@ -143,7 +172,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
 
   const featuredTags = useMemo(
-    () => ["C2000", "DSP", "数字电源", "逆变器", "EPWM", "HRPWM", "SOGI-PLL", "硬件调试"],
+    () => ["常州大学硕士", "数字电源", "C2000", "DAB", "SiC / GaN", "PLECS", "Matlab", "LVGL"],
     [],
   );
 
@@ -207,8 +236,8 @@ export default function Home() {
 
       <header className="floating-nav" aria-label="主导航">
         <a className="brand" href="#home" aria-label="返回首页">
-          <span className="brand-mark">ES</span>
-          <span>Erick.ShaWn</span>
+          <span className="brand-mark">SYD</span>
+          <span>沙宇栋</span>
         </a>
         <nav>
           {navItems.map(([id, label]) => (
@@ -221,16 +250,19 @@ export default function Home() {
 
       <section className="hero section-wrap" id="home" data-section="home">
         <div className="hero-copy" data-reveal>
-          <p className="eyebrow">Resume Landing / Electronics Industry / Embedded Control</p>
-          <h1>面向电子行业的嵌入式与电源控制简历网站。</h1>
+          <p className="eyebrow">Resume Landing / Digital Power / Embedded Hardware</p>
+          <h1>沙宇栋，面向电子行业的数字电源与嵌入式控制工程师。</h1>
           <p className="hero-lede">
-            我是 Erick.ShaWn，求职方向聚焦电子行业中的嵌入式控制、数字电源、电力电子控制与硬件调试。
-            这个网站会同时承担在线简历、项目证据、技术文章入口和后续 PDF 简历下载入口。
+            常州大学新一代电子信息技术硕士，2027 届应届生。求职方向聚焦数字电源、嵌入式软硬件、电力电子控制与功率硬件调试。
+            我更适合需要把控制算法、DSP 底层驱动、功率硬件和样机调试打通的工程岗位。
           </p>
           <div className="hero-actions">
             <a className="primary-button magnetic" href="#snapshot">
               30 秒了解我
               <span>→</span>
+            </a>
+            <a className="ghost-button magnetic" href="/resume-shayudong.pdf" target="_blank" rel="noreferrer">
+              下载 PDF 简历
             </a>
             <a className="ghost-button magnetic" href="#articles">
               查看技术文章
@@ -250,20 +282,25 @@ export default function Home() {
               <span />
               <span />
             </div>
-            <div className="resume-panel">
-              <p className="panel-kicker">Candidate Signal</p>
-              <h2>Embedded + Power</h2>
-              <div className="signal-line">
-                <span>目标行业</span>
-                <strong>电子 / 电力电子</strong>
+            <div className="profile-panel">
+              <div className="profile-photo-wrap">
+                <img src="/profile/shayudong.webp" alt="沙宇栋证件照" className="profile-photo" />
               </div>
-              <div className="signal-line">
-                <span>核心证据</span>
-                <strong>项目 + 文章</strong>
-              </div>
-              <div className="signal-line">
-                <span>公开状态</span>
-                <strong>Private Draft</strong>
+              <div className="profile-copy">
+                <p className="panel-kicker">Candidate Signal</p>
+                <h2>Digital Power + Embedded</h2>
+                <div className="signal-line">
+                  <span>目标岗位</span>
+                  <strong>数字电源 / 嵌入式软硬件</strong>
+                </div>
+                <div className="signal-line">
+                  <span>学校学历</span>
+                  <strong>常州大学硕士</strong>
+                </div>
+                <div className="signal-line">
+                  <span>当前状态</span>
+                  <strong>Private Draft</strong>
+                </div>
               </div>
             </div>
             <div className="signal-grid">
@@ -282,23 +319,23 @@ export default function Home() {
         <div className="section-heading" data-reveal>
           <p className="eyebrow">30 Seconds</p>
           <h2>30 秒了解我</h2>
-          <p>这部分是给 HR 和面试官第一眼看的结论区。公开前只需要补齐真实学校、经历、邮箱和 PDF 简历即可。</p>
+          <p>这部分用于让 HR 或面试官快速判断岗位匹配度：方向明确、项目可追问、技术证据可以落到芯片、拓扑、算法和调试闭环。</p>
         </div>
 
         <article className="snapshot-card primary" data-reveal>
-          <span>目标岗位</span>
-          <h3>嵌入式 / 数字电源 / 电力电子控制方向</h3>
-          <p>适合电子行业中需要 MCU/DSP 控制、PWM 外设、保护逻辑、硬件调试和技术文档沉淀的岗位。</p>
+          <span>候选人定位</span>
+          <h3>数字电源研发 + 嵌入式软硬件</h3>
+          <p>具备 C2000/STM32 底层开发、EPWM/ADC 同步、功率拓扑仿真、SiC 驱动和功率板 Layout 的综合经验。</p>
         </article>
         <article className="snapshot-card" data-reveal>
-          <span>技术证据</span>
-          <h3>围绕 C2000、F280049C、逆变器和电源硬件持续输出</h3>
-          <p>已有 22 篇 CSDN 原创文章，覆盖 SCI FIFO、EPWM/HRPWM、CLA/SFRA、SOGI-PLL、CBC 保护等主题。</p>
+          <span>最强项目证据</span>
+          <h3>200W DAB 复合控制与 1000W SiC 离网逆变</h3>
+          <p>从 PLECS/Matlab 控制验证，到 TI C2000 部署，再到磁件、功率 PCB、样机调试，形成完整工程链路。</p>
         </article>
         <article className="snapshot-card" data-reveal>
-          <span>面试表达</span>
-          <h3>用项目闭环讲能力，而不是只列技术栈</h3>
-          <p>每个项目按“目标 → 问题 → 调试 → 结果 → 复盘”组织，更适合电子行业技术面试追问。</p>
+          <span>公开技术沉淀</span>
+          <h3>22 篇 CSDN 原创文章</h3>
+          <p>文章覆盖 C2000、DSP、EPWM/HRPWM、CLA/SFRA、SOGI-PLL、短路保护、电源硬件计算等主题。</p>
         </article>
       </section>
 
@@ -314,7 +351,7 @@ export default function Home() {
         <div className="section-heading" data-reveal>
           <p className="eyebrow">Core Skills</p>
           <h2>核心技能</h2>
-          <p>面向电子行业优化后，技能区优先展示“芯片平台、外设能力、电源/控制理解、调试能力”。</p>
+          <p>针对电子行业招聘，技能区不做泛泛堆叠，优先展示可以被项目和调试经历证明的能力。</p>
         </div>
         <div className="skills-grid">
           {skillGroups.map((group, index) => (
@@ -334,7 +371,7 @@ export default function Home() {
         <div className="section-heading" data-reveal>
           <p className="eyebrow">Projects</p>
           <h2>项目经历</h2>
-          <p>当前先基于你已公开文章里的技术主题整理成项目表达。后续你给我真实项目细节后，我会改成正式简历口径。</p>
+          <p>项目按面试追问逻辑组织：做什么、用什么平台、解决什么问题、结果如何验证。</p>
         </div>
         <div className="project-list">
           {projects.map((project, index) => (
@@ -344,17 +381,21 @@ export default function Home() {
                 <h3>{project.name}</h3>
                 <p>{project.summary}</p>
               </div>
-              <footer>{project.proof}</footer>
+              <ul className="project-bullets">
+                {project.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="section-wrap experience-section">
+      <section className="section-wrap experience-section" id="experience" data-section="experience">
         <div className="section-heading" data-reveal>
-          <p className="eyebrow">Experience</p>
-          <h2>工作 / 实习经历</h2>
-          <p>这里目前是私有草稿。真实经历补齐后，这一块会成为 HR 判断匹配度的核心区域。</p>
+          <p className="eyebrow">Experience & Education</p>
+          <h2>实习经历与教育背景</h2>
+          <p>电子行业简历中，实习经历负责证明工程落地能力，教育与竞赛负责证明基础能力和持续投入。</p>
         </div>
         <div className="experience-grid">
           {experienceItems.map((item) => (
@@ -368,15 +409,38 @@ export default function Home() {
               </ul>
             </article>
           ))}
+          <article className="experience-card education-card" data-reveal>
+            <p className="experience-meta">Education</p>
+            <h3>教育背景</h3>
+            <div className="education-list">
+              {educationItems.map((item) => (
+                <div key={item.degree}>
+                  <strong>{item.degree}</strong>
+                  <span>{item.school}</span>
+                  <p>{item.detail}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+        </div>
+
+        <div className="achievement-card" data-reveal>
+          <p className="experience-meta">Awards / Patents / Certificates</p>
+          <h3>竞赛、专利与证书</h3>
+          <div className="achievement-list">
+            {achievements.map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="section-wrap content-section" id="articles" data-section="articles">
         <div className="section-heading" data-reveal>
           <p className="eyebrow">Technical Articles</p>
-          <h2>技术文章</h2>
+          <h2>技术文章入口</h2>
           <p>
-            已把“技术文章精选”和“CSDN 文章迁移区”合并。当前展示精选文章和迁移状态，后续导入 Markdown/HTML 后切换为站内详情页。
+            已把“技术文章精选”和“CSDN 文章迁移区”合并为一个技术文章部分。当前先保留精选索引，后续迁移正文、图片和代码块后切换为站内详情页。
           </p>
         </div>
         <div className="article-grid">
@@ -407,32 +471,31 @@ export default function Home() {
         </div>
         <div className="migration-note" data-reveal>
           <span>迁移状态</span>
-          <p>22 篇文章索引已迁入。正文、图片、代码块待你导出 Markdown/HTML 或 ZIP 后继续本地化。</p>
+          <p>文章索引已迁入；正文、图片、代码块仍建议后续从 CSDN 导出 Markdown/HTML 或由我逐篇抓取并清洗为站内内容。</p>
         </div>
       </section>
 
       <section className="section-wrap contact-grid" id="contact" data-section="contact">
         <div className="contact-card" data-reveal>
           <p className="eyebrow">Resume PDF</p>
-          <h2>PDF 简历下载入口</h2>
-          <p>
-            当前还没有你的正式 PDF 简历文件，所以我先保留入口但不提供错误下载。你把 PDF 发给我后，我会放到
-            <code>/resume.pdf</code>，并把按钮改成直接下载。
-          </p>
-          <button className="ghost-button" type="button" disabled>
-            PDF 简历待上传
-          </button>
+          <h2>PDF 简历下载</h2>
+          <p>PDF 简历已放入站点。当前网站保持 private，公开前建议确认手机号、邮箱等个人信息是否按你的预期展示。</p>
+          <a className="primary-button magnetic" href="/resume-shayudong.pdf" target="_blank" rel="noreferrer">
+            打开 / 下载 PDF 简历
+            <span>↗</span>
+          </a>
         </div>
         <div className="contact-card" data-reveal>
           <p className="eyebrow">Contact</p>
           <h2>联系方式与可信入口</h2>
           <div className="link-list">
+            <a href="mailto:2290864133@qq.com">邮箱：2290864133@qq.com</a>
+            <a href="tel:17315150814">手机：17315150814</a>
             <a href="https://blog.csdn.net/qq_46560315" target="_blank" rel="noreferrer">
               CSDN：blog.csdn.net/qq_46560315
             </a>
             <span>GitHub：待补充</span>
-            <span>邮箱：待补充</span>
-            <span>公开域名：建议后续绑定 erick.dev / resume.erick.dev</span>
+            <span>所在地：江苏常州</span>
           </div>
         </div>
       </section>

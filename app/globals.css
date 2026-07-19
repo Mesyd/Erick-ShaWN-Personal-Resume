@@ -346,7 +346,8 @@ h3 {
   background: rgba(255, 255, 255, 0.38);
 }
 
-.resume-panel {
+.resume-panel,
+.profile-panel {
   min-height: 300px;
   padding: 28px;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -355,6 +356,37 @@ h3 {
     radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(99, 242, 255, 0.18), transparent 36%),
     rgba(3, 6, 12, 0.72);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.13);
+}
+
+.profile-panel {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.profile-photo-wrap {
+  position: relative;
+  overflow: hidden;
+  min-height: 260px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(99, 242, 255, 0.26), transparent 44%),
+    rgba(255, 255, 255, 0.08);
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  object-fit: cover;
+  object-position: center 18%;
+  filter: saturate(0.96) contrast(1.03);
+}
+
+.profile-copy {
+  min-width: 0;
 }
 
 .panel-kicker {
@@ -399,6 +431,7 @@ h3 {
 .experience-card,
 .article-card,
 .contact-card,
+.achievement-card,
 .migration-note {
   border: 1px solid var(--line);
   background: var(--panel);
@@ -529,8 +562,75 @@ h3 {
   padding-left: 20px;
 }
 
-.experience-card li + li {
+.experience-card li + li,
+.project-bullets li + li {
   margin-top: 10px;
+}
+
+.project-bullets {
+  margin: 26px 0 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.education-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.education-list div {
+  padding-left: 16px;
+  border-left: 2px solid rgba(99, 242, 255, 0.36);
+}
+
+.education-list strong,
+.education-list span {
+  display: block;
+}
+
+.education-list strong {
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.education-list span {
+  margin-bottom: 8px;
+  color: var(--cyan);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.education-list p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.achievement-card {
+  margin-top: 18px;
+  padding: 26px;
+  border-radius: 34px;
+}
+
+.achievement-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.achievement-list span {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(245, 248, 255, 0.86);
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 .article-grid {
@@ -702,12 +802,22 @@ h3 {
   .skill-card,
   .project-card,
   .experience-card,
-  .contact-card {
+  .contact-card,
+  .achievement-card {
     border-radius: 28px;
   }
 
   .migration-note {
     grid-template-columns: 1fr;
+  }
+
+  .profile-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-photo-wrap,
+  .profile-photo {
+    min-height: 360px;
   }
 }
 
