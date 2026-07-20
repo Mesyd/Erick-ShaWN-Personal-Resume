@@ -257,7 +257,7 @@ export default function Home() {
             <span className="hero-name">沙宇栋</span>
             <span className="hero-role-row">
               <span className="hero-role">常州大学</span>
-              <span className="hero-role">电子信息工程专硕</span>
+              <span className="hero-role">电子信息工程专业 硕士研究生</span>
             </span>
           </h1>
           <div className="hero-actions">
@@ -280,10 +280,10 @@ export default function Home() {
           <div className="profile-card-stack">
             <ProfileCard
               avatarUrl="/profile/shayudong.webp"
-              name="Erick ShaWN"
+              name="数字电源工程师"
               title="Digital Power Engineer"
               handle="Erick_ShaWn"
-              status="Resume Landing"
+              status=""
               contactText="Contact"
               contactHref="mailto:2290864133@qq.com"
               className="resume-profile-card"

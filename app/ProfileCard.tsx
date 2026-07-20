@@ -125,7 +125,7 @@ export default function ProfileCard({
           <img className="pc-avatar" src={avatarUrl} alt={`${name} avatar`} />
         </div>
         <div className="pc-main-copy">
-          <span className="pc-status-pill">{status}</span>
+          {status ? <span className="pc-status-pill">{status}</span> : null}
           <h2>{name}</h2>
           <p>{title}</p>
         </div>

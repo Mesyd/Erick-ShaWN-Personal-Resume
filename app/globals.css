@@ -375,12 +375,14 @@ h3 {
 
 .hero-card {
   perspective: 1100px;
+  transform: translateX(24px);
 }
 
 .profile-card-stack {
   display: grid;
   gap: 18px;
   justify-items: center;
+  animation: profileEntrance 880ms cubic-bezier(0.16, 1, 0.3, 1) 160ms both;
 }
 
 .profile-card-stack .signal-grid {
@@ -394,7 +396,7 @@ h3 {
   --rotate-y: 0deg;
   --card-opacity: 0;
   position: relative;
-  width: min(100%, 410px);
+  width: min(100%, 520px);
   perspective: 900px;
   transform: translate3d(0, 0, 0.1px);
   touch-action: none;
@@ -416,7 +418,7 @@ h3 {
   position: relative;
   z-index: 1;
   overflow: hidden;
-  min-height: 590px;
+  min-height: 650px;
   border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: 34px;
   background:
@@ -464,11 +466,11 @@ h3 {
   position: relative;
   z-index: 2;
   overflow: hidden;
-  width: min(72%, 265px);
-  height: 340px;
-  margin: 34px auto 0;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 30px;
+  width: min(78%, 360px);
+  height: 405px;
+  margin: 38px auto 0;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 34px;
   background:
     radial-gradient(circle at 50% 8%, rgba(0, 255, 209, 0.2), transparent 38%),
     rgba(2, 7, 14, 0.5);
@@ -487,7 +489,8 @@ h3 {
 .pc-main-copy {
   position: relative;
   z-index: 3;
-  padding: 24px 32px 0;
+  padding: 28px 34px 0;
+  text-align: center;
   transform: translateZ(52px);
 }
 
@@ -504,19 +507,21 @@ h3 {
 }
 
 .pc-main-copy h2 {
-  margin: 0 0 10px;
+  margin: 0 auto 8px;
   background: linear-gradient(110deg, #fff, #00ffd1 48%, #8a5cff 100%);
   background-clip: text;
   color: transparent;
-  font-size: clamp(38px, 4vw, 58px);
-  letter-spacing: -0.06em;
+  font-size: clamp(28px, 2.7vw, 38px);
+  letter-spacing: -0.035em;
 }
 
 .pc-main-copy p {
   margin: 0;
   color: rgba(245, 248, 255, 0.82);
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .pc-user-info {
@@ -1346,6 +1351,26 @@ h3 {
   }
 }
 
+@keyframes profileEntrance {
+  0% {
+    opacity: 0;
+    filter: blur(16px);
+    transform: translate3d(56px, 44px, 0) rotateX(8deg) rotateY(-10deg) scale(0.92);
+  }
+
+  62% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(-6px, -4px, 0) rotateX(0deg) rotateY(2deg) scale(1.015);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) scale(1);
+  }
+}
+
 @media (max-width: 1040px) {
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1404,6 +1429,10 @@ h3 {
   .hero {
     gap: 34px;
     padding-top: 132px;
+  }
+
+  .hero-card {
+    transform: none;
   }
 }
 
@@ -1473,12 +1502,12 @@ h3 {
   }
 
   .pc-card-shell {
-    min-height: 560px;
+    min-height: 600px;
   }
 
   .pc-avatar-stage {
-    width: min(78%, 250px);
-    height: 320px;
+    width: min(82%, 300px);
+    height: 360px;
   }
 
   .pc-user-info {
