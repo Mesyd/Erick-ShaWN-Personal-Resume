@@ -30,7 +30,7 @@ const quickStats = [
   ["2027", "硕士应届生"],
   ["Top 2%", "本科专业排名"],
   ["2 项", "发明专利"],
-  ["22 篇", "CSDN 原创文章"],
+  ["4 项", "省级竞赛奖项"],
 ];
 
 const roleTargets = ["数字电源工程师", "嵌入式软硬件工程师", "电力电子控制工程师", "硬件调试 / 应用工程师"];
@@ -176,7 +176,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
 
   const featuredTags = useMemo(
-    () => ["数字电源", "硬件设计", "DSP 控制", "功率调试"],
+    () => ["数字电源", "硬件设计", "DSP 控制", "功率调试", "控制算法", "磁芯元件设计"],
     [],
   );
 
@@ -261,12 +261,12 @@ export default function Home() {
             </span>
           </h1>
           <div className="hero-actions">
-            <a className="primary-button magnetic" href="#snapshot">
-              核心概览
+            <a className="primary-button magnetic" href="#projects">
+              查看项目证据
               <span>→</span>
             </a>
-            <a className="ghost-button magnetic" href="#articles">
-              查看技术文章
+            <a className="ghost-button magnetic" href="#contact">
+              获取联系方式
             </a>
           </div>
           <div className="hero-tags" aria-label="核心方向">
@@ -279,7 +279,7 @@ export default function Home() {
         <div className="hero-card" data-reveal>
           <div className="profile-card-stack">
             <ProfileCard
-              avatarUrl="/profile/shayudong.webp"
+              avatarUrl="/profile/resume-portrait.jpg"
               name="数字电源工程师"
               title="Digital Power Engineer"
               handle="Erick_ShaWn"

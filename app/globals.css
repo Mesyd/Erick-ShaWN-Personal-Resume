@@ -418,7 +418,7 @@ h3 {
   position: relative;
   z-index: 1;
   overflow: hidden;
-  min-height: 650px;
+  min-height: 700px;
   border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: 34px;
   background:
@@ -466,9 +466,9 @@ h3 {
   position: relative;
   z-index: 2;
   overflow: hidden;
-  width: min(78%, 360px);
-  height: 405px;
-  margin: 38px auto 0;
+  width: min(84%, 420px);
+  height: 465px;
+  margin: 34px auto 0;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 34px;
   background:
@@ -489,7 +489,7 @@ h3 {
 .pc-main-copy {
   position: relative;
   z-index: 3;
-  padding: 28px 34px 0;
+  padding: 24px 34px 0;
   text-align: center;
   transform: translateZ(52px);
 }
@@ -1502,12 +1502,12 @@ h3 {
   }
 
   .pc-card-shell {
-    min-height: 600px;
+    min-height: 640px;
   }
 
   .pc-avatar-stage {
-    width: min(82%, 300px);
-    height: 360px;
+    width: min(86%, 330px);
+    height: 400px;
   }
 
   .pc-user-info {
