@@ -1113,6 +1113,166 @@ h3 {
   line-height: 1.7;
 }
 
+.project-gallery {
+  margin-top: 20px;
+  padding: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(0, 255, 209, 0.18), transparent 32%),
+    radial-gradient(circle at 90% 18%, rgba(255, 92, 122, 0.13), transparent 34%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.035)),
+    rgba(5, 8, 16, 0.42);
+  backdrop-filter: blur(22px) saturate(145%);
+}
+
+.project-gallery-head {
+  display: grid;
+  gap: 10px;
+  max-width: 780px;
+  margin-bottom: 24px;
+}
+
+.project-gallery-head span {
+  width: fit-content;
+  background: var(--bend);
+  background-clip: text;
+  color: transparent;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.project-gallery-head h3 {
+  margin-bottom: 0;
+  font-size: clamp(28px, 3.3vw, 42px);
+}
+
+.project-gallery-head p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.project-album-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.project-album-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 390px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035)),
+    rgba(3, 7, 14, 0.48);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.project-album-card:hover {
+  border-color: rgba(0, 255, 209, 0.42);
+  box-shadow: 0 24px 90px rgba(0, 255, 209, 0.09);
+}
+
+.album-stack {
+  position: relative;
+  height: 260px;
+  margin-bottom: 18px;
+  perspective: 900px;
+}
+
+.album-shot {
+  --shot-index: 0;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(99, 242, 255, 0.2), transparent 34%),
+    linear-gradient(135deg, rgba(0, 255, 209, 0.1), rgba(138, 92, 255, 0.14), rgba(255, 92, 122, 0.08)),
+    rgba(4, 8, 18, 0.7);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.24);
+  transform:
+    translateX(calc((var(--shot-index) - 1) * 11px))
+    translateY(calc(var(--shot-index) * 11px))
+    rotate(calc((var(--shot-index) - 1) * 3deg));
+  transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1), filter 240ms ease, opacity 240ms ease;
+}
+
+.project-album-card:hover .album-shot {
+  transform:
+    translateX(calc((var(--shot-index) - 1) * 34px))
+    translateY(calc(var(--shot-index) * 18px))
+    rotate(calc((var(--shot-index) - 1) * 7deg))
+    translateZ(calc(var(--shot-index) * 18px));
+}
+
+.album-shot.has-image {
+  padding: 0;
+}
+
+.album-shot img {
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.album-shot.has-image figcaption {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+}
+
+.album-shot > span {
+  display: grid;
+  min-height: 140px;
+  place-items: center;
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  border-radius: 18px;
+  color: rgba(245, 248, 255, 0.92);
+  font-size: 22px;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+}
+
+.album-shot figcaption {
+  padding: 9px 10px;
+  border-radius: 14px;
+  background: rgba(2, 6, 14, 0.58);
+  color: rgba(245, 248, 255, 0.74);
+  font-size: 12px;
+  line-height: 1.45;
+  backdrop-filter: blur(12px);
+}
+
+.album-copy {
+  display: grid;
+  gap: 8px;
+}
+
+.album-copy strong {
+  color: #fff;
+  font-size: 18px;
+}
+
+.album-copy span {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
 .experience-grid,
 .internship-list,
 .education-achievement-grid,
@@ -1394,6 +1554,10 @@ h3 {
   .signal-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .project-album-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 920px) {
@@ -1487,6 +1651,8 @@ h3 {
   .skill-evidence,
   .skill-card,
   .project-card,
+  .project-gallery,
+  .project-album-card,
   .experience-card,
   .contact-card,
   .achievement-card {
@@ -1547,6 +1713,17 @@ h3 {
 
   .evidence-matrix {
     min-width: 720px;
+  }
+
+  .album-stack {
+    height: 235px;
+  }
+
+  .project-album-card:hover .album-shot {
+    transform:
+      translateX(calc((var(--shot-index) - 1) * 16px))
+      translateY(calc(var(--shot-index) * 18px))
+      rotate(calc((var(--shot-index) - 1) * 4deg));
   }
 }
 

@@ -8,6 +8,7 @@ type ProfileCardProps = {
   title: string;
   handle: string;
   status: string;
+  miniAvatarUrl?: string;
   contactText: string;
   contactHref: string;
   className?: string;
@@ -32,6 +33,7 @@ export default function ProfileCard({
   title,
   handle,
   status,
+  miniAvatarUrl,
   contactText,
   contactHref,
   className = "",
@@ -131,7 +133,7 @@ export default function ProfileCard({
         </div>
         <div className="pc-user-info">
           <div className="pc-mini-profile">
-            <img src={avatarUrl} alt="" aria-hidden="true" />
+            <img src={miniAvatarUrl ?? avatarUrl} alt="" aria-hidden="true" />
             <div>
               <strong>@{handle}</strong>
               <span>{title}</span>

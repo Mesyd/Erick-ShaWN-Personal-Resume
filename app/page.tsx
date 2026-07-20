@@ -15,6 +15,18 @@ type Article = {
   tags: string[];
 };
 
+type ProjectImage = {
+  label: string;
+  caption: string;
+  src?: string;
+};
+
+type ProjectAlbum = {
+  title: string;
+  subtitle: string;
+  images: ProjectImage[];
+};
+
 const navItems: NavItem[] = [
   ["home", "首页"],
   ["snapshot", "概览"],
@@ -103,6 +115,36 @@ const projects = [
   },
 ];
 
+const projectImageAlbums: ProjectAlbum[] = [
+  {
+    title: "DAB 变换器样机",
+    subtitle: "后续可放整机、功率板、驱动板和磁件照片",
+    images: [
+      { label: "样机全貌", caption: "整机结构 / 台架搭建 / 安全间距" },
+      { label: "功率 PCB", caption: "4 层 Layout / SiC 回路 / 母线布局" },
+      { label: "磁件设计", caption: "高频变压器 / 磁芯 / 绕制工艺" },
+    ],
+  },
+  {
+    title: "测试波形与实验数据",
+    subtitle: "后续可放示波器截图、效率曲线和阶跃响应",
+    images: [
+      { label: "驱动波形", caption: "EPWM / 死区 / 相移关系" },
+      { label: "负载阶跃", caption: "动态响应 / 恢复时间 / 超调" },
+      { label: "效率验证", caption: "输入输出功率 / 热点 / 损耗分析" },
+    ],
+  },
+  {
+    title: "1000W SiC 离网逆变",
+    subtitle: "后续可放样机照片、PLECS 仿真和调试记录",
+    images: [
+      { label: "PLECS 仿真", caption: "拓扑建模 / 闭环控制 / 参数扫描" },
+      { label: "硬件调试", caption: "SiC 驱动 / 保护链路 / 上电流程" },
+      { label: "输出验证", caption: "电压电流波形 / 保护动作 / 稳态质量" },
+    ],
+  },
+];
+
 const experienceItems = [
   {
     title: "常州市红光电能科技股份有限公司（实习联培）",
@@ -184,18 +226,6 @@ export default function Home() {
     const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-section]"));
     const revealTargets = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
 
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target instanceof HTMLElement) {
-          setActiveSection(visible.target.dataset.section ?? "home");
-        }
-      },
-      { rootMargin: "-38% 0px -45% 0px", threshold: [0.15, 0.35, 0.6] },
-    );
-
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -208,12 +238,41 @@ export default function Home() {
       { rootMargin: "0px 0px -12% 0px", threshold: 0.12 },
     );
 
-    sections.forEach((section) => sectionObserver.observe(section));
     revealTargets.forEach((target) => revealObserver.observe(target));
 
+    let frameId = 0;
+    const syncActiveSection = () => {
+      frameId = 0;
+      const documentBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 16;
+      if (documentBottom) {
+        setActiveSection(sections[sections.length - 1]?.dataset.section ?? "home");
+        return;
+      }
+
+      const anchorLine = window.innerHeight * 0.42;
+      const current = sections.reduce<HTMLElement | null>((active, section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= anchorLine && rect.bottom >= 80) return section;
+        if (!active && rect.top > anchorLine) return section;
+        return active;
+      }, null);
+
+      if (current?.dataset.section) setActiveSection(current.dataset.section);
+    };
+
+    const requestSync = () => {
+      if (frameId === 0) frameId = window.requestAnimationFrame(syncActiveSection);
+    };
+
+    syncActiveSection();
+    window.addEventListener("scroll", requestSync, { passive: true });
+    window.addEventListener("resize", requestSync);
+
     return () => {
-      sectionObserver.disconnect();
       revealObserver.disconnect();
+      window.removeEventListener("scroll", requestSync);
+      window.removeEventListener("resize", requestSync);
+      if (frameId !== 0) window.cancelAnimationFrame(frameId);
     };
   }, []);
 
@@ -284,6 +343,7 @@ export default function Home() {
               title="Digital Power Engineer"
               handle="Erick_ShaWn"
               status=""
+              miniAvatarUrl="/profile/shayudong.webp"
               contactText="Contact"
               contactHref="mailto:2290864133@qq.com"
               className="resume-profile-card"
@@ -366,34 +426,6 @@ export default function Home() {
           <h2>核心技能</h2>
           <p>控制算法、DSP 底层开发、功率硬件、样机调试与工程工具。</p>
         </div>
-        <div className="skill-evidence" data-reveal>
-          <div className="skill-evidence-head">
-            <span>能力证据矩阵</span>
-            <strong>每项能力都对应可追问的项目证据</strong>
-          </div>
-          <div className="evidence-matrix" aria-label="能力证据矩阵">
-            <span />
-            <strong>控制验证</strong>
-            <strong>底层部署</strong>
-            <strong>硬件实现</strong>
-            <strong>调试沉淀</strong>
-            <strong>数字电源</strong>
-            <span>DAB / 双闭环</span>
-            <span>C2000</span>
-            <span>SiC / 磁件</span>
-            <span>效率 / 阶跃</span>
-            <strong>嵌入式控制</strong>
-            <span>SFRA</span>
-            <span>EPWM / ADC</span>
-            <span>接口联调</span>
-            <span>示波器验证</span>
-            <strong>功率硬件</strong>
-            <span>PLECS</span>
-            <span>驱动时序</span>
-            <span>4 层 PCB</span>
-            <span>保护链路</span>
-          </div>
-        </div>
         <div className="skills-grid">
           {skillGroups.map((group, index) => (
             <article className="skill-card" data-reveal key={group.title} style={{ "--delay": `${index * 80}ms` } as CSSProperties}>
@@ -428,6 +460,35 @@ export default function Home() {
               </ul>
             </article>
           ))}
+        </div>
+        <div className="project-gallery" data-reveal>
+          <div className="project-gallery-head">
+            <span>Project Media Archive</span>
+            <h3>项目图片收录</h3>
+            <p>为后续样机照片、测试波形、PCB Layout、磁件和实验台架预留。每个项目可维护一个图片组，图片较多时按“样机 / 测试 / 设计资料”分层展示。</p>
+          </div>
+          <div className="project-album-grid">
+            {projectImageAlbums.map((album) => (
+              <article className="project-album-card magnetic" key={album.title}>
+                <div className="album-stack" aria-label={`${album.title} 图片组`}>
+                  {album.images.map((image, imageIndex) => (
+                    <figure
+                      className={`album-shot ${image.src ? "has-image" : "is-placeholder"}`}
+                      key={image.label}
+                      style={{ "--shot-index": imageIndex } as CSSProperties}
+                    >
+                      {image.src ? <img src={image.src} alt={image.label} /> : <span>{image.label}</span>}
+                      <figcaption>{image.caption}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+                <div className="album-copy">
+                  <strong>{album.title}</strong>
+                  <span>{album.subtitle}</span>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
