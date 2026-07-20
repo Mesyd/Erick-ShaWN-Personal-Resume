@@ -220,7 +220,7 @@ h1 {
 
 .hero-title {
   display: grid;
-  gap: 22px;
+  gap: 18px;
   margin-bottom: 28px;
   letter-spacing: -0.06em;
 }
@@ -232,24 +232,24 @@ h1 {
   background-size: 220% 220%;
   background-clip: text;
   color: transparent;
-  font-size: clamp(86px, 13vw, 178px);
-  line-height: 0.82;
+  font-size: clamp(84px, 12vw, 164px);
+  line-height: 0.96;
   text-shadow: 0 0 70px rgba(99, 242, 255, 0.24);
   animation: bendShift 11s ease-in-out infinite;
 }
 
 .hero-role {
   display: block;
-  padding: 8px 18px 10px;
+  padding: 9px 17px 10px;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.045)),
     rgba(5, 8, 16, 0.34);
   color: rgba(245, 248, 255, 0.92);
-  font-size: clamp(28px, 3.4vw, 52px);
-  line-height: 1;
-  letter-spacing: -0.045em;
+  font-size: clamp(20px, 2.1vw, 32px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 18px 60px rgba(0, 255, 209, 0.08);
   backdrop-filter: blur(20px) saturate(170%);
 }
@@ -375,6 +375,210 @@ h3 {
 
 .hero-card {
   perspective: 1100px;
+}
+
+.profile-card-stack {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+}
+
+.profile-card-stack .signal-grid {
+  width: min(100%, 520px);
+}
+
+.pc-card-wrapper {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+  --card-opacity: 0;
+  position: relative;
+  width: min(100%, 410px);
+  perspective: 900px;
+  transform: translate3d(0, 0, 0.1px);
+  touch-action: none;
+}
+
+.pc-behind {
+  position: absolute;
+  inset: 6%;
+  z-index: 0;
+  border-radius: 34px;
+  background: radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(125, 190, 255, 0.52), transparent 46%);
+  filter: blur(44px) saturate(1.35);
+  opacity: calc(0.88 * var(--card-opacity));
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.pc-card-shell {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  min-height: 590px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(255, 255, 255, 0.16), transparent 28%),
+    var(--inner-gradient),
+    rgba(3, 6, 12, 0.78);
+  box-shadow:
+    0 34px 110px rgba(0, 0, 0, 0.52),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+  transform-style: preserve-3d;
+  transition: transform 120ms ease-out, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.pc-card-wrapper:hover .pc-card-shell {
+  border-color: rgba(0, 255, 209, 0.46);
+  box-shadow:
+    0 40px 130px rgba(0, 0, 0, 0.58),
+    0 0 80px rgba(0, 255, 209, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.pc-card-shine {
+  position: absolute;
+  inset: -30%;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 92, 122, 0.14) 0 5%,
+      rgba(255, 216, 137, 0.16) 5% 10%,
+      rgba(0, 255, 209, 0.16) 10% 15%,
+      rgba(138, 92, 255, 0.16) 15% 20%
+    ),
+    radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(255, 255, 255, 0.38), transparent 21%);
+  background-size: 180% 180%, 100% 100%;
+  mix-blend-mode: color-dodge;
+  opacity: calc(0.36 + var(--card-opacity) * 0.34);
+  transform: translateZ(34px);
+  animation: bendShift 13s linear infinite;
+}
+
+.pc-avatar-stage {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  width: min(72%, 265px);
+  height: 340px;
+  margin: 34px auto 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 50% 8%, rgba(0, 255, 209, 0.2), transparent 38%),
+    rgba(2, 7, 14, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 24px 70px rgba(0, 0, 0, 0.32);
+  transform: translateZ(44px);
+}
+
+.pc-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 16%;
+  filter: saturate(0.98) contrast(1.05);
+}
+
+.pc-main-copy {
+  position: relative;
+  z-index: 3;
+  padding: 24px 32px 0;
+  transform: translateZ(52px);
+}
+
+.pc-status-pill {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 92, 122, 0.2), rgba(0, 255, 209, 0.18));
+  color: rgba(235, 255, 251, 0.96);
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.pc-main-copy h2 {
+  margin: 0 0 10px;
+  background: linear-gradient(110deg, #fff, #00ffd1 48%, #8a5cff 100%);
+  background-clip: text;
+  color: transparent;
+  font-size: clamp(38px, 4vw, 58px);
+  letter-spacing: -0.06em;
+}
+
+.pc-main-copy p {
+  margin: 0;
+  color: rgba(245, 248, 255, 0.82);
+  font-size: 18px;
+  font-weight: 850;
+}
+
+.pc-user-info {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  background: rgba(2, 6, 14, 0.58);
+  backdrop-filter: blur(18px) saturate(155%);
+  transform: translateZ(60px);
+}
+
+.pc-mini-profile {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.pc-mini-profile img {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+.pc-mini-profile strong,
+.pc-mini-profile span {
+  display: block;
+}
+
+.pc-mini-profile strong {
+  color: rgba(245, 248, 255, 0.94);
+  font-size: 13px;
+}
+
+.pc-mini-profile span {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pc-contact-btn {
+  flex: 0 0 auto;
+  padding: 10px 13px;
+  border-radius: 999px;
+  background: var(--bend);
+  color: #06101a;
+  font-size: 12px;
+  font-weight: 950;
 }
 
 .device-frame {
@@ -1266,6 +1470,24 @@ h3 {
 
   .signal-panel {
     min-height: 0;
+  }
+
+  .pc-card-shell {
+    min-height: 560px;
+  }
+
+  .pc-avatar-stage {
+    width: min(78%, 250px);
+    height: 320px;
+  }
+
+  .pc-user-info {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pc-contact-btn {
+    text-align: center;
   }
 
   .signal-brief {

@@ -1,6 +1,7 @@
 "use client";
 
 import { lazy, Suspense, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import ProfileCard from "./ProfileCard";
 
 const Galaxy = lazy(() => import("./Galaxy"));
 
@@ -252,12 +253,11 @@ export default function Home() {
 
       <section className="hero section-wrap" id="home" data-section="home">
         <div className="hero-copy" data-reveal>
-          <p className="eyebrow">Resume Landing / Electronics / Power Control</p>
           <h1 className="hero-title">
             <span className="hero-name">沙宇栋</span>
             <span className="hero-role-row">
-              <span className="hero-role">数字电源工程师</span>
-              <span className="hero-role">嵌入式软硬件工程师</span>
+              <span className="hero-role">常州大学</span>
+              <span className="hero-role">电子信息工程专硕</span>
             </span>
           </h1>
           <div className="hero-actions">
@@ -277,36 +277,18 @@ export default function Home() {
         </div>
 
         <div className="hero-card" data-reveal>
-          <div className="device-frame">
-            <div className="device-top">
-              <span />
-              <span />
-              <span />
-            </div>
-            <div className="signal-panel profile-bit-card">
-              <p className="panel-kicker">Candidate Brief</p>
-              <div className="signal-brief" aria-label="个人求职方向摘要">
-                <span>2027 届硕士应届生</span>
-                <h2>常州大学硕士</h2>
-                <p>
-                  求职方向聚焦硬件设计、数字电源、DSP 控制、功率硬件调试与嵌入式软硬件设计。
-                </p>
-                <div className="brief-proof">
-                  <div>
-                    <strong>核心平台</strong>
-                    <span>TI C2000 / STM32</span>
-                  </div>
-                  <div>
-                    <strong>项目链路</strong>
-                    <span>仿真 → 固件 → 硬件 → 调试</span>
-                  </div>
-                  <div>
-                    <strong>技术沉淀</strong>
-                    <span>CSDN 文章 / Gitee 项目</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="profile-card-stack">
+            <ProfileCard
+              avatarUrl="/profile/shayudong.webp"
+              name="Erick ShaWN"
+              title="Digital Power Engineer"
+              handle="Erick_ShaWn"
+              status="Resume Landing"
+              contactText="Contact"
+              contactHref="mailto:2290864133@qq.com"
+              className="resume-profile-card"
+              innerGradient="linear-gradient(145deg, rgba(96,73,110,0.62) 0%, rgba(113,196,255,0.26) 44%, rgba(0,255,209,0.18) 100%)"
+            />
             <div className="signal-grid">
               {quickStats.map(([value, label]) => (
                 <div key={label}>
