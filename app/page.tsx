@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+
+const ColorBends = lazy(() => import("./ColorBends"));
 
 type NavItem = [string, string];
 
@@ -233,6 +235,25 @@ export default function Home() {
 
   return (
     <main className="site-shell" ref={shellRef}>
+      <Suspense fallback={null}>
+        <ColorBends
+          className="resume-bends"
+          colors={["#63f2ff", "#78b7ff", "#a88cff", "#9effc6"]}
+          rotation={88}
+          autoRotate={2}
+          speed={0.12}
+          scale={1.08}
+          frequency={1.18}
+          warpStrength={0.82}
+          mouseInfluence={0.72}
+          noise={0.08}
+          parallax={0.5}
+          iterations={2}
+          intensity={0.96}
+          bandWidth={4.8}
+          transparent
+        />
+      </Suspense>
       <div className="cursor-light" aria-hidden="true" />
 
       <header className="floating-nav" aria-label="主导航">
@@ -282,7 +303,7 @@ export default function Home() {
               <span />
               <span />
             </div>
-            <div className="signal-panel">
+            <div className="signal-panel profile-bit-card">
               <p className="panel-kicker">Candidate Brief</p>
               <div className="signal-brief" aria-label="个人求职方向摘要">
                 <span>2027 届硕士应届生</span>
