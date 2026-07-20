@@ -2,7 +2,7 @@
 
 import { lazy, Suspense, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 
-const ColorBends = lazy(() => import("./ColorBends"));
+const Galaxy = lazy(() => import("./Galaxy"));
 
 type NavItem = [string, string];
 
@@ -180,23 +180,6 @@ export default function Home() {
   );
 
   useEffect(() => {
-    const root = shellRef.current;
-    if (!root) return;
-
-    const onPointerMove = (event: PointerEvent) => {
-      const x = (event.clientX / window.innerWidth) * 100;
-      const y = (event.clientY / window.innerHeight) * 100;
-      root.style.setProperty("--cursor-x", `${x}%`);
-      root.style.setProperty("--cursor-y", `${y}%`);
-      root.style.setProperty("--tilt-x", `${(event.clientY / window.innerHeight - 0.5) * -7}deg`);
-      root.style.setProperty("--tilt-y", `${(event.clientX / window.innerWidth - 0.5) * 7}deg`);
-    };
-
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
-    return () => window.removeEventListener("pointermove", onPointerMove);
-  }, []);
-
-  useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-section]"));
     const revealTargets = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
 
@@ -236,25 +219,22 @@ export default function Home() {
   return (
     <main className="site-shell" ref={shellRef}>
       <Suspense fallback={null}>
-        <ColorBends
-          className="resume-bends"
-          colors={["#ff5c7a", "#8a5cff", "#00ffd1", "#63f2ff", "#ffd889"]}
-          rotation={92}
-          autoRotate={3.2}
-          speed={0.18}
-          scale={0.92}
-          frequency={1.32}
-          warpStrength={1.08}
-          mouseInfluence={1}
-          noise={0.11}
-          parallax={0.62}
-          iterations={2}
-          intensity={1.18}
-          bandWidth={6.2}
+        <Galaxy
+          className="resume-galaxy"
+          mouseInteraction
+          mouseRepulsion
+          density={1.45}
+          glowIntensity={0.34}
+          saturation={0.82}
+          hueShift={230}
+          rotationSpeed={0.045}
+          starSpeed={0.36}
+          speed={0.92}
+          twinkleIntensity={0.42}
+          repulsionStrength={2.6}
           transparent
         />
       </Suspense>
-      <div className="cursor-light" aria-hidden="true" />
 
       <header className="floating-nav" aria-label="主导航">
         <a className="brand" href="#home" aria-label="返回首页">
