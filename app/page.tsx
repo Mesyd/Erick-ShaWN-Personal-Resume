@@ -259,9 +259,6 @@ export default function Home() {
               <span className="hero-role">嵌入式软硬件工程师</span>
             </span>
           </h1>
-          <p className="hero-lede hero-indent">
-            常州大学硕士，2027 届应届生。求职方向聚焦硬件设计、数字电源、DSP 控制、功率硬件调试与嵌入式软硬件设计。
-          </p>
           <div className="hero-actions">
             <a className="primary-button magnetic" href="#snapshot">
               核心概览
@@ -286,20 +283,27 @@ export default function Home() {
               <span />
             </div>
             <div className="signal-panel">
-              <p className="panel-kicker">Engineering Signal</p>
-              <div className="signal-chart" aria-label="工程能力图谱">
-                <div className="chart-ring chart-ring-a" />
-                <div className="chart-ring chart-ring-b" />
-                <div className="chart-axis chart-axis-a" />
-                <div className="chart-axis chart-axis-b" />
-                <div className="chart-core">
-                  <strong>SYD</strong>
-                  <span>2027</span>
+              <p className="panel-kicker">Candidate Brief</p>
+              <div className="signal-brief" aria-label="个人求职方向摘要">
+                <span>2027 届硕士应届生</span>
+                <h2>常州大学硕士</h2>
+                <p>
+                  求职方向聚焦硬件设计、数字电源、DSP 控制、功率硬件调试与嵌入式软硬件设计。
+                </p>
+                <div className="brief-proof">
+                  <div>
+                    <strong>核心平台</strong>
+                    <span>TI C2000 / STM32</span>
+                  </div>
+                  <div>
+                    <strong>项目链路</strong>
+                    <span>仿真 → 固件 → 硬件 → 调试</span>
+                  </div>
+                  <div>
+                    <strong>技术沉淀</strong>
+                    <span>CSDN 文章 / Gitee 项目</span>
+                  </div>
                 </div>
-                <span className="chart-node node-power">数字电源</span>
-                <span className="chart-node node-hardware">硬件设计</span>
-                <span className="chart-node node-dsp">DSP 控制</span>
-                <span className="chart-node node-debug">功率调试</span>
               </div>
             </div>
             <div className="signal-grid">
@@ -335,6 +339,34 @@ export default function Home() {
           <h3>22 篇 CSDN 原创文章</h3>
           <p>文章覆盖 C2000、DSP、EPWM/HRPWM、CLA/SFRA、SOGI-PLL、短路保护、电源硬件计算等主题。</p>
         </article>
+        <div className="proof-flow" data-reveal>
+          <div className="proof-flow-head">
+            <span>工程闭环图</span>
+            <strong>从控制验证到样机调试</strong>
+          </div>
+          <ol>
+            <li>
+              <span>01</span>
+              <strong>PLECS / Matlab</strong>
+              <em>控制策略验证</em>
+            </li>
+            <li>
+              <span>02</span>
+              <strong>TI C2000</strong>
+              <em>EPWM / ADC / CLA 部署</em>
+            </li>
+            <li>
+              <span>03</span>
+              <strong>SiC / DAB</strong>
+              <em>功率硬件与磁件设计</em>
+            </li>
+            <li>
+              <span>04</span>
+              <strong>样机调试</strong>
+              <em>波形、保护与效率验证</em>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <section className="section-wrap role-strip" aria-label="目标岗位" data-reveal>
@@ -350,6 +382,34 @@ export default function Home() {
           <p className="eyebrow">Core Skills</p>
           <h2>核心技能</h2>
           <p>控制算法、DSP 底层开发、功率硬件、样机调试与工程工具。</p>
+        </div>
+        <div className="skill-evidence" data-reveal>
+          <div className="skill-evidence-head">
+            <span>能力证据矩阵</span>
+            <strong>每项能力都对应可追问的项目证据</strong>
+          </div>
+          <div className="evidence-matrix" aria-label="能力证据矩阵">
+            <span />
+            <strong>控制验证</strong>
+            <strong>底层部署</strong>
+            <strong>硬件实现</strong>
+            <strong>调试沉淀</strong>
+            <strong>数字电源</strong>
+            <span>DAB / 双闭环</span>
+            <span>C2000</span>
+            <span>SiC / 磁件</span>
+            <span>效率 / 阶跃</span>
+            <strong>嵌入式控制</strong>
+            <span>SFRA</span>
+            <span>EPWM / ADC</span>
+            <span>接口联调</span>
+            <span>示波器验证</span>
+            <strong>功率硬件</strong>
+            <span>PLECS</span>
+            <span>驱动时序</span>
+            <span>4 层 PCB</span>
+            <span>保护链路</span>
+          </div>
         </div>
         <div className="skills-grid">
           {skillGroups.map((group, index) => (
@@ -479,7 +539,7 @@ export default function Home() {
       <section className="section-wrap contact-grid" id="contact" data-section="contact">
         <div className="contact-card contact-card-wide" data-reveal>
           <p className="eyebrow">Contact</p>
-          <h2>联系方式与可信入口</h2>
+          <h2>公开主页与联系方式</h2>
           <div className="link-list">
             <a href="mailto:2290864133@qq.com">邮箱：2290864133@qq.com</a>
             <a href="https://gitee.com/Erick_ShaWn" target="_blank" rel="noreferrer">
