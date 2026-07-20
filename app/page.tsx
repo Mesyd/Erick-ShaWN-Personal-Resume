@@ -238,19 +238,19 @@ export default function Home() {
       <Suspense fallback={null}>
         <ColorBends
           className="resume-bends"
-          colors={["#63f2ff", "#78b7ff", "#a88cff", "#9effc6"]}
-          rotation={88}
-          autoRotate={2}
-          speed={0.12}
-          scale={1.08}
-          frequency={1.18}
-          warpStrength={0.82}
-          mouseInfluence={0.72}
-          noise={0.08}
-          parallax={0.5}
+          colors={["#ff5c7a", "#8a5cff", "#00ffd1", "#63f2ff", "#ffd889"]}
+          rotation={92}
+          autoRotate={3.2}
+          speed={0.18}
+          scale={0.92}
+          frequency={1.32}
+          warpStrength={1.08}
+          mouseInfluence={1}
+          noise={0.11}
+          parallax={0.62}
           iterations={2}
-          intensity={0.96}
-          bandWidth={4.8}
+          intensity={1.18}
+          bandWidth={6.2}
           transparent
         />
       </Suspense>
