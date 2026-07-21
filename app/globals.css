@@ -1047,6 +1047,10 @@ h3 {
   line-height: 0.96;
 }
 
+.stacked-title span {
+  display: block;
+}
+
 .capability-hero p {
   max-width: 720px;
   margin: 0;
@@ -2008,6 +2012,14 @@ body.is-lightbox-open {
   line-height: 1.12;
 }
 
+.internship-summary {
+  max-width: 620px;
+  margin: 0 0 22px;
+  color: rgba(218, 228, 247, 0.76);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
 .internship-role {
   display: flex;
   flex-wrap: wrap;
@@ -2051,6 +2063,26 @@ body.is-lightbox-open {
   font-style: normal;
 }
 
+.internship-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.internship-tags span {
+  display: inline-flex;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(255, 216, 137, 0.13), rgba(99, 242, 255, 0.11)),
+    rgba(5, 8, 16, 0.34);
+  color: rgba(245, 248, 255, 0.82);
+  font-size: 12px;
+  font-weight: 850;
+}
+
 .internship-work {
   padding: 24px;
   border: 1px solid rgba(255, 255, 255, 0.13);
@@ -2068,8 +2100,112 @@ body.is-lightbox-open {
   font-weight: 950;
 }
 
-.internship-work ul {
+.internship-work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
   margin-top: 14px;
+}
+
+.internship-work-grid section {
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025)),
+    rgba(3, 7, 14, 0.34);
+}
+
+.internship-work-grid h4 {
+  margin: 0 0 12px;
+  color: rgba(245, 248, 255, 0.94);
+  font-size: 15px;
+  letter-spacing: -0.02em;
+}
+
+.internship-work-grid ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.internship-work-grid li {
+  color: rgba(218, 228, 247, 0.72);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.internship-work-grid li + li {
+  margin-top: 8px;
+}
+
+.internship-interactive {
+  --intern-x: 50%;
+  --intern-y: 50%;
+  --intern-tilt-x: 0deg;
+  --intern-tilt-y: 0deg;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.internship-interactive::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  background:
+    radial-gradient(420px circle at var(--intern-x) var(--intern-y), rgba(255, 216, 137, 0.18), transparent 56%),
+    linear-gradient(120deg, transparent 0%, rgba(99, 242, 255, 0.08) 46%, rgba(255, 216, 137, 0.14) 50%, rgba(255, 92, 122, 0.08) 54%, transparent 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.internship-interactive::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -42%;
+  z-index: 0;
+  width: 34%;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(255, 216, 137, 0.2), rgba(99, 242, 255, 0.12), transparent);
+  opacity: 0;
+  pointer-events: none;
+  transform: skewX(-16deg);
+}
+
+.internship-interactive:hover {
+  border-color: rgba(255, 216, 137, 0.36);
+  box-shadow: 0 26px 86px rgba(255, 216, 137, 0.11), 0 18px 70px rgba(99, 242, 255, 0.07);
+}
+
+.internship-interactive:hover::before {
+  opacity: 1;
+}
+
+.internship-interactive:hover::after {
+  animation: internshipScan 1.8s ease-in-out infinite;
+  opacity: 1;
+}
+
+.internship-interactive > * {
+  position: relative;
+  z-index: 1;
+}
+
+[data-reveal].is-visible.internship-interactive:hover {
+  transform: perspective(1000px) rotateX(var(--intern-tilt-x)) rotateY(var(--intern-tilt-y)) translateY(-4px);
+}
+
+@keyframes internshipScan {
+  from {
+    left: -42%;
+  }
+  to {
+    left: 108%;
+  }
 }
 
 .education-achievement-grid {
@@ -2473,6 +2609,10 @@ body.is-lightbox-open {
   }
 
   .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .internship-work-grid {
     grid-template-columns: 1fr;
   }
 

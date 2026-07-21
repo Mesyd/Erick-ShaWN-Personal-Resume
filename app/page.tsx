@@ -43,7 +43,7 @@ const quickStats = [
   ["2027", "硕士应届生"],
   ["Top 2%", "本科专业排名"],
   ["2 项", "发明专利"],
-  ["4 项", "省级竞赛奖项"],
+  ["6 项", "省级竞赛奖项"],
 ];
 
 const roleTargets = ["数字电源工程师", "嵌入式软硬件工程师", "电力电子控制工程师", "硬件调试 / 应用工程师"];
@@ -107,14 +107,19 @@ const projects = [
 
 const projectImageAlbums: ProjectAlbum[] = [
   {
-    title: "200W DAB 变换器样机",
-    subtitle: "双有源桥样机、功率板、磁件与台架实物记录",
+    title: "200W DAB 双有源桥变换器样机",
+    subtitle: "拓扑、系统框图、控制策略、样机实物、调试记录与性能曲线",
     accent: "rgba(0, 255, 209, 0.42)",
     images: [
-      { label: "DAB 样机 01", caption: "样机结构 / 功率回路 / 调试台架", src: "/project-photos/dab-200w/01.jpg" },
-      { label: "DAB 样机 02", caption: "功率板细节 / 器件布局 / 走线关系", src: "/project-photos/dab-200w/02.jpg" },
-      { label: "DAB 样机 03", caption: "双有源桥硬件结构 / 接线关系", src: "/project-photos/dab-200w/03.jpg" },
-      { label: "DAB 样机 04", caption: "样机实物 / 现场调试记录", src: "/project-photos/dab-200w/04.jpg" },
+      { label: "DAB 拓扑图", caption: "双有源桥功率拓扑与能量传输关系", src: "/project-photos/dab-200w/01.jpg" },
+      { label: "样机实物", caption: "200W DAB 变换器样机整体结构", src: "/project-photos/dab-200w/02.jpg" },
+      { label: "样机照片", caption: "功率板、磁件和测试连接关系", src: "/project-photos/dab-200w/03.jpg" },
+      { label: "系统框图", caption: "主功率回路、采样链路与控制平台", src: "/project-photos/dab-200w/04.jpg" },
+      { label: "控制策略框图", caption: "DOMC 复合控制与扰动补偿链路", src: "/project-photos/dab-200w/05.jpg" },
+      { label: "调试环境", caption: "实验台架、仪器连接与样机测试现场", src: "/project-photos/dab-200w/06.jpg" },
+      { label: "Gitee 代码调试记录", caption: "控制代码调试、版本记录和验证过程", src: "/project-photos/dab-200w/07.jpg" },
+      { label: "动态性能图", caption: "负载扰动与动态恢复性能验证", src: "/project-photos/dab-200w/08.jpg" },
+      { label: "效率曲线图", caption: "不同工况下的效率测试结果", src: "/project-photos/dab-200w/09.jpg" },
     ],
   },
   {
@@ -208,10 +213,38 @@ const experienceItems = [
     company: "常州市红光电能科技股份有限公司（实习联培）",
     role: "数字电源研发工程师",
     period: "2025.10 - 2026.5",
-    bullets: [
-      "参与 1000W 基于碳化硅的 Cyclo 转换器单相离网逆变数字电源研发。",
-      "承担仿真验证、磁件设计、DSP 驱动算法、功率硬件研发与样机调试相关工作。",
-      "形成数字电源控制、C2000 底层驱动、SiC 高频开关硬件和软硬件联调闭环经验。",
+    summary:
+      "围绕公司电源数字化方向，负责 1000W SiC Cycle 周波转换器单相离网逆变数字电源的 DSP 控制软件与部分功率硬件研发，同时参与特种电源嵌入式软件和电源模块工程化支撑。",
+    tags: ["DSP 控制软件负责人", "数字电源软件设计", "GD32 / RS485", "原理图与 PCB", "磁件设计"],
+    sections: [
+      {
+        title: "主线项目：1000W SiC 数字逆变",
+        items: [
+          "负责单相离网逆变数字控制方案的软件设计文档撰写，推动项目通过内部评审与技术可行性验证。",
+          "基于 DSP 实现传统专用控制芯片的数字化替代，完成逆变输出功能验证和控制策略迭代。",
+        ],
+      },
+      {
+        title: "DSP 控制与仿真验证",
+        items: [
+          "完成 AC-DAB / 离网逆变拓扑学习、基础仿真参数设计、控制策略框架搭建和移相驱动底层开发。",
+          "参与 1000W 数字逆变器原理图与 PCB 设计，配合完成控制策略、驱动时序和样机调试闭环。",
+        ],
+      },
+      {
+        title: "特种电源嵌入式软件",
+        items: [
+          "负责一款特种电源主控 GD32 软件开发，完成 LCD 驱动、数据显示、采样处理和保护逻辑。",
+          "制定 RS485 通讯协议，支持外部上位机报文交互，并完成样机软件调试和功能测试收尾。",
+        ],
+      },
+      {
+        title: "工程支撑与硬件验证",
+        items: [
+          "完成高频变压器参数设计、绕制与漏感集成方案验证，支撑高频功率变换器样机调试。",
+          "参与电源模块替换、抄板原理图与 PCB 绘制、新电源模块测试和外部技术沟通。",
+        ],
+      },
     ],
   },
 ];
@@ -292,6 +325,23 @@ export default function Home() {
     const rect = event.currentTarget.getBoundingClientRect();
     event.currentTarget.style.setProperty("--spotlight-x", `${event.clientX - rect.left}px`);
     event.currentTarget.style.setProperty("--spotlight-y", `${event.clientY - rect.top}px`);
+  }, []);
+
+  const handleInternshipMove = useCallback((event: MouseEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const normalizedX = x / rect.width - 0.5;
+    const normalizedY = y / rect.height - 0.5;
+    event.currentTarget.style.setProperty("--intern-x", `${x}px`);
+    event.currentTarget.style.setProperty("--intern-y", `${y}px`);
+    event.currentTarget.style.setProperty("--intern-tilt-x", `${normalizedY * -4.5}deg`);
+    event.currentTarget.style.setProperty("--intern-tilt-y", `${normalizedX * 4.5}deg`);
+  }, []);
+
+  const handleInternshipLeave = useCallback((event: MouseEvent<HTMLElement>) => {
+    event.currentTarget.style.setProperty("--intern-tilt-x", "0deg");
+    event.currentTarget.style.setProperty("--intern-tilt-y", "0deg");
   }, []);
 
   useEffect(() => {
@@ -458,14 +508,16 @@ export default function Home() {
       <section className="section-wrap capability-section" id="snapshot" data-section="snapshot">
         <div className="section-heading" data-reveal>
           <p className="eyebrow">Core Signal</p>
-          <h2>核心概览与技能结构</h2>
-          <p>把岗位定位、项目链路、技能栈和公开沉淀放在一个章节中，便于快速判断方向匹配度。</p>
+          <h2>能力总览</h2>
         </div>
 
         <div className="capability-layout">
           <article className="capability-hero spotlight-card" data-reveal onMouseMove={handleSpotlightMove}>
-            <span>候选人定位</span>
-            <h3>数字电源研发 + 嵌入式软硬件</h3>
+            <span>职业定位</span>
+            <h3 className="stacked-title">
+              <span>数字电源研发</span>
+              <span>嵌入式软硬件</span>
+            </h3>
             <p>
               具备 C2000/STM32 底层开发、EPWM/ADC 同步、功率拓扑仿真、SiC 驱动、磁芯元件设计和功率板 Layout 的综合经验。
             </p>
@@ -479,8 +531,8 @@ export default function Home() {
           <div className="capability-column">
             <article className="snapshot-card spotlight-card" data-reveal onMouseMove={handleSpotlightMove}>
               <span>代表项目</span>
-              <h3>200W DAB 复合控制与 1000W SiC 离网逆变</h3>
-              <p>从控制验证到 C2000 部署，再到磁件、功率 PCB 和样机调试，形成完整工程链路。</p>
+              <h3>基于碳化硅的 DAB 双有源桥变换器研究</h3>
+              <p>围绕 200W 样机完成控制策略、C2000 部署、磁件设计、功率 PCB 和样机调试验证。</p>
             </article>
             <article className="snapshot-card spotlight-card" data-reveal onMouseMove={handleSpotlightMove}>
               <span>公开沉淀</span>
@@ -533,7 +585,7 @@ export default function Home() {
             </li>
             <li>
               <span>03</span>
-              <strong>SiC / DAB</strong>
+              <strong>碳化硅 / 氮化镓</strong>
               <em>功率硬件与磁件设计</em>
             </li>
             <li>
@@ -552,23 +604,42 @@ export default function Home() {
         </div>
         <div className="internship-list">
           {experienceItems.map((item) => (
-            <article className="experience-card internship-card" data-reveal key={item.company}>
+            <article
+              className="experience-card internship-card internship-interactive"
+              data-reveal
+              key={item.company}
+              onMouseMove={handleInternshipMove}
+              onMouseLeave={handleInternshipLeave}
+            >
               <div className="internship-head">
                 <span className="experience-meta">Internship / Digital Power</span>
                 <h3>{item.company}</h3>
+                <p className="internship-summary">{item.summary}</p>
                 <p className="internship-role">
                   <strong>职责</strong>
                   <span>{item.role}</span>
                   <em>{item.period}</em>
                 </p>
+                <div className="internship-tags" aria-label="实习关键词">
+                  {item.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
               </div>
               <div className="internship-work">
                 <strong>工作内容</strong>
-                <ul>
-                  {item.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
+                <div className="internship-work-grid">
+                  {item.sections.map((section) => (
+                    <section key={section.title}>
+                      <h4>{section.title}</h4>
+                      <ul>
+                        {section.items.map((bullet) => (
+                          <li key={bullet}>{bullet}</li>
+                        ))}
+                      </ul>
+                    </section>
                   ))}
-                </ul>
+                </div>
               </div>
             </article>
           ))}
