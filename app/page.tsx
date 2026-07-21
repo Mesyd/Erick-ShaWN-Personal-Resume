@@ -1,10 +1,27 @@
 "use client";
 
-import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent } from "react";
+import { Component, lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent, type ReactNode } from "react";
 import LineSidebar from "./LineSidebar";
 import ProfileCard from "./ProfileCard";
 
 const Galaxy = lazy(() => import("./Galaxy"));
+
+class GalaxyBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  componentDidCatch() {
+    document.documentElement.classList.add("galaxy-fallback-active");
+  }
+
+  render() {
+    if (this.state.failed) return null;
+    return this.props.children;
+  }
+}
 
 type NavItem = [string, string];
 
@@ -315,11 +332,28 @@ export default function Home() {
   const shellRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState("home");
   const [selectedImage, setSelectedImage] = useState<(ProjectImage & { albumTitle: string }) | null>(null);
+  const [showGalaxy, setShowGalaxy] = useState(false);
 
   const featuredTags = useMemo(
     () => ["数字电源", "硬件设计", "DSP 控制", "功率调试", "控制算法", "磁芯元件设计"],
     [],
   );
+
+  useEffect(() => {
+    const startGalaxy = () => setShowGalaxy(true);
+    const idleHandle =
+      "requestIdleCallback" in window
+        ? window.requestIdleCallback(startGalaxy, { timeout: 1200 })
+        : window.setTimeout(startGalaxy, 650);
+
+    return () => {
+      if ("cancelIdleCallback" in window && typeof idleHandle === "number") {
+        window.cancelIdleCallback(idleHandle);
+      } else if (typeof idleHandle === "number") {
+        window.clearTimeout(idleHandle);
+      }
+    };
+  }, []);
 
   const handleSpotlightMove = useCallback((event: MouseEvent<HTMLElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -416,23 +450,27 @@ export default function Home() {
 
   return (
     <main className="site-shell" ref={shellRef}>
-      <Suspense fallback={null}>
-        <Galaxy
-          className="resume-galaxy"
-          mouseInteraction
-          mouseRepulsion
-          density={1.45}
-          glowIntensity={0.34}
-          saturation={0.82}
-          hueShift={230}
-          rotationSpeed={0.045}
-          starSpeed={0.36}
-          speed={0.92}
-          twinkleIntensity={0.42}
-          repulsionStrength={2.6}
-          transparent
-        />
-      </Suspense>
+      {showGalaxy ? (
+        <GalaxyBoundary>
+          <Suspense fallback={null}>
+            <Galaxy
+              className="resume-galaxy"
+              mouseInteraction
+              mouseRepulsion
+              density={1.2}
+              glowIntensity={0.3}
+              saturation={0.78}
+              hueShift={230}
+              rotationSpeed={0.038}
+              starSpeed={0.3}
+              speed={0.82}
+              twinkleIntensity={0.36}
+              repulsionStrength={2.2}
+              transparent
+            />
+          </Suspense>
+        </GalaxyBoundary>
+      ) : null}
 
       <header className="floating-nav" aria-label="主导航">
         <a className="brand" href="#home" aria-label="返回首页">

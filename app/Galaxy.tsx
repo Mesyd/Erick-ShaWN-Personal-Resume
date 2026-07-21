@@ -215,8 +215,24 @@ export default function Galaxy({
   useEffect(() => {
     if (!ctnDom.current) return;
     const ctn = ctnDom.current;
-    const renderer = new Renderer({ alpha: transparent, premultipliedAlpha: false });
-    const gl = renderer.gl;
+    let renderer: Renderer | null = null;
+    let gl: WebGLRenderingContext | WebGL2RenderingContext | null = null;
+    let animateId = 0;
+
+    try {
+      const canvas = document.createElement("canvas");
+      const canUseWebGL = Boolean(canvas.getContext("webgl2") || canvas.getContext("webgl"));
+      if (!canUseWebGL) {
+        document.documentElement.classList.add("galaxy-fallback-active");
+        return;
+      }
+
+      renderer = new Renderer({ alpha: transparent, premultipliedAlpha: false });
+      gl = renderer.gl;
+    } catch {
+      document.documentElement.classList.add("galaxy-fallback-active");
+      return;
+    }
 
     if (transparent) {
       gl.enable(gl.BLEND);
@@ -227,30 +243,38 @@ export default function Galaxy({
     }
 
     const geometry = new Triangle(gl);
-    const program = new Program(gl, {
-      vertex: vertexShader,
-      fragment: fragmentShader,
-      uniforms: {
-        uTime: { value: 0 },
-        uResolution: { value: new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height) },
-        uFocal: { value: new Float32Array(focal) },
-        uRotation: { value: new Float32Array(rotation) },
-        uStarSpeed: { value: starSpeed },
-        uDensity: { value: density },
-        uHueShift: { value: hueShift },
-        uSpeed: { value: speed },
-        uMouse: { value: new Float32Array([smoothMousePos.current.x, smoothMousePos.current.y]) },
-        uGlowIntensity: { value: glowIntensity },
-        uSaturation: { value: saturation },
-        uMouseRepulsion: { value: mouseRepulsion },
-        uTwinkleIntensity: { value: twinkleIntensity },
-        uRotationSpeed: { value: rotationSpeed },
-        uRepulsionStrength: { value: repulsionStrength },
-        uMouseActiveFactor: { value: 0.0 },
-        uAutoCenterRepulsion: { value: autoCenterRepulsion },
-        uTransparent: { value: transparent },
-      },
-    });
+    let program: Program;
+
+    try {
+      program = new Program(gl, {
+        vertex: vertexShader,
+        fragment: fragmentShader,
+        uniforms: {
+          uTime: { value: 0 },
+          uResolution: { value: new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height) },
+          uFocal: { value: new Float32Array(focal) },
+          uRotation: { value: new Float32Array(rotation) },
+          uStarSpeed: { value: starSpeed },
+          uDensity: { value: density },
+          uHueShift: { value: hueShift },
+          uSpeed: { value: speed },
+          uMouse: { value: new Float32Array([smoothMousePos.current.x, smoothMousePos.current.y]) },
+          uGlowIntensity: { value: glowIntensity },
+          uSaturation: { value: saturation },
+          uMouseRepulsion: { value: mouseRepulsion },
+          uTwinkleIntensity: { value: twinkleIntensity },
+          uRotationSpeed: { value: rotationSpeed },
+          uRepulsionStrength: { value: repulsionStrength },
+          uMouseActiveFactor: { value: 0.0 },
+          uAutoCenterRepulsion: { value: autoCenterRepulsion },
+          uTransparent: { value: transparent },
+        },
+      });
+    } catch {
+      document.documentElement.classList.add("galaxy-fallback-active");
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
+      return;
+    }
 
     function resize() {
       const scale = 1;
@@ -259,7 +283,6 @@ export default function Galaxy({
     }
 
     const mesh = new Mesh(gl, { geometry, program });
-    let animateId = 0;
 
     function update(t: number) {
       animateId = requestAnimationFrame(update);
@@ -276,7 +299,12 @@ export default function Galaxy({
       program.uniforms.uMouse.value[0] = smoothMousePos.current.x;
       program.uniforms.uMouse.value[1] = smoothMousePos.current.y;
       program.uniforms.uMouseActiveFactor.value = smoothMouseActive.current;
-      renderer.render({ scene: mesh });
+      try {
+        renderer?.render({ scene: mesh });
+      } catch {
+        document.documentElement.classList.add("galaxy-fallback-active");
+        cancelAnimationFrame(animateId);
+      }
     }
 
     function handleMouseMove(e: MouseEvent) {
