@@ -75,8 +75,8 @@ const educationItems = [
   },
   {
     degree: "本科 · 电子信息工程",
-    school: "常州大学 · 2024 届",
-    detail: "专业排名 2/82，前 2%；获校一等奖学金、院三好学生、优秀毕业生。",
+    school: "常州大学 · 2020 届",
+    detail: "专业排名 2/82，前 2%；获校二等奖学金、院三好学生、优秀毕业生。",
   },
 ];
 
@@ -218,7 +218,7 @@ const experienceItems = [
 
 const campusHonors = [
   "硕士阶段：专业排名 9/42，获校一等奖学金、校二等奖学金。",
-  "本科阶段：专业排名 2/82，前 2%，获校一等奖学金。",
+  "本科阶段：专业排名 2/82，前 2%，获校二等奖学金。",
   "本科阶段：获院三好学生、优秀毕业生。",
 ];
 
@@ -281,6 +281,7 @@ const articles: Article[] = [
 export default function Home() {
   const shellRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState("home");
+  const [selectedImage, setSelectedImage] = useState<(ProjectImage & { albumTitle: string }) | null>(null);
 
   const featuredTags = useMemo(
     () => ["数字电源", "硬件设计", "DSP 控制", "功率调试", "控制算法", "磁芯元件设计"],
@@ -341,6 +342,22 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!selectedImage) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedImage(null);
+    };
+
+    document.body.classList.add("is-lightbox-open");
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.classList.remove("is-lightbox-open");
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedImage]);
+
   return (
     <main className="site-shell" ref={shellRef}>
       <Suspense fallback={null}>
@@ -386,7 +403,7 @@ export default function Home() {
           </h1>
           <div className="hero-actions">
             <a className="primary-button magnetic" href="#projects">
-              查看项目证据
+              浏览项目经历
               <span>→</span>
             </a>
             <a className="ghost-button magnetic" href="#contact">
@@ -567,35 +584,42 @@ export default function Home() {
           <div className="project-album-grid">
             {projectImageAlbums.map((album) => (
               <article
-                className="project-album-card magnetic"
+                className="project-album-card project-album-viewer magnetic"
                 key={album.title}
                 style={{ "--album-accent": album.accent ?? "rgba(0, 255, 209, 0.42)" } as CSSProperties}
               >
-                <div className="album-stack" aria-label={`${album.title} 图片组`}>
+                <div className="album-copy album-copy-top">
+                  <span>{album.images.length} 张项目照片</span>
+                  <strong>{album.title}</strong>
+                  <em>{album.subtitle}</em>
+                </div>
+                <div className="album-photo-grid" aria-label={`${album.title} 图片组`}>
                   {album.images.map((image, imageIndex) => (
                     <figure
-                      className={`album-shot ${image.src ? "has-image" : "is-placeholder"}`}
+                      className={`album-photo ${imageIndex === 0 ? "album-photo-feature" : ""} ${
+                        image.src ? "has-image" : "is-placeholder"
+                      }`}
                       key={image.src ?? image.label}
-                      style={
-                        {
-                          "--shot-x": `${(imageIndex - (album.images.length - 1) / 2) * 14}px`,
-                          "--shot-y": `${imageIndex * 8}px`,
-                          "--shot-r": `${(imageIndex - (album.images.length - 1) / 2) * 2.4}deg`,
-                          "--shot-hover-x": `${(imageIndex - (album.images.length - 1) / 2) * 30}px`,
-                          "--shot-hover-y": `${imageIndex * 13}px`,
-                          "--shot-hover-r": `${(imageIndex - (album.images.length - 1) / 2) * 4.8}deg`,
-                          "--album-accent": album.accent ?? "rgba(0, 255, 209, 0.42)",
-                        } as CSSProperties
-                      }
+                      style={{ "--photo-delay": `${imageIndex * 45}ms` } as CSSProperties}
                     >
-                      {image.src ? <img src={image.src} alt={image.label} /> : <span>{image.label}</span>}
-                      <figcaption>{image.caption}</figcaption>
+                      {image.src ? (
+                        <button
+                          className="album-photo-link"
+                          type="button"
+                          aria-label={`查看大图：${album.title} - ${image.label}`}
+                          onClick={() => setSelectedImage({ ...image, albumTitle: album.title })}
+                        >
+                          <img src={image.src} alt={image.label} loading={imageIndex === 0 ? "eager" : "lazy"} />
+                        </button>
+                      ) : (
+                        <span>{image.label}</span>
+                      )}
+                      <figcaption>
+                        <strong>{image.label}</strong>
+                        <span>{image.caption}</span>
+                      </figcaption>
                     </figure>
                   ))}
-                </div>
-                <div className="album-copy">
-                  <strong>{album.title}</strong>
-                  <span>{album.subtitle}</span>
                 </div>
               </article>
             ))}
@@ -730,6 +754,22 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {selectedImage?.src ? (
+        <div className="image-lightbox" role="dialog" aria-modal="true" aria-label={`${selectedImage.albumTitle} 大图预览`} onClick={() => setSelectedImage(null)}>
+          <button className="lightbox-close" type="button" aria-label="关闭图片预览" onClick={() => setSelectedImage(null)}>
+            ×
+          </button>
+          <figure className="lightbox-panel" onClick={(event) => event.stopPropagation()}>
+            <img src={selectedImage.src} alt={selectedImage.label} />
+            <figcaption>
+              <span>{selectedImage.albumTitle}</span>
+              <strong>{selectedImage.label}</strong>
+              <em>{selectedImage.caption}</em>
+            </figcaption>
+          </figure>
+        </div>
+      ) : null}
     </main>
   );
 }
