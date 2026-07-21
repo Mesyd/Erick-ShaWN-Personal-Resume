@@ -1407,6 +1407,61 @@ h3 {
   box-shadow: 0 20px 80px rgba(0, 255, 209, 0.08);
 }
 
+.project-scan-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-scan-card::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -38%;
+  z-index: 0;
+  width: 30%;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 209, 0.16), rgba(120, 183, 255, 0.2), rgba(255, 216, 137, 0.12), transparent);
+  opacity: 0;
+  pointer-events: none;
+  transform: skewX(-18deg);
+}
+
+.project-scan-card::after {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(0, 255, 209, 0.22), transparent 20%, transparent 80%, rgba(120, 183, 255, 0.18)),
+    linear-gradient(180deg, rgba(255, 216, 137, 0.12), transparent 26%, transparent 74%, rgba(0, 255, 209, 0.12));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.project-scan-card:hover::before {
+  animation: projectScan 1.65s ease-in-out infinite;
+  opacity: 1;
+}
+
+.project-scan-card:hover::after {
+  opacity: 0.42;
+}
+
+.project-scan-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes projectScan {
+  from {
+    left: -38%;
+  }
+  to {
+    left: 108%;
+  }
+}
+
 .project-card .project-status {
   margin-bottom: 18px;
 }
@@ -2164,16 +2219,20 @@ body.is-lightbox-open {
 
 .internship-interactive::after {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -42%;
+  top: var(--intern-y);
+  left: var(--intern-x);
   z-index: 0;
-  width: 34%;
+  width: 260px;
+  height: 260px;
   content: "";
-  background: linear-gradient(90deg, transparent, rgba(255, 216, 137, 0.2), rgba(99, 242, 255, 0.12), transparent);
+  border: 1px solid rgba(255, 216, 137, 0.2);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(255, 216, 137, 0.13), transparent 54%),
+    radial-gradient(circle, rgba(99, 242, 255, 0.1), transparent 68%);
   opacity: 0;
   pointer-events: none;
-  transform: skewX(-16deg);
+  transform: translate(-50%, -50%) scale(0.72);
 }
 
 .internship-interactive:hover {
@@ -2186,8 +2245,8 @@ body.is-lightbox-open {
 }
 
 .internship-interactive:hover::after {
-  animation: internshipScan 1.8s ease-in-out infinite;
-  opacity: 1;
+  animation: internshipPulse 1.9s ease-in-out infinite;
+  opacity: 0.9;
 }
 
 .internship-interactive > * {
@@ -2199,12 +2258,18 @@ body.is-lightbox-open {
   transform: perspective(1000px) rotateX(var(--intern-tilt-x)) rotateY(var(--intern-tilt-y)) translateY(-4px);
 }
 
-@keyframes internshipScan {
-  from {
-    left: -42%;
+@keyframes internshipPulse {
+  0% {
+    opacity: 0.22;
+    transform: translate(-50%, -50%) scale(0.62);
   }
-  to {
-    left: 108%;
+  55% {
+    opacity: 0.82;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  100% {
+    opacity: 0.16;
+    transform: translate(-50%, -50%) scale(1.28);
   }
 }
 
@@ -2264,8 +2329,9 @@ body.is-lightbox-open {
 
 .education-list p {
   margin: 0;
-  color: var(--muted);
-  font-size: 16px;
+  color: rgba(218, 228, 247, 0.88);
+  font-size: clamp(18px, 1.55vw, 22px);
+  font-weight: 760;
   line-height: 1.75;
 }
 

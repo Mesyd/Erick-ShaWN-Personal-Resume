@@ -71,12 +71,12 @@ const educationItems = [
   {
     degree: "硕士 · 新一代电子信息技术",
     school: "常州大学 · 2027 届",
-    detail: "专业排名 9/42；获校一等奖学金、校二等奖学金。",
+    detail: "专业排名 9/42，前 20%；平均学分成绩 86.5。",
   },
   {
     degree: "本科 · 电子信息工程",
     school: "常州大学 · 2020 届",
-    detail: "专业排名 2/82，前 2%；获校二等奖学金、院三好学生、优秀毕业生。",
+    detail: "专业排名 2/82，前 2%；绩点 4.2。",
   },
 ];
 
@@ -250,8 +250,8 @@ const experienceItems = [
 ];
 
 const campusHonors = [
-  "硕士阶段：专业排名 9/42，获校一等奖学金、校二等奖学金。",
-  "本科阶段：专业排名 2/82，前 2%，获校二等奖学金。",
+  "硕士阶段：获校一等奖学金、校二等奖学金。",
+  "本科阶段：获校二等奖学金。",
   "本科阶段：获院三好学生、优秀毕业生。",
 ];
 
@@ -653,7 +653,7 @@ export default function Home() {
         </div>
         <div className="project-list">
           {projects.map((project, index) => (
-            <article className="project-card project-card-wide magnetic" data-reveal key={project.name} style={{ "--delay": `${index * 75}ms` } as CSSProperties}>
+            <article className="project-card project-card-wide project-scan-card magnetic" data-reveal key={project.name} style={{ "--delay": `${index * 75}ms` } as CSSProperties}>
               <div className="project-card-main">
                 <span className="project-status">{project.status}</span>
                 <h3>{project.name}</h3>
