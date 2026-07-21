@@ -697,7 +697,7 @@ export default function Home() {
                       style={
                         {
                           "--photo-delay": `${imageIndex * 45}ms`,
-                          "--masonry-span": [32, 24, 27, 21, 25, 22][imageIndex % 6],
+                          "--masonry-span": [27, 20, 23, 18, 21, 19][imageIndex % 6],
                         } as CSSProperties
                       }
                     >
