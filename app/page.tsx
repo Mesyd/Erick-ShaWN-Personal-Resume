@@ -32,8 +32,8 @@ const navItems: NavItem[] = [
   ["home", "首页"],
   ["snapshot", "概览"],
   ["skills", "技能"],
-  ["projects", "项目"],
   ["experience", "实习"],
+  ["projects", "项目"],
   ["education", "教育"],
   ["articles", "文章"],
   ["contact", "联系"],
@@ -103,17 +103,6 @@ const projects = [
       "独立完成 SiC MOS 选型、驱动设计、4 层功率板 Layout 和 AP 法高频变压器参数计算与绕制。",
     ],
   },
-  {
-    name: "信号调制方式识别与参数估计装置",
-    status: "全国大学生电子设计竞赛 · 队长",
-    summary:
-      "面向 AM/FM/CW、ASK/FSK/PSK 调制信号完成解调、AGC 幅值控制、调制类型识别、参数估计和 LCD 波形显示。",
-    bullets: [
-      "使用 Tina-TI / Multisim 完成硬件解调电路仿真与原理图设计，搭建放大、衰减、跟随、比较、有源滤波等模拟电路。",
-      "基于 STM32F407 编写可控采样频率算法和信号处理代码，通过 FFT、寻峰算法和 THD 判断实现小信号测频与波形识别。",
-      "基于 LVGL8 实现 LCD 触摸屏波形频谱和数据显示，提升系统交互性与现场可展示性。",
-    ],
-  },
 ];
 
 const projectImageAlbums: ProjectAlbum[] = [
@@ -142,21 +131,32 @@ const projectImageAlbums: ProjectAlbum[] = [
     ],
   },
   {
-    title: "信号调制识别装置",
-    subtitle: "电赛装置、模拟前端、FPGA 解调与模块化硬件",
-    accent: "rgba(255, 92, 122, 0.42)",
+    title: "磁芯元件制作",
+    subtitle: "高频变压器、PQ / EE 磁芯、利兹线绕制与电桥测量",
+    accent: "rgba(255, 216, 137, 0.48)",
     images: [
-      { label: "FPGA 解调", caption: "FPGA 解调模块与硬件验证", src: "/project-photos/signal-modulation/01.jpg" },
-      { label: "信号选择器", caption: "调制信号选择与通道切换", src: "/project-photos/signal-modulation/02.jpg" },
-      { label: "信号选择器", caption: "硬件模块布局与接口连接", src: "/project-photos/signal-modulation/03.jpg" },
-      { label: "可调放大器", caption: "模拟前端与可调增益模块", src: "/project-photos/signal-modulation/04.jpg" },
-      { label: "放大器模块", caption: "滤波、比较与信号调理电路", src: "/project-photos/signal-modulation/05.jpg" },
-      { label: "装置本体", caption: "竞赛装置整机展示", src: "/project-photos/signal-modulation/07.jpg" },
+      { label: "EE 磁芯", caption: "磁芯选型 / 材料样品 / 尺寸确认", src: "/project-photos/magnetic-components/01.jpg" },
+      { label: "PQ 变压器", caption: "高频变压器样件 / 绕制结构", src: "/project-photos/magnetic-components/02.jpg" },
+      { label: "PQ 磁芯", caption: "PQ 磁芯样品 / 磁路结构", src: "/project-photos/magnetic-components/06.jpg" },
+      { label: "利兹线绕制", caption: "绕制工艺 / 高频损耗控制", src: "/project-photos/magnetic-components/07.jpg" },
+      { label: "变压器绕制", caption: "绕组排列 / 绝缘处理", src: "/project-photos/magnetic-components/08.jpg" },
+      { label: "电桥测量", caption: "电感参数 / 绕组一致性验证", src: "/project-photos/magnetic-components/12.jpg" },
     ],
   },
 ];
 
 const smallProjectAlbums: ProjectAlbum[] = [
+  {
+    title: "信号调制方式识别与参数估计装置",
+    subtitle: "电赛装置、模拟前端、FPGA 解调与模块化硬件",
+    accent: "rgba(255, 92, 122, 0.42)",
+    images: [
+      { label: "FPGA 解调", caption: "FPGA 解调模块", src: "/project-photos/signal-modulation/01.jpg" },
+      { label: "信号选择器", caption: "通道切换", src: "/project-photos/signal-modulation/02.jpg" },
+      { label: "可调放大器", caption: "模拟前端", src: "/project-photos/signal-modulation/04.jpg" },
+      { label: "装置本体", caption: "整机展示", src: "/project-photos/signal-modulation/07.jpg" },
+    ],
+  },
   {
     title: "STM32 手持式便携示波器",
     subtitle: "PCB、外壳结构、波形显示与接口细节",
@@ -166,17 +166,6 @@ const smallProjectAlbums: ProjectAlbum[] = [
       { label: "手持效果", caption: "整机形态", src: "/project-photos/stm32-oscilloscope/02.jpg" },
       { label: "方波显示", caption: "波形显示", src: "/project-photos/stm32-oscilloscope/03.jpg" },
       { label: "正弦波显示", caption: "测试波形", src: "/project-photos/stm32-oscilloscope/04.jpg" },
-    ],
-  },
-  {
-    title: "磁芯元件制作",
-    subtitle: "PQ / EE 磁芯、利兹线绕制、电桥测量",
-    accent: "rgba(255, 216, 137, 0.48)",
-    images: [
-      { label: "EE 磁芯", caption: "磁芯选型", src: "/project-photos/magnetic-components/01.jpg" },
-      { label: "PQ 变压器", caption: "绕制样件", src: "/project-photos/magnetic-components/02.jpg" },
-      { label: "利兹线", caption: "绕制工艺", src: "/project-photos/magnetic-components/07.jpg" },
-      { label: "电桥测量", caption: "参数验证", src: "/project-photos/magnetic-components/12.jpg" },
     ],
   },
   {
@@ -216,14 +205,21 @@ const smallProjectAlbums: ProjectAlbum[] = [
 
 const experienceItems = [
   {
-    title: "常州市红光电能科技股份有限公司（实习联培）",
-    meta: "数字电源研发工程师 · 2025.10 - 2026.5",
+    company: "常州市红光电能科技股份有限公司（实习联培）",
+    role: "数字电源研发工程师",
+    period: "2025.10 - 2026.5",
     bullets: [
       "参与 1000W 基于碳化硅的 Cyclo 转换器单相离网逆变数字电源研发。",
       "承担仿真验证、磁件设计、DSP 驱动算法、功率硬件研发与样机调试相关工作。",
       "形成数字电源控制、C2000 底层驱动、SiC 高频开关硬件和软硬件联调闭环经验。",
     ],
   },
+];
+
+const campusHonors = [
+  "硕士阶段：专业排名 9/42，获校一等奖学金、校二等奖学金。",
+  "本科阶段：专业排名 2/82，前 2%，获校一等奖学金。",
+  "本科阶段：获院三好学生、优秀毕业生。",
 ];
 
 const achievements = [
@@ -509,6 +505,36 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section-wrap experience-section" id="experience" data-section="experience">
+        <div className="section-heading" data-reveal>
+          <p className="eyebrow">Internship</p>
+          <h2>实习经历</h2>
+        </div>
+        <div className="internship-list">
+          {experienceItems.map((item) => (
+            <article className="experience-card internship-card" data-reveal key={item.company}>
+              <div className="internship-head">
+                <span className="experience-meta">Internship / Digital Power</span>
+                <h3>{item.company}</h3>
+                <p className="internship-role">
+                  <strong>职责</strong>
+                  <span>{item.role}</span>
+                  <em>{item.period}</em>
+                </p>
+              </div>
+              <div className="internship-work">
+                <strong>工作内容</strong>
+                <ul>
+                  {item.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="section-wrap content-section" id="projects" data-section="projects">
         <div className="section-heading" data-reveal>
           <p className="eyebrow">Projects</p>
@@ -516,25 +542,27 @@ export default function Home() {
         </div>
         <div className="project-list">
           {projects.map((project, index) => (
-            <article className="project-card magnetic" data-reveal key={project.name} style={{ "--delay": `${index * 75}ms` } as CSSProperties}>
-              <div>
+            <article className="project-card project-card-wide magnetic" data-reveal key={project.name} style={{ "--delay": `${index * 75}ms` } as CSSProperties}>
+              <div className="project-card-main">
                 <span className="project-status">{project.status}</span>
                 <h3>{project.name}</h3>
                 <p>{project.summary}</p>
               </div>
-              <ul className="project-bullets">
-                {project.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
-                ))}
-              </ul>
+              <div className="project-work">
+                <strong>关键工作</strong>
+                <ul className="project-bullets">
+                  {project.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </div>
             </article>
           ))}
         </div>
         <div className="project-gallery" data-reveal>
           <div className="project-gallery-head">
             <span>Project Media Archive</span>
-            <h3>项目图片收录</h3>
-            <p>为后续样机照片、测试波形、PCB Layout、磁件和实验台架预留。每个项目可维护一个图片组，图片较多时按“样机 / 测试 / 设计资料”分层展示。</p>
+            <h3>电源设计项目图片</h3>
           </div>
           <div className="project-album-grid">
             {projectImageAlbums.map((album) => (
@@ -575,9 +603,9 @@ export default function Home() {
           <div className="small-project-strip">
             <div className="small-project-head">
               <span>Side Projects Loop</span>
-              <strong>小项目照片循环展示</strong>
+              <strong>其他项目照片</strong>
             </div>
-            <div className="small-project-marquee" aria-label="小项目照片循环展示">
+            <div className="small-project-marquee" aria-label="其他项目照片">
               <div className="small-project-track">
                 {[...smallProjectAlbums, ...smallProjectAlbums].map((album, albumIndex) => (
                   <article
@@ -605,30 +633,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-wrap experience-section" id="experience" data-section="experience">
-        <div className="section-heading" data-reveal>
-          <p className="eyebrow">Internship</p>
-          <h2>实习经历</h2>
-        </div>
-        <div className="internship-list">
-          {experienceItems.map((item) => (
-            <article className="experience-card" data-reveal key={item.title}>
-              <p className="experience-meta">{item.meta}</p>
-              <h3>{item.title}</h3>
-              <ul>
-                {item.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section className="section-wrap education-section" id="education" data-section="education">
         <div className="section-heading" data-reveal>
           <p className="eyebrow">Education / Awards</p>
-          <h2>教育背景、竞赛、专利与证书</h2>
+          <h2>教育背景与在校荣誉</h2>
         </div>
         <div className="education-achievement-grid">
           <article className="experience-card education-card" data-reveal>
@@ -645,7 +653,17 @@ export default function Home() {
             </div>
           </article>
 
-          <div className="achievement-card" data-reveal>
+          <article className="achievement-card campus-honor-card" data-reveal>
+            <p className="experience-meta">Campus Honors</p>
+            <h3>在校荣誉</h3>
+            <div className="campus-honor-list">
+              {campusHonors.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+          </article>
+
+          <div className="achievement-card achievement-card-wide" data-reveal>
             <p className="experience-meta">Awards / Patents / Certificates</p>
             <h3>竞赛、专利与证书</h3>
             <div className="achievement-list">
