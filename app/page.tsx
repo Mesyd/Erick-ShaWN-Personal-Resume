@@ -1,6 +1,6 @@
 "use client";
 
-import { lazy, Suspense, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import LineSidebar from "./LineSidebar";
 import ProfileCard from "./ProfileCard";
 
@@ -31,8 +31,7 @@ type ProjectAlbum = {
 
 const navItems: NavItem[] = [
   ["home", "首页"],
-  ["snapshot", "概览"],
-  ["skills", "技能"],
+  ["snapshot", "能力"],
   ["experience", "实习"],
   ["projects", "项目"],
   ["education", "教育"],
@@ -289,6 +288,12 @@ export default function Home() {
     [],
   );
 
+  const handleSpotlightMove = useCallback((event: MouseEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty("--spotlight-x", `${event.clientX - rect.left}px`);
+    event.currentTarget.style.setProperty("--spotlight-y", `${event.clientY - rect.top}px`);
+  }, []);
+
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-section]"));
     const revealTargets = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
@@ -450,28 +455,67 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-wrap snapshot-grid" id="snapshot" data-section="snapshot">
+      <section className="section-wrap capability-section" id="snapshot" data-section="snapshot">
         <div className="section-heading" data-reveal>
-          <p className="eyebrow">30 Seconds</p>
-          <h2>核心概览</h2>
+          <p className="eyebrow">Core Signal</p>
+          <h2>核心概览与技能结构</h2>
+          <p>把岗位定位、项目链路、技能栈和公开沉淀放在一个章节中，便于快速判断方向匹配度。</p>
         </div>
 
-        <article className="snapshot-card primary" data-reveal>
-          <span>候选人定位</span>
-          <h3>数字电源研发 + 嵌入式软硬件</h3>
-          <p>具备 C2000/STM32 底层开发、EPWM/ADC 同步、功率拓扑仿真、SiC 驱动和功率板 Layout 的综合经验。</p>
-        </article>
-        <article className="snapshot-card" data-reveal>
-          <span>最强项目证据</span>
-          <h3>200W DAB 复合控制与 1000W SiC 离网逆变</h3>
-          <p>从 PLECS/Matlab 控制验证，到 TI C2000 部署，再到磁件、功率 PCB、样机调试，形成完整工程链路。</p>
-        </article>
-        <article className="snapshot-card" data-reveal>
-          <span>公开技术沉淀</span>
-          <h3>22 篇 CSDN 原创文章</h3>
-          <p>文章覆盖 C2000、DSP、EPWM/HRPWM、CLA/SFRA、SOGI-PLL、短路保护、电源硬件计算等主题。</p>
-        </article>
-        <div className="proof-flow" data-reveal>
+        <div className="capability-layout">
+          <article className="capability-hero spotlight-card" data-reveal onMouseMove={handleSpotlightMove}>
+            <span>候选人定位</span>
+            <h3>数字电源研发 + 嵌入式软硬件</h3>
+            <p>
+              具备 C2000/STM32 底层开发、EPWM/ADC 同步、功率拓扑仿真、SiC 驱动、磁芯元件设计和功率板 Layout 的综合经验。
+            </p>
+            <div className="capability-tags">
+              {roleTargets.map((role) => (
+                <span key={role}>{role}</span>
+              ))}
+            </div>
+          </article>
+
+          <div className="capability-column">
+            <article className="snapshot-card spotlight-card" data-reveal onMouseMove={handleSpotlightMove}>
+              <span>代表项目</span>
+              <h3>200W DAB 复合控制与 1000W SiC 离网逆变</h3>
+              <p>从控制验证到 C2000 部署，再到磁件、功率 PCB 和样机调试，形成完整工程链路。</p>
+            </article>
+            <article className="snapshot-card spotlight-card" data-reveal onMouseMove={handleSpotlightMove}>
+              <span>公开沉淀</span>
+              <h3>技术文章 + 项目照片 + Gitee 工程记录</h3>
+              <p>文章覆盖 C2000、DSP、EPWM/HRPWM、CLA/SFRA、SOGI-PLL、短路保护和电源硬件计算等主题。</p>
+            </article>
+          </div>
+        </div>
+
+        <div className="capability-skills-panel spotlight-card" data-reveal onMouseMove={handleSpotlightMove}>
+          <div className="proof-flow-head">
+            <span>Skill Map</span>
+            <strong>技能栈按工程链路组织</strong>
+          </div>
+          <div className="capability-skills-grid">
+            {skillGroups.map((group, index) => (
+              <article
+                className="skill-card capability-skill-card spotlight-card"
+                data-reveal
+                key={group.title}
+                onMouseMove={handleSpotlightMove}
+                style={{ "--delay": `${index * 80}ms` } as CSSProperties}
+              >
+                <h3>{group.title}</h3>
+                <div>
+                  {group.items.map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="proof-flow spotlight-card" data-reveal onMouseMove={handleSpotlightMove}>
           <div className="proof-flow-head">
             <span>工程闭环图</span>
             <strong>从控制验证到样机调试</strong>
@@ -498,34 +542,6 @@ export default function Home() {
               <em>波形、保护与效率验证</em>
             </li>
           </ol>
-        </div>
-      </section>
-
-      <section className="section-wrap role-strip" aria-label="目标岗位" data-reveal>
-        {roleTargets.map((role, index) => (
-          <span key={role} style={{ "--delay": `${index * 55}ms` } as CSSProperties}>
-            {role}
-          </span>
-        ))}
-      </section>
-
-      <section className="section-wrap content-section" id="skills" data-section="skills">
-        <div className="section-heading" data-reveal>
-          <p className="eyebrow">Core Skills</p>
-          <h2>核心技能</h2>
-          <p>控制算法、DSP 底层开发、功率硬件、样机调试与工程工具。</p>
-        </div>
-        <div className="skills-grid">
-          {skillGroups.map((group, index) => (
-            <article className="skill-card" data-reveal key={group.title} style={{ "--delay": `${index * 80}ms` } as CSSProperties}>
-              <h3>{group.title}</h3>
-              <div>
-                {group.items.map((item) => (
-                  <span key={item}>{item}</span>
-                ))}
-              </div>
-            </article>
-          ))}
         </div>
       </section>
 
@@ -610,7 +626,7 @@ export default function Home() {
                       style={
                         {
                           "--photo-delay": `${imageIndex * 45}ms`,
-                          "--masonry-span": [38, 28, 32, 24, 30, 26][imageIndex % 6],
+                          "--masonry-span": [32, 24, 27, 21, 25, 22][imageIndex % 6],
                         } as CSSProperties
                       }
                     >
