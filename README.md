@@ -9,6 +9,7 @@
 - [项目维护说明](docs/PROJECT_MAINTENANCE.md)
 - [公开部署指南](docs/PUBLIC_DEPLOYMENT_GUIDE.md)
 - [Cloudflare Pages 部署说明](docs/CLOUDFLARE_PAGES_DEPLOYMENT.md)
+- [Cloudflare Workers 部署说明](docs/CLOUDFLARE_WORKERS_DEPLOYMENT.md)
 
 ## 目录说明
 
