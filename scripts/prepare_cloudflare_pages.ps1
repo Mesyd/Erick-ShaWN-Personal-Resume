@@ -27,6 +27,7 @@ New-Item -ItemType Directory -Path $output -Force | Out-Null
 Copy-Item -Path (Join-Path $distClient "*") -Destination $output -Recurse -Force
 
 Copy-Item -Path (Join-Path $distServer "index.js") -Destination (Join-Path $output "_worker.js") -Force
+Copy-Item -Path (Join-Path $distServer "index.js") -Destination (Join-Path $output "index.js") -Force
 Copy-Item -Path (Join-Path $distServer "__vite_rsc_assets_manifest.js") -Destination (Join-Path $output "__vite_rsc_assets_manifest.js") -Force
 Copy-Item -Path (Join-Path $distServer "vinext-server.json") -Destination (Join-Path $output "vinext-server.json") -Force
 Copy-Item -Path (Join-Path $distServer "vinext-externals.json") -Destination (Join-Path $output "vinext-externals.json") -Force
