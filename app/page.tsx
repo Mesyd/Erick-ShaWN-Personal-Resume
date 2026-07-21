@@ -24,6 +24,7 @@ type ProjectImage = {
 type ProjectAlbum = {
   title: string;
   subtitle: string;
+  accent?: string;
   images: ProjectImage[];
 };
 
@@ -117,30 +118,98 @@ const projects = [
 
 const projectImageAlbums: ProjectAlbum[] = [
   {
-    title: "DAB 变换器样机",
-    subtitle: "后续可放整机、功率板、驱动板和磁件照片",
+    title: "200W DAB 变换器样机",
+    subtitle: "双有源桥样机、功率板、磁件与台架实物记录",
+    accent: "rgba(0, 255, 209, 0.42)",
     images: [
-      { label: "样机全貌", caption: "整机结构 / 台架搭建 / 安全间距" },
-      { label: "功率 PCB", caption: "4 层 Layout / SiC 回路 / 母线布局" },
-      { label: "磁件设计", caption: "高频变压器 / 磁芯 / 绕制工艺" },
-    ],
-  },
-  {
-    title: "测试波形与实验数据",
-    subtitle: "后续可放示波器截图、效率曲线和阶跃响应",
-    images: [
-      { label: "驱动波形", caption: "EPWM / 死区 / 相移关系" },
-      { label: "负载阶跃", caption: "动态响应 / 恢复时间 / 超调" },
-      { label: "效率验证", caption: "输入输出功率 / 热点 / 损耗分析" },
+      { label: "DAB 样机 01", caption: "样机结构 / 功率回路 / 调试台架", src: "/project-photos/dab-200w/01.jpg" },
+      { label: "DAB 样机 02", caption: "功率板细节 / 器件布局 / 走线关系", src: "/project-photos/dab-200w/02.jpg" },
+      { label: "DAB 样机 03", caption: "双有源桥硬件结构 / 接线关系", src: "/project-photos/dab-200w/03.jpg" },
+      { label: "DAB 样机 04", caption: "样机实物 / 现场调试记录", src: "/project-photos/dab-200w/04.jpg" },
     ],
   },
   {
     title: "1000W SiC 离网逆变",
-    subtitle: "后续可放样机照片、PLECS 仿真和调试记录",
+    subtitle: "样机、SiC 驱动板、调试环境与输出波形",
+    accent: "rgba(120, 183, 255, 0.44)",
     images: [
-      { label: "PLECS 仿真", caption: "拓扑建模 / 闭环控制 / 参数扫描" },
-      { label: "硬件调试", caption: "SiC 驱动 / 保护链路 / 上电流程" },
-      { label: "输出验证", caption: "电压电流波形 / 保护动作 / 稳态质量" },
+      { label: "逆变样机", caption: "Cycle 单相离网逆变器样机", src: "/project-photos/sic-inverter/01.jpg" },
+      { label: "SiC 驱动板", caption: "SiC 全桥负压驱动板", src: "/project-photos/sic-inverter/02.jpg" },
+      { label: "交流负载", caption: "交流负载输出测试", src: "/project-photos/sic-inverter/03.jpg" },
+      { label: "调试环境", caption: "实验台架与联调环境", src: "/project-photos/sic-inverter/04.jpg" },
+      { label: "输入电流", caption: "输入侧电流测试记录", src: "/project-photos/sic-inverter/05.jpg" },
+      { label: "输出波形", caption: "逆变器输出波形验证", src: "/project-photos/sic-inverter/06.jpg" },
+    ],
+  },
+  {
+    title: "信号调制识别装置",
+    subtitle: "电赛装置、模拟前端、FPGA 解调与模块化硬件",
+    accent: "rgba(255, 92, 122, 0.42)",
+    images: [
+      { label: "FPGA 解调", caption: "FPGA 解调模块与硬件验证", src: "/project-photos/signal-modulation/01.jpg" },
+      { label: "信号选择器", caption: "调制信号选择与通道切换", src: "/project-photos/signal-modulation/02.jpg" },
+      { label: "信号选择器", caption: "硬件模块布局与接口连接", src: "/project-photos/signal-modulation/03.jpg" },
+      { label: "可调放大器", caption: "模拟前端与可调增益模块", src: "/project-photos/signal-modulation/04.jpg" },
+      { label: "放大器模块", caption: "滤波、比较与信号调理电路", src: "/project-photos/signal-modulation/05.jpg" },
+      { label: "装置本体", caption: "竞赛装置整机展示", src: "/project-photos/signal-modulation/07.jpg" },
+    ],
+  },
+];
+
+const smallProjectAlbums: ProjectAlbum[] = [
+  {
+    title: "STM32 手持式便携示波器",
+    subtitle: "PCB、外壳结构、波形显示与接口细节",
+    accent: "rgba(99, 242, 255, 0.46)",
+    images: [
+      { label: "PCB 硬件", caption: "硬件主板", src: "/project-photos/stm32-oscilloscope/01.jpg" },
+      { label: "手持效果", caption: "整机形态", src: "/project-photos/stm32-oscilloscope/02.jpg" },
+      { label: "方波显示", caption: "波形显示", src: "/project-photos/stm32-oscilloscope/03.jpg" },
+      { label: "正弦波显示", caption: "测试波形", src: "/project-photos/stm32-oscilloscope/04.jpg" },
+    ],
+  },
+  {
+    title: "磁芯元件制作",
+    subtitle: "PQ / EE 磁芯、利兹线绕制、电桥测量",
+    accent: "rgba(255, 216, 137, 0.48)",
+    images: [
+      { label: "EE 磁芯", caption: "磁芯选型", src: "/project-photos/magnetic-components/01.jpg" },
+      { label: "PQ 变压器", caption: "绕制样件", src: "/project-photos/magnetic-components/02.jpg" },
+      { label: "利兹线", caption: "绕制工艺", src: "/project-photos/magnetic-components/07.jpg" },
+      { label: "电桥测量", caption: "参数验证", src: "/project-photos/magnetic-components/12.jpg" },
+    ],
+  },
+  {
+    title: "ESP32 智能手表",
+    subtitle: "小型嵌入式硬件制作、焊接与调试",
+    accent: "rgba(158, 255, 198, 0.42)",
+    images: [
+      { label: "制作", caption: "组装过程", src: "/project-photos/esp32-watch/01.jpg" },
+      { label: "成品", caption: "整机效果", src: "/project-photos/esp32-watch/02.jpg" },
+      { label: "焊接", caption: "硬件焊接", src: "/project-photos/esp32-watch/03.jpg" },
+      { label: "调试", caption: "功能调试", src: "/project-photos/esp32-watch/04.jpg" },
+    ],
+  },
+  {
+    title: "放大器非线性失真装置",
+    subtitle: "模拟电路、电赛训练与硬件验证装置",
+    accent: "rgba(255, 92, 122, 0.4)",
+    images: [
+      { label: "装置 01", caption: "整机外观", src: "/project-photos/amplifier-distortion/01.jpg" },
+      { label: "装置 02", caption: "硬件结构", src: "/project-photos/amplifier-distortion/02.jpg" },
+      { label: "装置 03", caption: "电路细节", src: "/project-photos/amplifier-distortion/03.jpg" },
+      { label: "装置 04", caption: "模块连接", src: "/project-photos/amplifier-distortion/04.jpg" },
+    ],
+  },
+  {
+    title: "香橙派边缘设备",
+    subtitle: "开发板配置、SSD 扩展、远程桌面与局域网部署",
+    accent: "rgba(168, 140, 255, 0.46)",
+    images: [
+      { label: "局域网", caption: "桌面局域网", src: "/project-photos/orange-pi/01.jpg" },
+      { label: "远程桌面", caption: "远程连接", src: "/project-photos/orange-pi/02.jpg" },
+      { label: "配置", caption: "系统配置", src: "/project-photos/orange-pi/03.jpg" },
+      { label: "SSD 扩展", caption: "2242 SSD", src: "/project-photos/orange-pi/05.jpg" },
     ],
   },
 ];
@@ -469,13 +538,27 @@ export default function Home() {
           </div>
           <div className="project-album-grid">
             {projectImageAlbums.map((album) => (
-              <article className="project-album-card magnetic" key={album.title}>
+              <article
+                className="project-album-card magnetic"
+                key={album.title}
+                style={{ "--album-accent": album.accent ?? "rgba(0, 255, 209, 0.42)" } as CSSProperties}
+              >
                 <div className="album-stack" aria-label={`${album.title} 图片组`}>
                   {album.images.map((image, imageIndex) => (
                     <figure
                       className={`album-shot ${image.src ? "has-image" : "is-placeholder"}`}
-                      key={image.label}
-                      style={{ "--shot-index": imageIndex } as CSSProperties}
+                      key={image.src ?? image.label}
+                      style={
+                        {
+                          "--shot-x": `${(imageIndex - (album.images.length - 1) / 2) * 14}px`,
+                          "--shot-y": `${imageIndex * 8}px`,
+                          "--shot-r": `${(imageIndex - (album.images.length - 1) / 2) * 2.4}deg`,
+                          "--shot-hover-x": `${(imageIndex - (album.images.length - 1) / 2) * 30}px`,
+                          "--shot-hover-y": `${imageIndex * 13}px`,
+                          "--shot-hover-r": `${(imageIndex - (album.images.length - 1) / 2) * 4.8}deg`,
+                          "--album-accent": album.accent ?? "rgba(0, 255, 209, 0.42)",
+                        } as CSSProperties
+                      }
                     >
                       {image.src ? <img src={image.src} alt={image.label} /> : <span>{image.label}</span>}
                       <figcaption>{image.caption}</figcaption>
@@ -488,6 +571,36 @@ export default function Home() {
                 </div>
               </article>
             ))}
+          </div>
+          <div className="small-project-strip">
+            <div className="small-project-head">
+              <span>Side Projects Loop</span>
+              <strong>小项目照片循环展示</strong>
+            </div>
+            <div className="small-project-marquee" aria-label="小项目照片循环展示">
+              <div className="small-project-track">
+                {[...smallProjectAlbums, ...smallProjectAlbums].map((album, albumIndex) => (
+                  <article
+                    className="small-project-card"
+                    key={`${album.title}-${albumIndex}`}
+                    style={{ "--album-accent": album.accent ?? "rgba(99, 242, 255, 0.42)" } as CSSProperties}
+                  >
+                    <div className="small-photo-grid">
+                      {album.images.map((image) => (
+                        <figure key={image.src}>
+                          {image.src ? <img src={image.src} alt={image.label} loading="lazy" /> : null}
+                          <figcaption>{image.label}</figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                    <div className="small-project-copy">
+                      <strong>{album.title}</strong>
+                      <span>{album.subtitle}</span>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
