@@ -175,6 +175,105 @@ code {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(0, 255, 209, 0.72), rgba(138, 92, 255, 0.72));
 }
 
+.resume-line-sidebar {
+  margin-top: 4px;
+}
+
+.line-sidebar {
+  --accent-color: #28f7d1;
+  --text-color: rgba(245, 248, 255, 0.72);
+  --marker-color: rgba(245, 248, 255, 0.26);
+  --marker-length: 48px;
+  --marker-gap: 10px;
+  --tick-scale: 0.42;
+  --max-shift: 24px;
+  --item-gap: 14px;
+  --font-size: 0.9rem;
+  --smoothing: 90ms;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  min-width: 112px;
+}
+
+.line-sidebar--markers {
+  padding-left: calc(var(--marker-length) + var(--marker-gap));
+}
+
+.line-sidebar__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--item-gap);
+  margin: 0;
+  padding: 10px 0 4px;
+  list-style: none;
+}
+
+.line-sidebar__item {
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+
+.line-sidebar__item::before {
+  position: absolute;
+  inset: -7px -24px;
+  content: "";
+}
+
+.line-sidebar__label {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  color: color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--text-color));
+  font-size: var(--font-size);
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  text-shadow: 0 0 calc(var(--effect, 0) * 18px) color-mix(in srgb, var(--accent-color) 70%, transparent);
+  transform: translateX(calc(var(--effect, 0) * var(--max-shift)));
+}
+
+.line-sidebar__index {
+  margin-right: 0.52rem;
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78em;
+  opacity: calc(0.48 + var(--effect, 0) * 0.52);
+}
+
+.line-sidebar__marker {
+  position: absolute;
+  top: 50%;
+  left: calc(-1 * var(--marker-length) - var(--marker-gap));
+  width: var(--marker-length);
+  height: 1px;
+  background-color: color-mix(in srgb, var(--accent-color) calc(var(--effect, 0) * 100%), var(--marker-color));
+  box-shadow: 0 0 calc(var(--effect, 0) * 18px) color-mix(in srgb, var(--accent-color) 80%, transparent);
+  transform: translateY(-50%) scaleX(calc(0.64 + var(--effect, 0) * 0.58));
+  transform-origin: left center;
+}
+
+.line-sidebar--markers .line-sidebar__item:not(:last-child)::after {
+  position: absolute;
+  top: calc(100% + var(--item-gap) / 2);
+  left: calc(-1 * var(--marker-length) - var(--marker-gap));
+  width: calc(var(--marker-length) * var(--tick-scale));
+  height: 1px;
+  background-color: var(--marker-color);
+  content: "";
+  opacity: 0.5;
+  transform: translateY(-50%);
+}
+
+.line-sidebar--scale-tick .line-sidebar__item:not(:last-child)::after {
+  transform: translateY(-50%) scaleX(calc(0.66 + var(--effect, 0) * 0.58));
+  transform-origin: left center;
+}
+
+.line-sidebar__item[aria-current="true"] .line-sidebar__text {
+  color: color-mix(in srgb, var(--accent-color) 86%, #fff);
+}
+
 .section-wrap {
   width: min(1120px, calc(100% - 160px));
   margin-inline: auto;
@@ -1384,6 +1483,112 @@ h3 {
   }
 }
 
+.album-masonry {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 8px;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.masonry-shot {
+  position: relative;
+  overflow: hidden;
+  grid-row: span var(--masonry-span, 28);
+  min-height: 0;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--album-accent, rgba(99, 242, 255, 0.42)) 34%, transparent), transparent 42%),
+    rgba(4, 8, 18, 0.72);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.035), 0 18px 50px rgba(0, 0, 0, 0.2);
+  animation: albumPhotoRise 660ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--photo-delay, 0ms);
+  transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease, filter 260ms ease;
+}
+
+.masonry-shot-feature {
+  grid-row: span 44;
+}
+
+.masonry-shot:hover {
+  z-index: 2;
+  border-color: color-mix(in srgb, var(--album-accent, rgba(0, 255, 209, 0.42)) 72%, rgba(255, 255, 255, 0.16));
+  box-shadow: 0 24px 72px color-mix(in srgb, var(--album-accent, rgba(0, 255, 209, 0.42)) 22%, transparent);
+  transform: translateY(-5px) scale(0.985);
+}
+
+.masonry-shot-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.masonry-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  transition: transform 560ms cubic-bezier(0.16, 1, 0.3, 1), filter 260ms ease;
+}
+
+.masonry-shot:hover img {
+  transform: scale(1.07);
+  filter: saturate(1.08) contrast(1.06);
+}
+
+.masonry-shot > span {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  padding: 18px;
+  color: rgba(245, 248, 255, 0.9);
+  font-size: 18px;
+  font-weight: 950;
+  text-align: center;
+}
+
+.masonry-shot figcaption {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+  display: grid;
+  gap: 2px;
+  padding: 9px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 15px;
+  background: linear-gradient(135deg, rgba(2, 6, 14, 0.72), rgba(2, 6, 14, 0.48));
+  color: rgba(245, 248, 255, 0.74);
+  font-size: 12px;
+  line-height: 1.45;
+  pointer-events: none;
+  backdrop-filter: blur(14px);
+  transform: translateY(4px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.masonry-shot figcaption strong {
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+}
+
+.masonry-shot figcaption span {
+  color: rgba(218, 228, 247, 0.72);
+}
+
+.masonry-shot:hover figcaption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 body.is-lightbox-open {
   overflow: hidden;
 }
@@ -2029,6 +2234,10 @@ body.is-lightbox-open {
     grid-row: auto;
     min-height: 360px;
   }
+
+  .album-masonry {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 920px) {
@@ -2047,7 +2256,8 @@ body.is-lightbox-open {
     padding: 6px 12px 6px 6px;
   }
 
-  .floating-nav nav {
+  .floating-nav nav,
+  .line-sidebar {
     display: none;
   }
 
@@ -2198,6 +2408,18 @@ body.is-lightbox-open {
   .album-photo,
   .album-photo-feature {
     min-height: 250px;
+  }
+
+  .album-masonry {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+
+  .masonry-shot,
+  .masonry-shot-feature {
+    grid-row: auto;
+    min-height: 260px;
   }
 
   .small-project-head {
