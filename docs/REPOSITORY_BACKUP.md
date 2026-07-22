@@ -20,7 +20,7 @@ erick-shawn-personal-resume
 
 ```text
 Gitee  ：https://gitee.com/Erick_ShaWn/erick-shawn-personal-resume
-GitHub ：https://github.com/Mesyd/erick-shawn-personal-resume
+GitHub ：https://github.com/Mesyd/Erick-ShaWN-Personal-Resume
 ```
 
 ## 推荐远程命名
@@ -37,7 +37,7 @@ origin  当前平台内部仓库，保留即可
 
 ```text
 gitee   git@gitee.com:Erick_ShaWn/erick-shawn-personal-resume.git
-github  git@github.com:Mesyd/erick-shawn-personal-resume.git
+github  git@github.com:Mesyd/Erick-ShaWN-Personal-Resume.git
 ```
 
 正式推送前需要确认：
@@ -52,7 +52,7 @@ github  git@github.com:Mesyd/erick-shawn-personal-resume.git
 
 ```bash
 git remote add gitee git@gitee.com:Erick_ShaWn/erick-shawn-personal-resume.git
-git remote add github git@github.com:Mesyd/erick-shawn-personal-resume.git
+git remote add github git@github.com:Mesyd/Erick-ShaWN-Personal-Resume.git
 ```
 
 如果本机没有配置 SSH Key，也可以使用 HTTPS 地址，但推荐使用 SSH，避免反复输入账号密码。
