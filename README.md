@@ -1,38 +1,57 @@
-# 沙宇栋个人简历网站
+# Erick ShaWN Personal Resume
 
-这是一个“个人简历 + 技术博客入口”网站，当前基于 Vinext / React 构建，并通过 OpenAI Sites 保存与部署。
+这是一个“个人简历 + 技术博客入口”网站，当前基于 Vinext / React 构建，并部署在阿里云 ECS 上。
 
-当前阶段以公开访问、内容维护和后续自定义域名部署准备为主。页面视觉与交互代码集中在 `app/` 目录，原始项目照片保存在 `项目照片/` 目录，部署相关说明保存在 `docs/` 目录。
+当前线上访问入口：
+
+```text
+http://118.190.155.166
+```
+
+域名：
+
+```text
+shayudong.website
+www.shayudong.website
+```
+
+域名目前等待 ICP 备案完成后再正式启用 HTTPS。
 
 ## 常用文档
 
 - [项目维护说明](docs/PROJECT_MAINTENANCE.md)
-- [公开部署指南](docs/PUBLIC_DEPLOYMENT_GUIDE.md)
-- [Cloudflare Pages 部署说明](docs/CLOUDFLARE_PAGES_DEPLOYMENT.md)
-- [Cloudflare Workers 部署说明](docs/CLOUDFLARE_WORKERS_DEPLOYMENT.md)
+- [阿里云 Node + systemd 部署记录](docs/ALIYUN_NODE_SYSTEMD_DEPLOYMENT.md)
+- [阿里云 Docker 部署备用方案](docs/ALIYUN_DOCKER_DEPLOYMENT.md)
 
 ## 目录说明
 
 - `app/`：网站页面、组件、样式和交互逻辑。
-- `public/`：最终会随网站一起发布的静态资源。
-- `项目照片/`：原始项目照片素材，已加入 `.gitignore`，不直接部署。
-- `scripts/prepare_project_photos.py`：项目照片压缩、转换和导出脚本。
-- `outputs/`、`dist/`、`.vinext/`、`.wrangler/`：构建或运行产物，不手动维护。
-- `.openai/hosting.json`：OpenAI Sites 项目配置，里面的 `project_id` 不要随意修改。
+- `public/`：最终随网站发布的公开静态资源。
+- `public/project-photos/`：项目原图，点击大图时使用。
+- `public/project-photos-thumbs/`：项目展示区 WebP 缩略图，用于提升加载速度。
+- `项目照片/`：原始项目照片素材，不直接部署。
+- `scripts/generate_project_thumbnails.py`：从项目原图生成 WebP 缩略图。
+- `dist/`、`.vinext/`、`.wrangler/`：构建或运行产物，不手动维护。
+- `.openai/hosting.json`：历史 OpenAI Sites 项目配置，保留但当前不作为主要部署入口。
 
 ## 常用命令
 
 ```bash
-npm install
-npm run dev
-npm run build
+pnpm install
+pnpm run dev
+pnpm run build
 ```
 
-## 后续公开访问建议
+## 当前部署方式
 
-网站正式公开前，建议先完成以下准备：
+当前 ECS 运行结构：
 
-1. 确认简历内容、项目图片、联系方式都适合长期公开展示。
-2. 确认是否继续使用当前 OpenAI Sites，还是迁移到 Cloudflare Pages / Workers。
-3. 如果购买独立域名，优先选择简短、易输入、和姓名或英文名相关的域名。
-4. 若部署在中国大陆服务器或大陆云产品上，提前确认 ICP 备案要求。
+```text
+Nginx 80 端口
+  ↓
+systemd 常驻服务 shayudong-resume.service
+  ↓
+Vinext 生产服务 127.0.0.1:3000
+```
+
+本地项目不会自动同步到 ECS。每次修改后，需要重新打包、上传、构建并重启 ECS 服务。
