@@ -1544,6 +1544,7 @@ h3 {
 .project-album-card {
   position: relative;
   overflow: hidden;
+  contain: layout paint;
   padding: 22px;
   border: 1px solid color-mix(in srgb, var(--album-accent, rgba(0, 255, 209, 0.42)) 52%, rgba(255, 255, 255, 0.14));
   border-radius: 32px;
@@ -1766,6 +1767,7 @@ h3 {
   height: 100%;
   min-height: inherit;
   object-fit: cover;
+  filter: saturate(0.96) contrast(0.96) blur(0.12px);
   transition: transform 560ms cubic-bezier(0.16, 1, 0.3, 1), filter 260ms ease;
 }
 
@@ -2010,6 +2012,7 @@ body.is-lightbox-open {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: saturate(0.96) contrast(0.96) blur(0.12px);
   transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -2526,6 +2529,53 @@ body.is-lightbox-open {
   opacity: 1;
   filter: blur(0);
   transform: translateY(0) scale(1);
+}
+
+html.mobile-performance-mode {
+  scroll-behavior: auto;
+}
+
+html.mobile-performance-mode [data-reveal],
+html.mobile-performance-mode [data-reveal].is-visible {
+  opacity: 1;
+  filter: none;
+  transform: none;
+  transition: none;
+}
+
+html.mobile-performance-mode .resume-galaxy {
+  display: none;
+}
+
+html.mobile-performance-mode body::after {
+  opacity: 0.72;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(0, 255, 209, 0.16), transparent 24%),
+    radial-gradient(circle at 82% 18%, rgba(168, 140, 255, 0.15), transparent 24%),
+    linear-gradient(135deg, rgba(6, 18, 28, 0.9), rgba(18, 10, 34, 0.9));
+}
+
+html.mobile-performance-mode .spotlight-card,
+html.mobile-performance-mode .magnetic,
+html.mobile-performance-mode .project-scan-card,
+html.mobile-performance-mode .internship-interactive,
+html.mobile-performance-mode .project-album-card,
+html.mobile-performance-mode .small-project-card {
+  transform: none !important;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+html.mobile-performance-mode .small-project-track {
+  animation-duration: 80s;
+}
+
+html.mobile-performance-mode .device-frame,
+html.mobile-performance-mode .profile-card,
+html.mobile-performance-mode .project-album-card,
+html.mobile-performance-mode .masonry-shot figcaption,
+html.mobile-performance-mode .small-photo-grid figcaption,
+html.mobile-performance-mode .lightbox-panel {
+  backdrop-filter: none;
 }
 
 @keyframes orbit {

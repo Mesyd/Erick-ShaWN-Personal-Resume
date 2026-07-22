@@ -46,6 +46,9 @@ type ProjectAlbum = {
   images: ProjectImage[];
 };
 
+const getThumbnailSrc = (src?: string) =>
+  src?.replace("/project-photos/", "/project-photos-thumbs/").replace(/\.(jpe?g|png|webp)$/i, ".webp");
+
 const navItems: NavItem[] = [
   ["home", "首页"],
   ["snapshot", "能力"],
@@ -333,6 +336,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
   const [selectedImage, setSelectedImage] = useState<(ProjectImage & { albumTitle: string }) | null>(null);
   const [showGalaxy, setShowGalaxy] = useState(false);
+  const [useStaticBackground, setUseStaticBackground] = useState(false);
 
   const featuredTags = useMemo(
     () => ["数字电源", "硬件设计", "DSP 控制", "功率调试", "控制算法", "磁芯元件设计"],
@@ -340,6 +344,21 @@ export default function Home() {
   );
 
   useEffect(() => {
+    const performanceMode =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.innerWidth <= 820;
+
+    setUseStaticBackground(performanceMode);
+    document.documentElement.classList.toggle("mobile-performance-mode", performanceMode);
+
+    if (performanceMode) {
+      document.documentElement.classList.add("galaxy-fallback-active");
+      return () => {
+        document.documentElement.classList.remove("mobile-performance-mode");
+      };
+    }
+
     const startGalaxy = () => setShowGalaxy(true);
     const idleHandle =
       "requestIdleCallback" in window
@@ -352,6 +371,7 @@ export default function Home() {
       } else if (typeof idleHandle === "number") {
         window.clearTimeout(idleHandle);
       }
+      document.documentElement.classList.remove("mobile-performance-mode");
     };
   }, []);
 
@@ -381,20 +401,31 @@ export default function Home() {
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-section]"));
     const revealTargets = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    const reducedMotionLayout = document.documentElement.classList.contains("mobile-performance-mode");
 
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.12 },
-    );
+    const canUseRevealObserver = "IntersectionObserver" in window;
 
-    revealTargets.forEach((target) => revealObserver.observe(target));
+    if (reducedMotionLayout || !canUseRevealObserver) {
+      revealTargets.forEach((target) => target.classList.add("is-visible"));
+    }
+
+    let revealObserver: IntersectionObserver | null = null;
+
+    if (canUseRevealObserver) {
+      revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObserver?.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: "0px 0px -12% 0px", threshold: 0.12 },
+      );
+    }
+
+    if (!reducedMotionLayout) revealTargets.forEach((target) => revealObserver?.observe(target));
 
     let frameId = 0;
     const syncActiveSection = () => {
@@ -425,7 +456,7 @@ export default function Home() {
     window.addEventListener("resize", requestSync);
 
     return () => {
-      revealObserver.disconnect();
+      revealObserver?.disconnect();
       window.removeEventListener("scroll", requestSync);
       window.removeEventListener("resize", requestSync);
       if (frameId !== 0) window.cancelAnimationFrame(frameId);
@@ -450,7 +481,7 @@ export default function Home() {
 
   return (
     <main className="site-shell" ref={shellRef}>
-      {showGalaxy ? (
+      {showGalaxy && !useStaticBackground ? (
         <GalaxyBoundary>
           <Suspense fallback={null}>
             <Galaxy
@@ -746,7 +777,7 @@ export default function Home() {
                           aria-label={`查看大图：${album.title} - ${image.label}`}
                           onClick={() => setSelectedImage({ ...image, albumTitle: album.title })}
                         >
-                          <img src={image.src} alt={image.label} loading={imageIndex === 0 ? "eager" : "lazy"} />
+                          <img src={getThumbnailSrc(image.src)} alt={image.label} loading="lazy" decoding="async" />
                         </button>
                       ) : (
                         <span>{image.label}</span>
@@ -777,7 +808,7 @@ export default function Home() {
                     <div className="small-photo-grid">
                       {album.images.map((image) => (
                         <figure key={image.src}>
-                          {image.src ? <img src={image.src} alt={image.label} loading="lazy" /> : null}
+                          {image.src ? <img src={getThumbnailSrc(image.src)} alt={image.label} loading="lazy" decoding="async" /> : null}
                           <figcaption>{image.label}</figcaption>
                         </figure>
                       ))}
