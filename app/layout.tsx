@@ -13,15 +13,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "沙宇栋 | 数字电源与嵌入式控制简历",
-  description: "沙宇栋的在线简历与技术博客入口，聚焦数字电源、C2000、DAB、SiC 功率硬件、电力电子控制和嵌入式调试。",
+  title: "Erick ShaWN | Personal Resume",
+  description: "Erick ShaWN personal resume website for digital power, embedded hardware, C2000, DAB, SiC power hardware, power electronics control and engineering debugging.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
   },
   openGraph: {
-    title: "沙宇栋 | 数字电源与嵌入式控制简历",
-    description: "在线简历、项目证据与技术文章入口，面向电子行业求职展示。",
+    title: "Erick ShaWN | Personal Resume",
+    description: "Personal resume, project archive and technical article portal for electronics industry roles.",
     type: "website",
   },
 };

@@ -2719,6 +2719,8 @@ html.mobile-performance-mode .lightbox-panel {
 @media (max-width: 680px) {
   .section-wrap {
     width: min(100% - 26px, 1120px);
+    padding-top: 62px;
+    padding-bottom: 62px;
   }
 
   h1 {
@@ -2727,6 +2729,22 @@ html.mobile-performance-mode .lightbox-panel {
 
   .hero-lede {
     font-size: 17px;
+  }
+
+  .section-heading {
+    margin-bottom: 24px;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(36px, 12vw, 52px);
+    line-height: 1.02;
+  }
+
+  .section-heading p:not(.eyebrow) {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
 
   .hero-name {
@@ -2739,6 +2757,30 @@ html.mobile-performance-mode .lightbox-panel {
 
   .hero-role-row {
     gap: 9px;
+  }
+
+  .hero-actions {
+    gap: 10px;
+  }
+
+  .primary-button,
+  .ghost-button {
+    min-height: 44px;
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .hero-tags {
+    max-height: 92px;
+    overflow: hidden;
+  }
+
+  .hero-tags span,
+  .capability-tags span,
+  .internship-tags span,
+  .tag {
+    padding: 8px 10px;
+    font-size: 12px;
   }
 
   .skills-grid {
@@ -2756,6 +2798,55 @@ html.mobile-performance-mode .lightbox-panel {
 
   .capability-hero h3 {
     font-size: clamp(34px, 11vw, 54px);
+  }
+
+  .capability-hero p,
+  .snapshot-card p,
+  .skill-card span,
+  .project-card-main p,
+  .internship-summary,
+  .album-copy-top em,
+  .small-project-copy span,
+  .article-main p,
+  .education-list p,
+  .link-list span,
+  .link-list a {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+  }
+
+  .capability-hero p,
+  .snapshot-card p,
+  .project-card-main p,
+  .internship-summary,
+  .article-main p {
+    -webkit-line-clamp: 2;
+  }
+
+  .album-copy-top em,
+  .small-project-copy span,
+  .education-list p,
+  .link-list span,
+  .link-list a {
+    -webkit-line-clamp: 1;
+  }
+
+  .skill-card span {
+    -webkit-line-clamp: 1;
+  }
+
+  .capability-skills-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .capability-skill-card {
+    padding: 18px;
+  }
+
+  .capability-skill-card div {
+    gap: 8px;
   }
 
   .article-card {
@@ -2797,12 +2888,12 @@ html.mobile-performance-mode .lightbox-panel {
   }
 
   .pc-card-shell {
-    min-height: 640px;
+    min-height: 560px;
   }
 
   .pc-avatar-stage {
-    width: min(86%, 330px);
-    height: 400px;
+    width: min(86%, 300px);
+    height: 350px;
   }
 
   .pc-user-info {
@@ -2830,6 +2921,7 @@ html.mobile-performance-mode .lightbox-panel {
 
   .proof-flow ol {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .proof-flow li::after {
@@ -2853,6 +2945,55 @@ html.mobile-performance-mode .lightbox-panel {
     min-height: 250px;
   }
 
+  .project-card,
+  .internship-card,
+  .project-album-card,
+  .proof-flow,
+  .capability-hero,
+  .snapshot-card,
+  .skill-card,
+  .article-card,
+  .experience-card,
+  .achievement-card,
+  .contact-card {
+    padding: 22px;
+  }
+
+  .project-card-main h3,
+  .internship-head h3,
+  .album-copy-top strong {
+    font-size: clamp(24px, 7.6vw, 34px);
+    line-height: 1.08;
+  }
+
+  .project-work strong,
+  .internship-work strong {
+    font-size: 16px;
+  }
+
+  .project-bullets,
+  .internship-work ul {
+    gap: 8px;
+  }
+
+  .project-bullets li,
+  .internship-work li {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .internship-work section {
+    padding: 14px;
+  }
+
+  .internship-work section h4 {
+    font-size: 15px;
+  }
+
   .album-masonry {
     display: grid;
     grid-template-columns: 1fr;
@@ -2862,12 +3003,96 @@ html.mobile-performance-mode .lightbox-panel {
   .masonry-shot,
   .masonry-shot-feature {
     grid-row: auto;
-    min-height: 260px;
+    min-height: 210px;
+  }
+
+  .masonry-shot figcaption span {
+    display: none;
+  }
+
+  .small-project-marquee {
+    padding-block: 8px;
+  }
+
+  .small-project-card {
+    width: min(78vw, 300px);
+    padding: 14px;
+  }
+
+  .small-photo-grid {
+    gap: 6px;
+    margin-bottom: 10px;
   }
 
   .small-project-head {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .article-meta,
+  .article-card footer {
+    gap: 10px;
+  }
+
+  .article-main h3 {
+    font-size: 22px;
+    line-height: 1.16;
+  }
+
+  .education-list div,
+  .campus-honor-list span,
+  .achievement-list span {
+    padding: 13px 14px;
+    font-size: 14px;
+  }
+
+  .contact-grid .contact-card h2 {
+    font-size: clamp(34px, 11vw, 48px);
+  }
+}
+
+@media (max-width: 430px) {
+  .section-wrap {
+    width: min(100% - 20px, 1120px);
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 112px;
+  }
+
+  .hero-name {
+    font-size: clamp(64px, 23vw, 92px);
+  }
+
+  .hero-role {
+    font-size: 22px;
+  }
+
+  .hero-card {
+    max-width: 100%;
+  }
+
+  .signal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .signal-grid strong {
+    font-size: 22px;
+  }
+
+  .pc-card-shell {
+    min-height: 520px;
+  }
+
+  .pc-avatar-stage {
+    height: 320px;
+  }
+
+  .masonry-shot,
+  .masonry-shot-feature {
+    min-height: 190px;
   }
 }
 
