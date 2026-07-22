@@ -41,4 +41,5 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+/.deploy/
 /项目照片/

@@ -1,0 +1,15 @@
+.git
+.agents
+.pnpm-store
+.vinext
+.wrangler
+node_modules
+dist
+outputs
+work
+*.log
+.env
+.env.*
+项目照片
+docs
+tests
