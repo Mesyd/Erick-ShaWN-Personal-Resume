@@ -19,7 +19,7 @@ erick-shawn-personal-resume
 推荐仓库：
 
 ```text
-Gitee  ：https://gitee.com/Erick_ShaWn/erick-shawn-personal-resume
+Gitee  ：https://gitee.com/Erick_ShaWn/erick-sha-wn-personal-resume
 GitHub ：https://github.com/Mesyd/Erick-ShaWN-Personal-Resume
 ```
 
@@ -36,7 +36,7 @@ origin  当前平台内部仓库，保留即可
 本地已按以下地址配置远程名称：
 
 ```text
-gitee   git@gitee.com:Erick_ShaWn/erick-shawn-personal-resume.git
+gitee   git@gitee.com:Erick_ShaWn/erick-sha-wn-personal-resume.git
 github  git@github.com:Mesyd/Erick-ShaWN-Personal-Resume.git
 ```
 
@@ -51,7 +51,7 @@ github  git@github.com:Mesyd/Erick-ShaWN-Personal-Resume.git
 如果远程仓库已经创建，可以执行：
 
 ```bash
-git remote add gitee git@gitee.com:Erick_ShaWn/erick-shawn-personal-resume.git
+git remote add gitee git@gitee.com:Erick_ShaWn/erick-sha-wn-personal-resume.git
 git remote add github git@github.com:Mesyd/Erick-ShaWN-Personal-Resume.git
 ```
 
