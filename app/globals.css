@@ -3354,6 +3354,589 @@ html.mobile-performance-mode .lightbox-panel {
   }
 }
 
+@media (hover: none), (pointer: coarse), (max-width: 680px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  body::after {
+    background:
+      radial-gradient(circle at 18% 6%, rgba(0, 255, 209, 0.12), transparent 26%),
+      radial-gradient(circle at 92% 24%, rgba(138, 92, 255, 0.12), transparent 30%),
+      linear-gradient(180deg, rgba(1, 5, 14, 0.74), rgba(1, 5, 14, 0.94));
+  }
+
+  .section-wrap {
+    width: min(100% - 24px, 1120px);
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .section-heading {
+    margin-bottom: 18px;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(32px, 10vw, 44px);
+    line-height: 1.06;
+    letter-spacing: -0.055em;
+  }
+
+  .section-heading p:not(.eyebrow),
+  .capability-hero p,
+  .snapshot-card p,
+  .project-card-main p,
+  .internship-summary,
+  .album-copy-top em,
+  .small-project-copy span,
+  .article-main p,
+  .education-list p,
+  .link-list span,
+  .link-list a,
+  .project-bullets li,
+  .internship-work-grid li,
+  .masonry-shot figcaption span {
+    display: block;
+    overflow: visible;
+    -webkit-box-orient: initial;
+    -webkit-line-clamp: initial;
+  }
+
+  .hero {
+    gap: 24px;
+    min-height: auto;
+    padding-top: 92px;
+    padding-bottom: 72px;
+  }
+
+  .hero-name {
+    font-size: clamp(58px, 18vw, 82px);
+    line-height: 0.96;
+    letter-spacing: -0.075em;
+  }
+
+  .hero-role-row {
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .hero-role {
+    max-width: 100%;
+    padding: 7px 12px;
+    font-size: clamp(15px, 4.4vw, 18px);
+    line-height: 1.24;
+    white-space: normal;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    margin-top: 26px;
+  }
+
+  .primary-button,
+  .ghost-button {
+    justify-content: center;
+    min-height: 44px;
+    padding: 11px 12px;
+    font-size: 13px;
+    transition: transform 150ms ease, border-color 150ms ease, background 150ms ease !important;
+  }
+
+  .primary-button:active,
+  .ghost-button:active,
+  .article-card:active,
+  .project-card:active,
+  .project-album-card:active,
+  .contact-card a:active {
+    transform: scale(0.985) !important;
+  }
+
+  .hero-tags {
+    max-height: none;
+    gap: 8px;
+    overflow: visible;
+  }
+
+  .hero-tags span,
+  .capability-tags span,
+  .internship-tags span,
+  .tag {
+    padding: 7px 9px;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .profile-card-stack {
+    gap: 12px;
+  }
+
+  .resume-profile-card {
+    width: min(100%, 360px);
+    margin-inline: auto;
+  }
+
+  .pc-card-shell {
+    padding-bottom: 1px;
+    border-radius: 28px;
+  }
+
+  .pc-avatar-stage {
+    width: min(80%, 270px);
+    height: min(68vw, 282px);
+    margin-top: 18px;
+    border-radius: 26px;
+  }
+
+  .pc-main-copy {
+    padding: 14px 18px 0;
+    text-align: center;
+  }
+
+  .pc-main-copy h2 {
+    font-size: clamp(24px, 7.2vw, 30px);
+    line-height: 1.08;
+  }
+
+  .pc-main-copy p {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+  }
+
+  .pc-user-info {
+    margin: 14px;
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  .pc-mini-profile {
+    min-width: 0;
+  }
+
+  .pc-mini-profile strong,
+  .pc-mini-profile span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .signal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .signal-grid div {
+    padding: 13px 12px;
+    border-radius: 18px;
+  }
+
+  .signal-grid strong {
+    font-size: 21px;
+  }
+
+  .signal-grid span {
+    font-size: 11px;
+  }
+
+  .capability-layout,
+  .capability-column,
+  .capability-skills-grid,
+  .proof-flow ol,
+  .project-list,
+  .internship-list,
+  .education-achievement-grid,
+  .article-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .capability-hero,
+  .snapshot-card,
+  .proof-flow,
+  .capability-skills-panel,
+  .skill-card,
+  .project-card,
+  .project-gallery,
+  .project-album-card,
+  .internship-card,
+  .experience-card,
+  .achievement-card,
+  .article-card,
+  .contact-card {
+    padding: 18px;
+    border-radius: 24px;
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03)),
+      rgba(6, 10, 20, 0.68);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 14px 42px rgba(0, 0, 0, 0.22);
+  }
+
+  .capability-hero {
+    min-height: 0;
+  }
+
+  .capability-hero h3 {
+    margin: 18px 0 14px;
+    font-size: clamp(32px, 10vw, 44px);
+    line-height: 1.02;
+  }
+
+  .capability-hero p,
+  .snapshot-card p,
+  .project-card-main p,
+  .internship-summary,
+  .article-main p {
+    font-size: 14.5px;
+    line-height: 1.76;
+  }
+
+  .capability-tags {
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .capability-skills-panel {
+    gap: 14px;
+  }
+
+  .capability-skill-card {
+    padding: 16px;
+  }
+
+  .capability-skill-card h3 {
+    margin-bottom: 12px;
+    font-size: 17px;
+  }
+
+  .capability-skill-card div {
+    gap: 7px;
+  }
+
+  .skill-card span {
+    display: inline-flex;
+    overflow: visible;
+    -webkit-line-clamp: initial;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .proof-flow-head {
+    gap: 5px;
+  }
+
+  .proof-flow li {
+    padding: 13px;
+    border-radius: 17px;
+  }
+
+  .project-card-wide,
+  .internship-card {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    min-height: 0;
+  }
+
+  .project-card-main {
+    justify-content: flex-start;
+  }
+
+  .project-card-main h3,
+  .internship-head h3,
+  .album-copy-top strong {
+    margin-bottom: 12px;
+    font-size: clamp(22px, 6.6vw, 28px);
+    line-height: 1.16;
+    letter-spacing: -0.045em;
+  }
+
+  .project-status,
+  .experience-meta {
+    font-size: 11px;
+  }
+
+  .project-work,
+  .internship-work {
+    padding: 15px;
+    border-radius: 20px;
+  }
+
+  .project-work > strong,
+  .internship-work > strong {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .project-bullets {
+    padding-left: 18px;
+  }
+
+  .project-bullets li,
+  .internship-work-grid li {
+    font-size: 13.5px;
+    line-height: 1.68;
+  }
+
+  .internship-head {
+    justify-content: flex-start;
+  }
+
+  .internship-role {
+    gap: 8px;
+  }
+
+  .internship-role strong,
+  .internship-role em {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+
+  .internship-role span {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 12px;
+    font-size: clamp(19px, 6.2vw, 25px);
+    line-height: 1.1;
+  }
+
+  .internship-tags {
+    gap: 7px;
+    margin-top: 16px;
+  }
+
+  .internship-work-grid {
+    gap: 9px;
+  }
+
+  .internship-work-grid section {
+    padding: 13px;
+    border-radius: 17px;
+  }
+
+  .internship-work-grid h4 {
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .project-gallery {
+    margin-top: 14px;
+  }
+
+  .project-gallery-head {
+    margin-bottom: 16px;
+  }
+
+  .project-gallery-head h3 {
+    font-size: clamp(26px, 8vw, 34px);
+  }
+
+  .project-album-grid {
+    gap: 16px;
+  }
+
+  .album-copy-top {
+    margin-bottom: 14px;
+  }
+
+  .album-copy-top > span {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .album-copy-top em {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .album-masonry {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    gap: 8px;
+  }
+
+  .masonry-shot,
+  .masonry-shot-feature {
+    display: grid;
+    grid-row: auto;
+    min-height: 0;
+    border-radius: 16px;
+  }
+
+  .masonry-shot-link {
+    height: auto;
+    aspect-ratio: 1.16 / 1;
+  }
+
+  .masonry-shot img {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .masonry-shot figcaption {
+    position: static;
+    display: grid;
+    gap: 2px;
+    padding: 8px 9px 9px;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0;
+    background: rgba(2, 6, 14, 0.42);
+    transform: none;
+  }
+
+  .masonry-shot figcaption strong {
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  .masonry-shot figcaption span {
+    color: rgba(218, 228, 247, 0.64);
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .small-project-strip {
+    margin-top: 18px;
+  }
+
+  .small-project-head {
+    gap: 4px;
+  }
+
+  .small-project-card {
+    width: min(82vw, 292px);
+    padding: 13px;
+    border-radius: 20px;
+  }
+
+  .small-photo-grid figure {
+    border-radius: 13px;
+  }
+
+  .small-project-copy {
+    gap: 3px;
+  }
+
+  .small-project-copy strong {
+    font-size: 16px;
+  }
+
+  .small-project-copy span {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .education-list {
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .education-list div,
+  .campus-honor-list span,
+  .achievement-list span {
+    padding: 12px 13px;
+    border-radius: 16px;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .education-list strong {
+    font-size: clamp(19px, 5.6vw, 24px);
+  }
+
+  .education-list span {
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+
+  .education-list p {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .article-card {
+    gap: 12px;
+    min-height: 0;
+  }
+
+  .article-main h3 {
+    font-size: 19px;
+    line-height: 1.22;
+  }
+
+  .article-meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .article-card footer {
+    gap: 10px;
+  }
+
+  .article-card footer a {
+    align-self: stretch;
+    padding: 10px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    text-align: center;
+  }
+
+  .link-list {
+    gap: 9px;
+  }
+
+  .link-list a,
+  .link-list span {
+    min-width: 0;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.055);
+    font-size: 13px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-grid .contact-card h2 {
+    font-size: clamp(30px, 9vw, 40px);
+  }
+
+  .lightbox-panel {
+    width: 94vw;
+    max-height: 84vh;
+    border-radius: 22px;
+  }
+
+  .lightbox-panel img {
+    max-height: 66vh;
+  }
+
+  .site-footer {
+    padding-bottom: 96px;
+  }
+
+  .site-footer-inner {
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .album-masonry {
+    grid-template-columns: 1fr;
+  }
+
+  .masonry-shot-link {
+    aspect-ratio: 1.34 / 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
