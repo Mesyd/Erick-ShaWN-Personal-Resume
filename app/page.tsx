@@ -923,6 +923,19 @@ export default function Home() {
         </div>
       </section>
 
+      <footer className="site-footer section-wrap" aria-label="网站备案信息">
+        <div className="site-footer-inner">
+          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">
+            苏ICP备2026050374号-1
+          </a>
+          <a className="police-record-link" href="https://beian.mps.gov.cn/#/query/webSearch" target="_blank" rel="noreferrer">
+            <span className="police-emblem" aria-hidden="true">安</span>
+            <span>公安联网备案查询</span>
+          </a>
+          <span className="footer-note">公安备案号办理完成后可在此补充展示。</span>
+        </div>
+      </footer>
+
       {selectedImage?.src ? (
         <div className="image-lightbox" role="dialog" aria-modal="true" aria-label={`${selectedImage.albumTitle} 大图预览`} onClick={() => setSelectedImage(null)}>
           <button className="lightbox-close" type="button" aria-label="关闭图片预览" onClick={() => setSelectedImage(null)}>

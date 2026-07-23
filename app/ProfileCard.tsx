@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, type CSSProperties } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 
 type ProfileCardProps = {
   avatarUrl: string;
@@ -44,6 +44,7 @@ export default function ProfileCard({
   const rafRef = useRef<number | null>(null);
   const current = useRef({ x: 50, y: 50 });
   const target = useRef({ x: 50, y: 50 });
+  const [interactive, setInteractive] = useState(false);
 
   const setCardVars = useCallback((x: number, y: number, opacity = 1) => {
     const shell = shellRef.current;
@@ -94,6 +95,21 @@ export default function ProfileCard({
   }, [startAnimation]);
 
   useEffect(() => {
+    const finePointer =
+      window.matchMedia("(hover: hover)").matches &&
+      window.matchMedia("(pointer: fine)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+      window.innerWidth > 820;
+
+    setInteractive(finePointer);
+
+    if (!finePointer) {
+      setCardVars(50, 50, 0);
+      return () => {
+        if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      };
+    }
+
     setCardVars(64, 28, 0.85);
     const timer = window.setTimeout(() => {
       target.current = { x: 50, y: 50 };
@@ -115,8 +131,8 @@ export default function ProfileCard({
   return (
     <div
       className={`pc-card-wrapper ${className}`.trim()}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
+      onPointerMove={interactive ? handlePointerMove : undefined}
+      onPointerLeave={interactive ? handlePointerLeave : undefined}
       ref={shellRef}
       style={style}
     >

@@ -2515,6 +2515,58 @@ body.is-lightbox-open {
   color: var(--green);
 }
 
+.site-footer {
+  padding: 12px 0 34px;
+}
+
+.site-footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+    rgba(4, 7, 14, 0.46);
+  color: rgba(218, 228, 247, 0.76);
+  font-size: 13px;
+  backdrop-filter: blur(18px) saturate(145%);
+}
+
+.site-footer-inner a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: rgba(226, 255, 249, 0.9);
+  transition: color 160ms ease, opacity 160ms ease;
+}
+
+.site-footer-inner a:hover {
+  color: var(--green);
+}
+
+.police-emblem {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 42%, #ffd889 0 20%, transparent 22%),
+    linear-gradient(135deg, #d6172f, #ffb443);
+  color: #4b0707;
+  font-size: 11px;
+  font-weight: 950;
+  box-shadow: 0 0 18px rgba(255, 92, 122, 0.18);
+}
+
+.footer-note {
+  color: rgba(152, 165, 186, 0.82);
+}
+
 [data-reveal] {
   opacity: 0;
   filter: blur(8px);
@@ -2545,6 +2597,24 @@ html.mobile-performance-mode [data-reveal].is-visible {
 
 html.mobile-performance-mode .resume-galaxy {
   display: none;
+}
+
+html.mobile-performance-mode .profile-card-stack {
+  animation: none;
+}
+
+html.mobile-performance-mode .pc-card-wrapper {
+  touch-action: pan-y;
+}
+
+html.mobile-performance-mode .pc-behind,
+html.mobile-performance-mode .pc-card-shine {
+  display: none;
+}
+
+html.mobile-performance-mode .pc-card-shell {
+  transform: none !important;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
 }
 
 html.mobile-performance-mode body::after {
@@ -3131,6 +3201,18 @@ html.mobile-performance-mode .lightbox-panel {
 
   .contact-grid .contact-card h2 {
     font-size: clamp(34px, 11vw, 48px);
+  }
+
+  .site-footer {
+    padding-bottom: 104px;
+  }
+
+  .site-footer-inner {
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px;
+    font-size: 12px;
+    text-align: center;
   }
 }
 
