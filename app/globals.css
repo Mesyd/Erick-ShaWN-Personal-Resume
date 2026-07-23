@@ -2543,29 +2543,11 @@ body.is-lightbox-open {
   color: var(--green);
 }
 
-.police-emblems {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-}
-
-.police-emblem {
-  display: inline-grid;
-  place-items: center;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #d6172f, #ffb443);
-  color: #4b0707;
-  font-size: 9px;
-  font-weight: 950;
-  box-shadow: 0 0 10px rgba(255, 92, 122, 0.12);
-}
-
-.police-emblem-shield {
-  border-radius: 5px 5px 8px 8px;
-  background: linear-gradient(135deg, #f3c76b, #e22d2d 48%, #a50d18);
-  color: #fff7c7;
+.police-record-link img {
+  display: block;
+  width: 36px;
+  height: 18px;
+  object-fit: contain;
 }
 
 [data-reveal] {

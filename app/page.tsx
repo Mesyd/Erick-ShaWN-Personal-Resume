@@ -929,10 +929,7 @@ export default function Home() {
             苏ICP备2026050374号-1
           </a>
           <a className="police-record-link" href="https://beian.mps.gov.cn/#/query/webSearch" target="_blank" rel="noreferrer">
-            <span className="police-emblems" aria-hidden="true">
-              <span className="police-emblem police-emblem-national">国</span>
-              <span className="police-emblem police-emblem-shield">安</span>
-            </span>
+            <img src="/beian-police.svg" alt="" aria-hidden="true" width="36" height="18" />
             <span>公安联网备案查询</span>
           </a>
         </div>
