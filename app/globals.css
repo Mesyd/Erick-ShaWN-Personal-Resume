@@ -2516,31 +2516,26 @@ body.is-lightbox-open {
 }
 
 .site-footer {
-  padding: 12px 0 34px;
+  padding: 8px 0 24px;
 }
 
 .site-footer-inner {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 18px;
+  gap: 8px 18px;
   align-items: center;
   justify-content: center;
-  padding: 18px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 24px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
-    rgba(4, 7, 14, 0.46);
-  color: rgba(218, 228, 247, 0.76);
-  font-size: 13px;
-  backdrop-filter: blur(18px) saturate(145%);
+  padding: 0;
+  color: rgba(152, 165, 186, 0.74);
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 .site-footer-inner a {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  color: rgba(226, 255, 249, 0.9);
+  gap: 6px;
+  color: rgba(176, 187, 205, 0.82);
   transition: color 160ms ease, opacity 160ms ease;
 }
 
@@ -2548,23 +2543,29 @@ body.is-lightbox-open {
   color: var(--green);
 }
 
+.police-emblems {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
 .police-emblem {
   display: inline-grid;
   place-items: center;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 42%, #ffd889 0 20%, transparent 22%),
-    linear-gradient(135deg, #d6172f, #ffb443);
+  background: linear-gradient(135deg, #d6172f, #ffb443);
   color: #4b0707;
-  font-size: 11px;
+  font-size: 9px;
   font-weight: 950;
-  box-shadow: 0 0 18px rgba(255, 92, 122, 0.18);
+  box-shadow: 0 0 10px rgba(255, 92, 122, 0.12);
 }
 
-.footer-note {
-  color: rgba(152, 165, 186, 0.82);
+.police-emblem-shield {
+  border-radius: 5px 5px 8px 8px;
+  background: linear-gradient(135deg, #f3c76b, #e22d2d 48%, #a50d18);
+  color: #fff7c7;
 }
 
 [data-reveal] {
@@ -2636,7 +2637,7 @@ html.mobile-performance-mode .small-project-card {
 }
 
 html.mobile-performance-mode .small-project-track {
-  animation-duration: 80s;
+  animation: none;
 }
 
 html.mobile-performance-mode .device-frame,
@@ -2646,6 +2647,106 @@ html.mobile-performance-mode .masonry-shot figcaption,
 html.mobile-performance-mode .small-photo-grid figcaption,
 html.mobile-performance-mode .lightbox-panel {
   backdrop-filter: none;
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 820px) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal],
+  [data-reveal].is-visible {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .resume-galaxy,
+  .pc-behind,
+  .pc-card-shine,
+  .project-scan-card::before,
+  .project-scan-card::after,
+  .spotlight-card::before,
+  .internship-interactive::before,
+  .internship-interactive::after {
+    display: none !important;
+  }
+
+  .profile-card-stack,
+  .eyebrow,
+  .hero-name,
+  .primary-button,
+  .pc-card-shine,
+  .internship-role span,
+  .device-frame::before,
+  .small-project-track,
+  .image-lightbox {
+    animation: none !important;
+  }
+
+  .floating-nav,
+  .hero-role,
+  .ghost-button,
+  .pc-user-info,
+  .signal-grid,
+  .capability-hero,
+  .snapshot-card,
+  .proof-flow,
+  .capability-skills-panel,
+  .skill-card,
+  .project-card,
+  .project-gallery,
+  .project-album-card,
+  .masonry-shot figcaption,
+  .small-photo-grid figcaption,
+  .experience-card,
+  .achievement-card,
+  .contact-card,
+  .lightbox-panel {
+    backdrop-filter: none !important;
+  }
+
+  .pc-card-wrapper {
+    touch-action: pan-y;
+  }
+
+  .pc-card-shell,
+  .magnetic,
+  .magnetic:hover,
+  .project-scan-card,
+  .internship-interactive,
+  .project-album-card,
+  .small-project-card,
+  .small-project-card:hover,
+  .masonry-shot,
+  .masonry-shot:hover,
+  .masonry-shot img,
+  .masonry-shot:hover img,
+  .small-photo-grid img,
+  .small-project-card:hover .small-photo-grid img {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .small-project-marquee {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+
+  .small-project-marquee::-webkit-scrollbar {
+    display: none;
+  }
+
+  .small-project-track {
+    width: max-content;
+    transform: none !important;
+  }
+
+  .small-project-track > .small-project-card:nth-child(n + 6) {
+    display: none;
+  }
 }
 
 @keyframes orbit {
