@@ -2534,6 +2534,7 @@ body.is-lightbox-open {
 .site-footer-inner a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   color: rgba(176, 187, 205, 0.82);
   transition: color 160ms ease, opacity 160ms ease;
@@ -2545,8 +2546,8 @@ body.is-lightbox-open {
 
 .police-record-link img {
   display: block;
-  width: 36px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
 }
 

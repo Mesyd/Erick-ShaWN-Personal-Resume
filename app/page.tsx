@@ -928,9 +928,9 @@ export default function Home() {
           <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">
             苏ICP备2026050374号-1
           </a>
-          <a className="police-record-link" href="https://beian.mps.gov.cn/#/query/webSearch" target="_blank" rel="noreferrer">
-            <img src="/beian-police.svg" alt="" aria-hidden="true" width="36" height="18" />
-            <span>公安联网备案查询</span>
+          <a className="police-record-link" href="https://beian.mps.gov.cn/#/query/webSearch?code=32048202001398" target="_blank" rel="noreferrer">
+            <img src="/beian-police.png" alt="" aria-hidden="true" width="20" height="20" />
+            <span>苏公网安备32048202001398号</span>
           </a>
         </div>
       </footer>
