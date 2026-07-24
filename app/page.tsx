@@ -263,38 +263,32 @@ const experienceItems = [
     role: "数字电源研发工程师",
     period: "2025.10 - 2026.5",
     summary:
-      "技术部研究生联合培养，围绕电源数字化控制与特种电源嵌入式软件，承担 DSP 控制软件、功率拓扑仿真、通信协议、样机调试和研发文档输出。",
+      "技术部研究生联合培养，主要参与数字电源控制软件、功率拓扑仿真、特种电源嵌入式开发和样机调试。",
     tags: ["控制芯片数字化替代", "TI C2000", "GD32 / LCD / RS485", "PLECS 仿真", "磁件与样机调试"],
     sections: [
       {
         title: "离网逆变器数字化替代",
         items: [
-          "担任 1000W 离网逆变器项目 DSP 控制软件负责人，面向原专用控制芯片方案完成统一数字控制架构设计。",
-          "完成软件模块划分、设计文档编制和项目评审材料输出，方案通过公司内部评审与技术可行性验证。",
-          "围绕前级升压、后级 SPWM 逆变、ADC 同步采样和系统保护等功能，推动样机实现稳定逆变输出。",
+          "担任 1000W 离网逆变器 DSP 控制软件负责人，完成数字控制架构、模块划分和设计文档，方案通过内部评审并实现稳定逆变输出。",
         ],
       },
       {
         title: "AC-DAB / Cycle 数字电源研发",
         items: [
-          "主导 1000W 单相离网新型数字电源前期研发，使用 PLECS 完成功率拓扑、闭环控制和可行性仿真。",
-          "基于 TI C2000 F280049C 开发多路 ePWM、移相调制及变频控制程序，配合完成驱动时序验证。",
-          "参与高频变压器参数设计、样件绕制和漏感优化，将仿真结果与实测波形用于样机迭代。",
+          "使用 PLECS 完成拓扑与闭环控制仿真，基于 F280049C 开发 ePWM、移相/变频控制和 ADC 同步采样程序。",
+          "参与高频变压器参数设计、样件绕制和漏感优化，结合实测波形完成样机迭代。",
         ],
       },
       {
         title: "特种电源嵌入式软件",
         items: [
-          "负责某特种电源 GD32 主控程序开发，完成 LCD 驱动、输出数据采集、运行状态显示和整机保护逻辑。",
-          "制定 RS485 通信协议并实现报文收发与解析，支持外部上位机完成电源状态读取和控制交互。",
-          "完成电源模块替换适配、样机软件调试和整机功能测试，支撑项目进入收尾验证。",
+          "负责 GD32 主控程序开发，完成 LCD 显示、数据采集、保护逻辑和 RS485 通信协议，完成样机调试与功能测试。",
         ],
       },
       {
         title: "研发流程与工程验证",
         items: [
-          "参与公司数字电源控制软件研发流程制定，规范控制需求、软件架构、功能模块和测试验证内容输出。",
-          "参与原理图与 PCB 绘制、电源模块测试和外部技术沟通，围绕波形、保护、通信和功率回路开展问题定位。",
+          "参与数字电源软件研发流程、原理图/PCB、电源模块测试和技术沟通，围绕波形、保护、通信与功率回路定位问题。",
         ],
       },
     ],
@@ -819,11 +813,11 @@ export default function Home() {
               </div>
               <div className="project-work">
                 <strong>关键工作</strong>
-                <ul className="project-bullets">
+                <ol className="project-bullets">
                   {project.bullets.map((bullet) => (
                     <li key={bullet}>{bullet}</li>
                   ))}
-                </ul>
+                </ol>
               </div>
             </article>
           ))}
@@ -880,7 +874,7 @@ export default function Home() {
                       <div className="album-carousel-panel">
                         <div className="album-carousel-head">
                           <span>More Records</span>
-                          <strong>项目影像记录</strong>
+                          <strong>项目照片补充</strong>
                         </div>
                         <div className="album-carousel-window" aria-label={`${album.title} 补充照片循环展示`}>
                           <div className="album-carousel-track">
