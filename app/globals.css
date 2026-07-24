@@ -1504,6 +1504,8 @@ h3 {
     linear-gradient(145deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.035)),
     rgba(5, 8, 16, 0.42);
   backdrop-filter: blur(22px) saturate(145%);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 980px;
 }
 
 .project-gallery-head {
@@ -1545,6 +1547,8 @@ h3 {
   position: relative;
   overflow: hidden;
   contain: layout paint;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 560px;
   padding: 22px;
   border: 1px solid color-mix(in srgb, var(--album-accent, rgba(0, 255, 209, 0.42)) 52%, rgba(255, 255, 255, 0.14));
   border-radius: 32px;
@@ -2962,8 +2966,9 @@ html.mobile-performance-mode .lightbox-panel {
   }
 
   .album-carousel-track {
-    animation: albumCarouselSlide var(--carousel-duration, 96s) linear infinite !important;
-    will-change: transform;
+    animation: none !important;
+    transform: none !important;
+    will-change: auto;
   }
 
   .small-project-track > .small-project-card:nth-child(n + 6) {
