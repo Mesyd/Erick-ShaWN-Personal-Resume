@@ -392,6 +392,63 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    const carouselWindows = Array.from(document.querySelectorAll<HTMLElement>(".album-carousel-window"));
+    const cleanupHandlers: Array<() => void> = [];
+
+    carouselWindows.forEach((carouselWindow) => {
+      let frameId = 0;
+      let isAdjusting = false;
+
+      const getHalfScrollWidth = () => carouselWindow.scrollWidth / 2;
+
+      const normalizeScroll = () => {
+        frameId = 0;
+        if (isAdjusting) return;
+
+        const halfScrollWidth = getHalfScrollWidth();
+        if (halfScrollWidth <= carouselWindow.clientWidth) return;
+
+        const currentLeft = carouselWindow.scrollLeft;
+        if (currentLeft >= halfScrollWidth + 2) {
+          isAdjusting = true;
+          carouselWindow.scrollLeft = currentLeft - halfScrollWidth;
+          window.setTimeout(() => {
+            isAdjusting = false;
+          }, 0);
+        } else if (currentLeft <= 2) {
+          isAdjusting = true;
+          carouselWindow.scrollLeft = currentLeft + halfScrollWidth;
+          window.setTimeout(() => {
+            isAdjusting = false;
+          }, 0);
+        }
+      };
+
+      const requestNormalize = () => {
+        if (frameId === 0) frameId = window.requestAnimationFrame(normalizeScroll);
+      };
+
+      const primeLoopPosition = () => {
+        const halfScrollWidth = getHalfScrollWidth();
+        if (halfScrollWidth > carouselWindow.clientWidth && carouselWindow.scrollLeft <= 2) {
+          carouselWindow.scrollLeft = halfScrollWidth;
+        }
+      };
+
+      window.setTimeout(primeLoopPosition, 80);
+      carouselWindow.addEventListener("scroll", requestNormalize, { passive: true });
+      cleanupHandlers.push(() => {
+        carouselWindow.removeEventListener("scroll", requestNormalize);
+        if (frameId) window.cancelAnimationFrame(frameId);
+      });
+    });
+
+    return () => {
+      cleanupHandlers.forEach((cleanup) => cleanup());
+    };
+  }, []);
+
   const handleSpotlightMove = useCallback((event: MouseEvent<HTMLElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     event.currentTarget.style.setProperty("--spotlight-x", `${event.clientX - rect.left}px`);
@@ -806,7 +863,7 @@ export default function Home() {
                       <div className="album-carousel-panel">
                         <div className="album-carousel-head">
                           <span>More Records</span>
-                          <strong>补充照片循环窗</strong>
+                          <strong>项目影像记录</strong>
                         </div>
                         <div className="album-carousel-window" aria-label={`${album.title} 补充照片循环展示`}>
                           <div className="album-carousel-track">
