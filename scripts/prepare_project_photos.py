@@ -42,7 +42,23 @@ ORDERED_EXPORTS = {
     ]
 }
 
-IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff"}
+SUPPLEMENT_EXPORTS = {
+    "200W-DAB样机": [
+        "补充/原边波形.tif",
+        "补充/输出电压－电流波形.png",
+        "补充/热成像分析.bmp",
+        "补充/热成像照片.bmp",
+    ],
+    "1000W基于Sic的Cycle周波转换器的单相离网逆变数字电源研发": [
+        "补充/原边波形.jpg",
+        "补充/次边波形.jpg",
+        "补充/软开关波形.jpg",
+        "补充/软开关测试.jpg",
+        "补充/发热点排故.jpg",
+    ],
+}
+
+IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff", ".bmp"}
 
 
 def normalize_image(image: Image.Image) -> Image.Image:
@@ -104,6 +120,8 @@ def export_album(source_name: str, slug: str) -> None:
             ],
             key=lambda file: file.name,
         )
+
+    files.extend(source_dir / file_name for file_name in SUPPLEMENT_EXPORTS.get(source_name, []))
 
     for index, file in enumerate(files, start=1):
         if not file.exists():

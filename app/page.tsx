@@ -44,6 +44,8 @@ type ProjectAlbum = {
   subtitle: string;
   accent?: string;
   images: ProjectImage[];
+  featuredImages?: ProjectImage[];
+  carouselImages?: ProjectImage[];
 };
 
 const getThumbnailSrc = (src?: string) =>
@@ -128,32 +130,47 @@ const projects = [
 const projectImageAlbums: ProjectAlbum[] = [
   {
     title: "200W DAB 双有源桥变换器样机",
-    subtitle: "拓扑、系统框图、控制策略、样机实物、调试记录与性能曲线",
+    subtitle: "核心展示保留样机、动态性能和效率曲线，其他设计资料与测试记录自动循环展示。",
     accent: "rgba(0, 255, 209, 0.42)",
-    images: [
+    featuredImages: [
+      { label: "样机照片", caption: "功率板、磁件和测试连接关系", src: "/project-photos/dab-200w/03.jpg" },
+      { label: "动态性能图", caption: "负载扰动与动态恢复性能验证", src: "/project-photos/dab-200w/08.jpg" },
+      { label: "效率曲线图", caption: "不同工况下的效率测试结果", src: "/project-photos/dab-200w/09.jpg" },
+    ],
+    carouselImages: [
       { label: "DAB 拓扑图", caption: "双有源桥功率拓扑与能量传输关系", src: "/project-photos/dab-200w/01.jpg" },
       { label: "样机实物", caption: "200W DAB 变换器样机整体结构", src: "/project-photos/dab-200w/02.jpg" },
-      { label: "样机照片", caption: "功率板、磁件和测试连接关系", src: "/project-photos/dab-200w/03.jpg" },
       { label: "系统框图", caption: "主功率回路、采样链路与控制平台", src: "/project-photos/dab-200w/04.jpg" },
       { label: "控制策略框图", caption: "DOMC 复合控制与扰动补偿链路", src: "/project-photos/dab-200w/05.jpg" },
       { label: "调试环境", caption: "实验台架、仪器连接与样机测试现场", src: "/project-photos/dab-200w/06.jpg" },
       { label: "Gitee 代码调试记录", caption: "控制代码调试、版本记录和验证过程", src: "/project-photos/dab-200w/07.jpg" },
-      { label: "动态性能图", caption: "负载扰动与动态恢复性能验证", src: "/project-photos/dab-200w/08.jpg" },
-      { label: "效率曲线图", caption: "不同工况下的效率测试结果", src: "/project-photos/dab-200w/09.jpg" },
+      { label: "原边波形", caption: "DAB 原边开关与变压器波形记录", src: "/project-photos/dab-200w/10.jpg" },
+      { label: "输出电压电流波形", caption: "输出侧电压、电流联调波形", src: "/project-photos/dab-200w/11.jpg" },
+      { label: "热成像分析", caption: "功率器件与磁件热分布分析", src: "/project-photos/dab-200w/12.jpg" },
+      { label: "热成像照片", caption: "样机运行过程热像记录", src: "/project-photos/dab-200w/13.jpg" },
     ],
+    images: [],
   },
   {
     title: "1000W SiC 离网逆变",
-    subtitle: "样机、SiC 驱动板、调试环境与输出波形",
+    subtitle: "核心展示保留逆变样机、SiC 驱动板和输出波形，其他调试、负载与软开关记录循环展示。",
     accent: "rgba(120, 183, 255, 0.44)",
-    images: [
+    featuredImages: [
       { label: "逆变样机", caption: "Cycle 单相离网逆变器样机", src: "/project-photos/sic-inverter/01.jpg" },
       { label: "SiC 驱动板", caption: "SiC 全桥负压驱动板", src: "/project-photos/sic-inverter/02.jpg" },
+      { label: "输出波形", caption: "逆变器输出波形验证", src: "/project-photos/sic-inverter/06.jpg" },
+    ],
+    carouselImages: [
       { label: "交流负载", caption: "交流负载输出测试", src: "/project-photos/sic-inverter/03.jpg" },
       { label: "调试环境", caption: "实验台架与联调环境", src: "/project-photos/sic-inverter/04.jpg" },
       { label: "输入电流", caption: "输入侧电流测试记录", src: "/project-photos/sic-inverter/05.jpg" },
-      { label: "输出波形", caption: "逆变器输出波形验证", src: "/project-photos/sic-inverter/06.jpg" },
+      { label: "原边波形", caption: "高频侧原边开关波形记录", src: "/project-photos/sic-inverter/07.jpg" },
+      { label: "次边波形", caption: "高频侧次边开关波形记录", src: "/project-photos/sic-inverter/08.jpg" },
+      { label: "软开关波形", caption: "软开关状态下关键节点波形", src: "/project-photos/sic-inverter/09.jpg" },
+      { label: "软开关测试", caption: "软开关验证过程与测试环境", src: "/project-photos/sic-inverter/10.jpg" },
+      { label: "发热点排故", caption: "样机发热点定位与排故记录", src: "/project-photos/sic-inverter/11.jpg" },
     ],
+    images: [],
   },
   {
     title: "磁芯元件制作",
@@ -745,52 +762,80 @@ export default function Home() {
             <h3>电源设计项目图片</h3>
           </div>
           <div className="project-album-grid">
-            {projectImageAlbums.map((album) => (
-              <article
-                className="project-album-card project-album-viewer magnetic"
-                key={album.title}
-                style={{ "--album-accent": album.accent ?? "rgba(0, 255, 209, 0.42)" } as CSSProperties}
-              >
-                <div className="album-copy album-copy-top">
-                  <span>{album.images.length} 张项目照片</span>
-                  <strong>{album.title}</strong>
-                  <em>{album.subtitle}</em>
-                </div>
-                <div className="album-masonry" aria-label={`${album.title} 图片组`}>
-                  {album.images.map((image, imageIndex) => (
-                    <figure
-                      className={`masonry-shot ${imageIndex === 0 ? "masonry-shot-feature" : ""} ${
-                        image.src ? "has-image" : "is-placeholder"
-                      }`}
-                      key={image.src ?? image.label}
-                      style={
-                        {
-                          "--photo-delay": `${imageIndex * 45}ms`,
-                          "--masonry-span": [27, 20, 23, 18, 21, 19][imageIndex % 6],
-                        } as CSSProperties
-                      }
-                    >
-                      {image.src ? (
-                        <button
-                          className="masonry-shot-link"
-                          type="button"
-                          aria-label={`查看大图：${album.title} - ${image.label}`}
-                          onClick={() => setSelectedImage({ ...image, albumTitle: album.title })}
-                        >
-                          <img src={getThumbnailSrc(image.src)} alt={image.label} loading="lazy" decoding="async" />
-                        </button>
-                      ) : (
-                        <span>{image.label}</span>
-                      )}
-                      <figcaption>
-                        <strong>{image.label}</strong>
-                        <span>{image.caption}</span>
-                      </figcaption>
-                    </figure>
-                  ))}
-                </div>
-              </article>
-            ))}
+            {projectImageAlbums.map((album) => {
+              const featuredImages = album.featuredImages ?? album.images.slice(0, 3);
+              const carouselImages = album.carouselImages ?? album.images.slice(3);
+              const totalImages = featuredImages.length + carouselImages.length;
+              const loopImages = carouselImages.length > 0 ? [...carouselImages, ...carouselImages] : [];
+
+              return (
+                <article
+                  className="project-album-card project-album-viewer project-evidence-album magnetic"
+                  key={album.title}
+                  style={{ "--album-accent": album.accent ?? "rgba(0, 255, 209, 0.42)" } as CSSProperties}
+                >
+                  <div className="album-copy album-copy-top">
+                    <span>{totalImages} 张项目照片 · 3 张核心图</span>
+                    <strong>{album.title}</strong>
+                    <em>{album.subtitle}</em>
+                  </div>
+                  <div className="project-evidence-layout">
+                    <div className="album-feature-grid" aria-label={`${album.title} 核心图片`}>
+                      {featuredImages.map((image, imageIndex) => (
+                        <figure className={`album-feature-shot ${imageIndex === 0 ? "album-feature-shot-main" : ""}`} key={image.src ?? image.label}>
+                          {image.src ? (
+                            <button
+                              className="album-feature-link"
+                              type="button"
+                              aria-label={`查看大图：${album.title} - ${image.label}`}
+                              onClick={() => setSelectedImage({ ...image, albumTitle: album.title })}
+                            >
+                              <img src={getThumbnailSrc(image.src)} alt={image.label} loading="lazy" decoding="async" />
+                            </button>
+                          ) : (
+                            <span>{image.label}</span>
+                          )}
+                          <figcaption>
+                            <strong>{image.label}</strong>
+                            <span>{image.caption}</span>
+                          </figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                    {carouselImages.length > 0 ? (
+                      <div className="album-carousel-panel">
+                        <div className="album-carousel-head">
+                          <span>More Records</span>
+                          <strong>补充照片循环窗</strong>
+                        </div>
+                        <div className="album-carousel-window" aria-label={`${album.title} 补充照片循环展示`}>
+                          <div className="album-carousel-track">
+                            {loopImages.map((image, imageIndex) => (
+                              <figure className="album-carousel-card" key={`${image.src ?? image.label}-${imageIndex}`}>
+                                {image.src ? (
+                                  <button
+                                    className="album-carousel-link"
+                                    type="button"
+                                    aria-label={`查看大图：${album.title} - ${image.label}`}
+                                    onClick={() => setSelectedImage({ ...image, albumTitle: album.title })}
+                                  >
+                                    <img src={getThumbnailSrc(image.src)} alt={image.label} loading="lazy" decoding="async" />
+                                  </button>
+                                ) : null}
+                                <figcaption>
+                                  <strong>{image.label}</strong>
+                                  <span>{image.caption}</span>
+                                </figcaption>
+                              </figure>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
+                </article>
+              );
+            })}
           </div>
           <div className="small-project-strip">
             <div className="small-project-head">
