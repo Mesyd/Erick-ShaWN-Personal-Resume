@@ -46,6 +46,7 @@ type ProjectAlbum = {
   images: ProjectImage[];
   featuredImages?: ProjectImage[];
   carouselImages?: ProjectImage[];
+  displayMode?: "featured-carousel" | "vertical-carousel";
 };
 
 const getThumbnailSrc = (src?: string) =>
@@ -176,12 +177,19 @@ const projectImageAlbums: ProjectAlbum[] = [
     title: "磁芯元件制作",
     subtitle: "高频变压器、PQ / EE 磁芯、利兹线绕制与电桥测量",
     accent: "rgba(255, 216, 137, 0.48)",
+    displayMode: "vertical-carousel",
     images: [
       { label: "EE 磁芯", caption: "磁芯选型 / 材料样品 / 尺寸确认", src: "/project-photos/magnetic-components/01.jpg" },
       { label: "PQ 变压器", caption: "高频变压器样件 / 绕制结构", src: "/project-photos/magnetic-components/02.jpg" },
+      { label: "PQ 变压器 2", caption: "磁芯装配与绕组空间验证", src: "/project-photos/magnetic-components/03.jpg" },
+      { label: "PQ 变压器 3", caption: "高频变压器样件结构记录", src: "/project-photos/magnetic-components/04.jpg" },
+      { label: "PQ 变压器 4", caption: "绕制结构与出线细节", src: "/project-photos/magnetic-components/05.jpg" },
       { label: "PQ 磁芯", caption: "PQ 磁芯样品 / 磁路结构", src: "/project-photos/magnetic-components/06.jpg" },
       { label: "利兹线绕制", caption: "绕制工艺 / 高频损耗控制", src: "/project-photos/magnetic-components/07.jpg" },
       { label: "变压器绕制", caption: "绕组排列 / 绝缘处理", src: "/project-photos/magnetic-components/08.jpg" },
+      { label: "大电流变压器", caption: "大电流磁件绕制与绝缘处理", src: "/project-photos/magnetic-components/09.jpg" },
+      { label: "引脚测试", caption: "引脚连接和电气连续性验证", src: "/project-photos/magnetic-components/10.jpg" },
+      { label: "横店东磁样品", caption: "磁芯样品选型与对比", src: "/project-photos/magnetic-components/11.jpg" },
       { label: "电桥测量", caption: "电感参数 / 绕组一致性验证", src: "/project-photos/magnetic-components/12.jpg" },
     ],
   },
@@ -820,45 +828,50 @@ export default function Home() {
           </div>
           <div className="project-album-grid">
             {projectImageAlbums.map((album) => {
-              const featuredImages = album.featuredImages ?? album.images.slice(0, 3);
-              const carouselImages = album.carouselImages ?? album.images.slice(3);
+              const isVerticalCarousel = album.displayMode === "vertical-carousel";
+              const featuredImages = isVerticalCarousel ? [] : album.featuredImages ?? album.images.slice(0, 3);
+              const carouselImages = isVerticalCarousel ? album.images : album.carouselImages ?? album.images.slice(3);
               const totalImages = featuredImages.length + carouselImages.length;
               const loopImages = carouselImages.length > 0 ? [...carouselImages, ...carouselImages] : [];
 
               return (
                 <article
-                  className="project-album-card project-album-viewer project-evidence-album magnetic"
+                  className={`project-album-card project-album-viewer project-evidence-album ${
+                    isVerticalCarousel ? "is-vertical-carousel" : ""
+                  } magnetic`}
                   key={album.title}
                   style={{ "--album-accent": album.accent ?? "rgba(0, 255, 209, 0.42)" } as CSSProperties}
                 >
                   <div className="album-copy album-copy-top">
-                    <span>{totalImages} 张项目照片 · 3 张核心图</span>
+                    <span>{isVerticalCarousel ? `${totalImages} 张项目照片 · 闭环影像窗` : `${totalImages} 张项目照片 · 3 张核心图`}</span>
                     <strong>{album.title}</strong>
                     <em>{album.subtitle}</em>
                   </div>
                   <div className="project-evidence-layout">
-                    <div className="album-feature-grid" aria-label={`${album.title} 核心图片`}>
-                      {featuredImages.map((image, imageIndex) => (
-                        <figure className={`album-feature-shot ${imageIndex === 0 ? "album-feature-shot-main" : ""}`} key={image.src ?? image.label}>
-                          {image.src ? (
-                            <button
-                              className="album-feature-link"
-                              type="button"
-                              aria-label={`查看大图：${album.title} - ${image.label}`}
-                              onClick={() => setSelectedImage({ ...image, albumTitle: album.title })}
-                            >
-                              <img src={getThumbnailSrc(image.src)} alt={image.label} loading="lazy" decoding="async" />
-                            </button>
-                          ) : (
-                            <span>{image.label}</span>
-                          )}
-                          <figcaption>
-                            <strong>{image.label}</strong>
-                            <span>{image.caption}</span>
-                          </figcaption>
-                        </figure>
-                      ))}
-                    </div>
+                    {featuredImages.length > 0 ? (
+                      <div className="album-feature-grid" aria-label={`${album.title} 核心图片`}>
+                        {featuredImages.map((image, imageIndex) => (
+                          <figure className={`album-feature-shot ${imageIndex === 0 ? "album-feature-shot-main" : ""}`} key={image.src ?? image.label}>
+                            {image.src ? (
+                              <button
+                                className="album-feature-link"
+                                type="button"
+                                aria-label={`查看大图：${album.title} - ${image.label}`}
+                                onClick={() => setSelectedImage({ ...image, albumTitle: album.title })}
+                              >
+                                <img src={getThumbnailSrc(image.src)} alt={image.label} loading="lazy" decoding="async" />
+                              </button>
+                            ) : (
+                              <span>{image.label}</span>
+                            )}
+                            <figcaption>
+                              <strong>{image.label}</strong>
+                              <span>{image.caption}</span>
+                            </figcaption>
+                          </figure>
+                        ))}
+                      </div>
+                    ) : null}
                     {carouselImages.length > 0 ? (
                       <div className="album-carousel-panel">
                         <div className="album-carousel-head">
