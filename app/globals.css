@@ -1992,14 +1992,14 @@ h3 {
 }
 
 .album-carousel-window.is-dragging .album-carousel-track {
-  animation-play-state: paused;
+  transition: none;
 }
 
 .album-carousel-track {
   display: flex;
   width: max-content;
   gap: 0;
-  animation: albumCarouselSlide var(--carousel-duration, 72s) linear infinite;
+  transform: translate3d(var(--carousel-offset, 0px), 0, 0);
   will-change: transform;
 }
 
@@ -2008,10 +2008,6 @@ h3 {
   flex: 0 0 auto;
   gap: 10px;
   padding-right: 10px;
-}
-
-.album-carousel-panel:hover .album-carousel-track {
-  animation-play-state: paused;
 }
 
 .album-carousel-card {
