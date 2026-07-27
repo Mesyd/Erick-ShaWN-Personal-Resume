@@ -832,7 +832,7 @@ export default function Home() {
               const featuredImages = album.featuredImages ?? album.images.slice(0, 3);
               const carouselImages = album.carouselImages ?? album.images.slice(3);
               const totalImages = featuredImages.length + carouselImages.length;
-              const loopImages = carouselImages.length > 0 ? [...carouselImages, ...carouselImages] : [];
+              const carouselSets = carouselImages.length > 0 ? [carouselImages, carouselImages] : [];
 
               return (
                 <article
@@ -878,23 +878,28 @@ export default function Home() {
                         </div>
                         <div className="album-carousel-window" aria-label={`${album.title} 补充照片循环展示`}>
                           <div className="album-carousel-track">
-                            {loopImages.map((image, imageIndex) => (
-                              <figure className="album-carousel-card" key={`${image.src ?? image.label}-${imageIndex}`}>
-                                {image.src ? (
-                                  <button
-                                    className="album-carousel-link"
-                                    type="button"
-                                    aria-label={`查看大图：${album.title} - ${image.label}`}
-                                    onClick={() => setSelectedImage({ ...image, albumTitle: album.title })}
-                                  >
-                                    <img src={getThumbnailSrc(image.src)} alt={image.label} loading="lazy" decoding="async" />
-                                  </button>
-                                ) : null}
-                                <figcaption>
-                                  <strong>{image.label}</strong>
-                                  <span>{image.caption}</span>
-                                </figcaption>
-                              </figure>
+                            {carouselSets.map((imageSet, setIndex) => (
+                              <div className="album-carousel-group" aria-hidden={setIndex > 0 ? "true" : undefined} key={`${album.title}-carousel-set-${setIndex}`}>
+                                {imageSet.map((image, imageIndex) => (
+                                  <figure className="album-carousel-card" key={`${image.src ?? image.label}-${setIndex}-${imageIndex}`}>
+                                    {image.src ? (
+                                      <button
+                                        className="album-carousel-link"
+                                        type="button"
+                                        aria-label={`查看大图：${album.title} - ${image.label}`}
+                                        tabIndex={setIndex > 0 ? -1 : undefined}
+                                        onClick={() => setSelectedImage({ ...image, albumTitle: album.title })}
+                                      >
+                                        <img src={getThumbnailSrc(image.src)} alt={image.label} loading="lazy" decoding="async" />
+                                      </button>
+                                    ) : null}
+                                    <figcaption>
+                                      <strong>{image.label}</strong>
+                                      <span>{image.caption}</span>
+                                    </figcaption>
+                                  </figure>
+                                ))}
+                              </div>
                             ))}
                           </div>
                         </div>

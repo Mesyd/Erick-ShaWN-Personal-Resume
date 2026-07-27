@@ -1988,9 +1988,16 @@ h3 {
 .album-carousel-track {
   display: flex;
   width: max-content;
-  gap: 10px;
-  animation: albumCarouselSlide var(--carousel-duration, 96s) linear infinite;
+  gap: 0;
+  animation: albumCarouselSlide var(--carousel-duration, 72s) linear infinite;
   will-change: transform;
+}
+
+.album-carousel-group {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  padding-right: 10px;
 }
 
 .album-carousel-panel:hover .album-carousel-track {
@@ -2035,7 +2042,7 @@ h3 {
 
 @keyframes albumCarouselSlide {
   to {
-    transform: translateX(calc(-50% - 5px));
+    transform: translateX(-50%);
   }
 }
 
@@ -2997,6 +3004,10 @@ html.mobile-performance-mode .lightbox-panel {
     animation: none !important;
     transform: none !important;
     will-change: auto;
+  }
+
+  .album-carousel-group[aria-hidden="true"] {
+    display: none;
   }
 
   .small-project-track > .small-project-card:nth-child(n + 6) {
