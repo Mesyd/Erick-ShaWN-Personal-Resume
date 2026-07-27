@@ -404,10 +404,13 @@ export default function Home() {
   useEffect(() => {
     const carouselWindows = Array.from(document.querySelectorAll<HTMLElement>(".album-carousel-window"));
     const cleanupHandlers: Array<() => void> = [];
+    const canUseDesktopDrag = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
     carouselWindows.forEach((carouselWindow) => {
       let frameId = 0;
       let isAdjusting = false;
+      let dragState: { pointerId: number; startX: number; startScrollLeft: number; moved: boolean } | null = null;
+      let shouldSuppressClick = false;
 
       const getHalfScrollWidth = () => carouselWindow.scrollWidth / 2;
 
@@ -438,6 +441,57 @@ export default function Home() {
         if (frameId === 0) frameId = window.requestAnimationFrame(normalizeScroll);
       };
 
+      const endDrag = (event?: PointerEvent) => {
+        if (!dragState) return;
+        const completedDrag = dragState;
+        dragState = null;
+        if (event && carouselWindow.hasPointerCapture(event.pointerId)) {
+          carouselWindow.releasePointerCapture(event.pointerId);
+        }
+        if (completedDrag.moved) {
+          shouldSuppressClick = true;
+          window.setTimeout(() => {
+            shouldSuppressClick = false;
+          }, 0);
+        }
+        carouselWindow.classList.remove("is-dragging");
+        requestNormalize();
+      };
+
+      const handlePointerDown = (event: PointerEvent) => {
+        if (!canUseDesktopDrag || event.button !== 0) return;
+        dragState = {
+          pointerId: event.pointerId,
+          startX: event.clientX,
+          startScrollLeft: carouselWindow.scrollLeft,
+          moved: false,
+        };
+        carouselWindow.classList.add("is-dragging");
+        carouselWindow.setPointerCapture(event.pointerId);
+      };
+
+      const handlePointerMove = (event: PointerEvent) => {
+        if (!dragState || event.pointerId !== dragState.pointerId) return;
+        const deltaX = event.clientX - dragState.startX;
+        if (Math.abs(deltaX) > 4) dragState.moved = true;
+        carouselWindow.scrollLeft = dragState.startScrollLeft - deltaX;
+        requestNormalize();
+        if (dragState.moved) event.preventDefault();
+      };
+
+      const handlePointerUp = (event: PointerEvent) => {
+        if (!dragState || event.pointerId !== dragState.pointerId) return;
+        endDrag(event);
+      };
+
+      const handleLostPointerCapture = () => endDrag();
+
+      const handleClick = (event: globalThis.MouseEvent) => {
+        if (!shouldSuppressClick) return;
+        event.preventDefault();
+        event.stopPropagation();
+      };
+
       const primeLoopPosition = () => {
         const halfScrollWidth = getHalfScrollWidth();
         if (halfScrollWidth > carouselWindow.clientWidth && carouselWindow.scrollLeft <= 2) {
@@ -447,8 +501,20 @@ export default function Home() {
 
       window.setTimeout(primeLoopPosition, 80);
       carouselWindow.addEventListener("scroll", requestNormalize, { passive: true });
+      carouselWindow.addEventListener("pointerdown", handlePointerDown);
+      carouselWindow.addEventListener("pointermove", handlePointerMove);
+      carouselWindow.addEventListener("pointerup", handlePointerUp);
+      carouselWindow.addEventListener("pointercancel", handlePointerUp);
+      carouselWindow.addEventListener("lostpointercapture", handleLostPointerCapture);
+      carouselWindow.addEventListener("click", handleClick, true);
       cleanupHandlers.push(() => {
         carouselWindow.removeEventListener("scroll", requestNormalize);
+        carouselWindow.removeEventListener("pointerdown", handlePointerDown);
+        carouselWindow.removeEventListener("pointermove", handlePointerMove);
+        carouselWindow.removeEventListener("pointerup", handlePointerUp);
+        carouselWindow.removeEventListener("pointercancel", handlePointerUp);
+        carouselWindow.removeEventListener("lostpointercapture", handleLostPointerCapture);
+        carouselWindow.removeEventListener("click", handleClick, true);
         if (frameId) window.cancelAnimationFrame(frameId);
       });
     });
