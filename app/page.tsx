@@ -89,6 +89,33 @@ const skillGroups = [
   },
 ];
 
+const engineeringLoopStages = [
+  {
+    id: "01",
+    title: "模型验证",
+    subtitle: "PLECS / Matlab",
+    detail: "先把拓扑、控制律和稳定性放到仿真里收敛。",
+  },
+  {
+    id: "02",
+    title: "控制部署",
+    subtitle: "C2000 / ePWM / ADC",
+    detail: "把连续域策略落到采样、时序、中断和保护链路。",
+  },
+  {
+    id: "03",
+    title: "功率实现",
+    subtitle: "SiC / GaN / 磁件 / PCB",
+    detail: "让控制假设进入真实功率回路、驱动和磁件约束。",
+  },
+  {
+    id: "04",
+    title: "样机校准",
+    subtitle: "波形 / 热 / 效率 / 保护",
+    detail: "用实测数据修正模型、参数、布局和保护边界。",
+  },
+];
+
 const educationItems = [
   {
     degree: "硕士 · 新一代电子信息技术",
@@ -851,31 +878,40 @@ export default function Home() {
 
         <div className="proof-flow spotlight-card" data-reveal onMouseMove={handleSpotlightMove}>
           <div className="proof-flow-head">
-            <span>工程闭环图</span>
-            <strong>从控制验证到样机调试</strong>
+            <span>Engineering Loop</span>
+            <strong>从“模型可信”到“样机可信”的闭环理解</strong>
           </div>
-          <ol>
-            <li>
-              <span>01</span>
-              <strong>PLECS / Matlab</strong>
-              <em>控制策略验证</em>
-            </li>
-            <li>
-              <span>02</span>
-              <strong>TI C2000</strong>
-              <em>EPWM / ADC / CLA 部署</em>
-            </li>
-            <li>
-              <span>03</span>
-              <strong>碳化硅 / 氮化镓</strong>
-              <em>功率硬件与磁件设计</em>
-            </li>
-            <li>
-              <span>04</span>
-              <strong>样机调试</strong>
-              <em>波形、保护与效率验证</em>
-            </li>
-          </ol>
+          <div className="engineering-loop-console" aria-label="数字电源工程闭环理解图">
+            <div className="loop-orbit" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className="loop-core">
+              <span>Closed-loop Mindset</span>
+              <strong>数字电源研发闭环</strong>
+              <em>模型 · 控制 · 硬件 · 实测</em>
+            </div>
+            <div className="loop-stage-grid">
+              {engineeringLoopStages.map((stage) => (
+                <article className={`loop-stage loop-stage-${stage.id}`} key={stage.id}>
+                  <span>{stage.id}</span>
+                  <strong>{stage.title}</strong>
+                  <em>{stage.subtitle}</em>
+                  <p>{stage.detail}</p>
+                </article>
+              ))}
+            </div>
+            <div className="loop-feedback-rail" aria-label="闭环反馈路径">
+              <span>仿真假设</span>
+              <i />
+              <span>DSP 实现</span>
+              <i />
+              <span>硬件约束</span>
+              <i />
+              <span>实测反推</span>
+            </div>
+          </div>
         </div>
       </section>
 
