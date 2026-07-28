@@ -89,37 +89,6 @@ const skillGroups = [
   },
 ];
 
-const engineeringLoopStages = [
-  {
-    id: "01",
-    title: "波形证据",
-    subtitle: "Scope / SFRA / Thermal",
-    signal: "把异常先落到可观测信号",
-    detail: "从启动、稳态、阶跃、保护和温升中找到真实约束。",
-  },
-  {
-    id: "02",
-    title: "模型反推",
-    subtitle: "PLECS / Matlab / Bode",
-    signal: "让仿真解释实测现象",
-    detail: "用拓扑模型、频域响应和参数敏感性定位控制边界。",
-  },
-  {
-    id: "03",
-    title: "数字控制",
-    subtitle: "C2000 / ePWM / ADC",
-    signal: "把控制律变成可靠时序",
-    detail: "围绕采样同步、PWM 驱动、中断节拍和保护链路落地。",
-  },
-  {
-    id: "04",
-    title: "功率样机",
-    subtitle: "SiC / GaN / Magnetics / PCB",
-    signal: "让硬件约束回流到设计",
-    detail: "用效率、热、尖峰、漏感和布局反馈修正下一轮设计。",
-  },
-];
-
 const educationItems = [
   {
     degree: "硕士 · 新一代电子信息技术",
@@ -880,52 +849,6 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="proof-flow spotlight-card" data-reveal onMouseMove={handleSpotlightMove}>
-          <div className="proof-flow-head">
-            <span>Power Loop Reactor</span>
-            <strong>用实测波形驱动模型、控制与硬件迭代</strong>
-          </div>
-          <div className="engineering-loop-console" aria-label="数字电源工程闭环理解图">
-            <div className="loop-energy-field" aria-hidden="true">
-              <span className="loop-ring loop-ring-primary" />
-              <span className="loop-ring loop-ring-secondary" />
-              <span className="loop-ring loop-ring-tertiary" />
-              <span className="loop-pulse loop-pulse-a" />
-              <span className="loop-pulse loop-pulse-b" />
-              <span className="loop-pulse loop-pulse-c" />
-            </div>
-            <div className="loop-core">
-              <span>Evidence Driven Loop</span>
-              <strong>波形 → 模型 → 代码 → 硬件</strong>
-              <em>用实测结果持续校准下一轮设计</em>
-              <div className="loop-core-metrics">
-                <b>Stability</b>
-                <b>Efficiency</b>
-                <b>Protection</b>
-              </div>
-            </div>
-            <div className="loop-stage-grid">
-              {engineeringLoopStages.map((stage) => (
-                <article className={`loop-stage loop-stage-${stage.id}`} key={stage.id}>
-                  <span>{stage.id}</span>
-                  <strong>{stage.title}</strong>
-                  <em>{stage.subtitle}</em>
-                  <p className="loop-stage-signal">{stage.signal}</p>
-                  <p>{stage.detail}</p>
-                </article>
-              ))}
-            </div>
-            <div className="loop-feedback-rail" aria-label="闭环反馈路径">
-              <span>实测波形</span>
-              <i />
-              <span>模型校准</span>
-              <i />
-              <span>控制部署</span>
-              <i />
-              <span>硬件迭代</span>
-            </div>
-          </div>
-        </div>
       </section>
 
       <section className="section-wrap experience-section" id="experience" data-section="experience">
