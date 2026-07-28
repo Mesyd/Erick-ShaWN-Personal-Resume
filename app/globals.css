@@ -1566,6 +1566,350 @@ h3 {
   }
 }
 
+.engineering-loop-console {
+  min-height: 560px;
+  padding: 32px;
+  background:
+    radial-gradient(circle at 50% 47%, rgba(0, 255, 209, 0.22), transparent 24%),
+    radial-gradient(circle at 18% 22%, rgba(99, 242, 255, 0.14), transparent 28%),
+    radial-gradient(circle at 78% 76%, rgba(255, 92, 122, 0.13), transparent 32%),
+    conic-gradient(from 135deg at 50% 52%, rgba(0, 255, 209, 0.1), rgba(168, 140, 255, 0.1), rgba(255, 216, 137, 0.07), rgba(0, 255, 209, 0.1)),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)),
+    rgba(2, 6, 14, 0.68);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.045), 0 30px 96px rgba(0, 0, 0, 0.28);
+}
+
+.loop-energy-field {
+  position: absolute;
+  inset: 26px;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 26px;
+  pointer-events: none;
+}
+
+.loop-ring {
+  --ring-rotate: 0deg;
+  --ring-scale: 1;
+  position: absolute;
+  inset: 58px 12%;
+  border-radius: 999px;
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(0, 255, 209, 0.8) 22deg,
+      transparent 54deg,
+      rgba(168, 140, 255, 0.62) 128deg,
+      transparent 172deg,
+      rgba(255, 216, 137, 0.55) 236deg,
+      transparent 292deg,
+      rgba(0, 255, 209, 0.8) 360deg
+    );
+  filter: drop-shadow(0 0 18px rgba(0, 255, 209, 0.14));
+  mask: radial-gradient(closest-side, transparent calc(100% - 3px), #000 calc(100% - 2px), #000 100%);
+  transform: rotate(var(--ring-rotate)) scale(var(--ring-scale));
+  animation: loopSpin 19s linear infinite;
+}
+
+.loop-ring-secondary {
+  --ring-rotate: 12deg;
+  --ring-scale: 0.78;
+  inset: 90px 15%;
+  opacity: 0.72;
+  animation-duration: 26s;
+  animation-direction: reverse;
+}
+
+.loop-ring-tertiary {
+  --ring-rotate: -8deg;
+  --ring-scale: 0.54;
+  inset: 122px 18%;
+  opacity: 0.62;
+  animation-duration: 14s;
+}
+
+.loop-pulse {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 0 8px rgba(0, 255, 209, 0.1), 0 0 26px rgba(0, 255, 209, 0.62);
+  animation: loopPulseGlow 2.8s ease-in-out infinite;
+}
+
+.loop-pulse-a {
+  top: 18%;
+  left: 24%;
+}
+
+.loop-pulse-b {
+  top: 28%;
+  right: 20%;
+  background: #ffd889;
+  box-shadow: 0 0 0 8px rgba(255, 216, 137, 0.1), 0 0 26px rgba(255, 216, 137, 0.54);
+  animation-delay: -0.9s;
+}
+
+.loop-pulse-c {
+  right: 28%;
+  bottom: 18%;
+  background: #a88cff;
+  box-shadow: 0 0 0 8px rgba(168, 140, 255, 0.11), 0 0 26px rgba(168, 140, 255, 0.55);
+  animation-delay: -1.7s;
+}
+
+.loop-core {
+  z-index: 2;
+  width: min(390px, 38vw);
+  min-height: 220px;
+  overflow: hidden;
+  border-color: rgba(99, 242, 255, 0.34);
+  background:
+    radial-gradient(circle at 50% 10%, rgba(0, 255, 209, 0.28), transparent 54%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.035)),
+    rgba(4, 8, 18, 0.78);
+}
+
+.loop-core::before {
+  position: absolute;
+  inset: -42%;
+  z-index: 0;
+  content: "";
+  background: conic-gradient(from 0deg, transparent, rgba(0, 255, 209, 0.34), transparent, rgba(168, 140, 255, 0.28), transparent);
+  animation: loopSpinCore 10s linear infinite;
+}
+
+.loop-core > * {
+  position: relative;
+  z-index: 1;
+}
+
+.loop-core::after {
+  position: absolute;
+  inset: 11px;
+  z-index: 1;
+  content: "";
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  pointer-events: none;
+}
+
+.loop-core strong {
+  max-width: 9em;
+  line-height: 1.1;
+}
+
+.loop-core-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.loop-core-metrics b {
+  padding: 7px 10px;
+  border: 1px solid rgba(99, 242, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(0, 255, 209, 0.08);
+  color: rgba(245, 248, 255, 0.86);
+  font-family: var(--font-geist-mono), Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+
+.loop-stage {
+  z-index: 1;
+  border-color: color-mix(in srgb, var(--stage-color, rgba(99, 242, 255, 0.58)) 42%, rgba(255, 255, 255, 0.14));
+  background:
+    radial-gradient(circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), color-mix(in srgb, var(--stage-color, rgba(0, 255, 209, 0.32)) 34%, transparent), transparent 42%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.034)),
+    rgba(3, 7, 14, 0.64);
+}
+
+.loop-stage::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(110deg, transparent 0 38%, rgba(255, 255, 255, 0.18) 49%, transparent 61% 100%);
+  opacity: 0;
+  transform: translateX(-125%);
+  animation: stageSweep 6.6s ease-in-out infinite;
+}
+
+.loop-stage:nth-child(2)::before {
+  animation-delay: 0.55s;
+}
+
+.loop-stage:nth-child(3)::before {
+  animation-delay: 1.1s;
+}
+
+.loop-stage:nth-child(4)::before {
+  animation-delay: 1.65s;
+}
+
+.loop-stage-01 {
+  --stage-color: rgba(0, 255, 209, 0.78);
+}
+
+.loop-stage-02 {
+  --stage-color: rgba(99, 242, 255, 0.74);
+}
+
+.loop-stage-03 {
+  --stage-color: rgba(168, 140, 255, 0.76);
+}
+
+.loop-stage-04 {
+  --stage-color: rgba(255, 216, 137, 0.72);
+}
+
+.loop-stage-signal {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 12px;
+  padding: 7px 10px;
+  border: 1px solid color-mix(in srgb, var(--stage-color, rgba(99, 242, 255, 0.56)) 38%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--stage-color, rgba(99, 242, 255, 0.3)) 14%, rgba(255, 255, 255, 0.035));
+  color: #f5f8ff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.loop-stage p:not(.loop-stage-signal) {
+  max-width: 20em;
+}
+
+.loop-feedback-rail {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(0, 255, 209, 0.08), rgba(168, 140, 255, 0.08), rgba(255, 216, 137, 0.06)),
+    rgba(2, 6, 14, 0.58);
+}
+
+.loop-feedback-rail::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 209, 0.22), rgba(255, 255, 255, 0.12), transparent);
+  transform: translateX(-120%);
+  animation: railFlow 4.8s linear infinite;
+}
+
+.loop-feedback-rail span,
+.loop-feedback-rail i {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes loopSpin {
+  to {
+    transform: rotate(calc(var(--ring-rotate) + 360deg)) scale(var(--ring-scale));
+  }
+}
+
+@keyframes loopSpinCore {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loopPulseGlow {
+  0%,
+  100% {
+    opacity: 0.42;
+    transform: scale(0.88);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.18);
+  }
+}
+
+@keyframes stageSweep {
+  0%,
+  48% {
+    opacity: 0;
+    transform: translateX(-125%);
+  }
+
+  63% {
+    opacity: 0.95;
+  }
+
+  82%,
+  100% {
+    opacity: 0;
+    transform: translateX(125%);
+  }
+}
+
+@keyframes railFlow {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@media (max-width: 1040px) {
+  .loop-energy-field {
+    display: none;
+  }
+
+  .loop-core {
+    width: 100%;
+    min-height: 0;
+  }
+
+  .loop-core::before {
+    animation: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .engineering-loop-console {
+    min-height: 0;
+  }
+
+  .loop-core {
+    padding: 20px 16px;
+  }
+
+  .loop-core strong {
+    max-width: none;
+    font-size: 24px;
+  }
+
+  .loop-core-metrics {
+    gap: 6px;
+  }
+
+  .loop-stage::before,
+  .loop-feedback-rail::before {
+    display: none;
+  }
+
+  .loop-stage-signal {
+    max-width: 100%;
+    white-space: normal;
+  }
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .loop-ring,
+  .loop-pulse,
+  .loop-core::before,
+  .loop-stage::before,
+  .loop-feedback-rail::before {
+    animation: none !important;
+  }
+}
+
 .snapshot-card span,
 .project-status,
 .experience-meta,

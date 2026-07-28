@@ -92,27 +92,31 @@ const skillGroups = [
 const engineeringLoopStages = [
   {
     id: "01",
-    title: "模型验证",
-    subtitle: "PLECS / Matlab",
-    detail: "先把拓扑、控制律和稳定性放到仿真里收敛。",
+    title: "波形证据",
+    subtitle: "Scope / SFRA / Thermal",
+    signal: "把异常先落到可观测信号",
+    detail: "从启动、稳态、阶跃、保护和温升中找到真实约束。",
   },
   {
     id: "02",
-    title: "控制部署",
-    subtitle: "C2000 / ePWM / ADC",
-    detail: "把连续域策略落到采样、时序、中断和保护链路。",
+    title: "模型反推",
+    subtitle: "PLECS / Matlab / Bode",
+    signal: "让仿真解释实测现象",
+    detail: "用拓扑模型、频域响应和参数敏感性定位控制边界。",
   },
   {
     id: "03",
-    title: "功率实现",
-    subtitle: "SiC / GaN / 磁件 / PCB",
-    detail: "让控制假设进入真实功率回路、驱动和磁件约束。",
+    title: "数字控制",
+    subtitle: "C2000 / ePWM / ADC",
+    signal: "把控制律变成可靠时序",
+    detail: "围绕采样同步、PWM 驱动、中断节拍和保护链路落地。",
   },
   {
     id: "04",
-    title: "样机校准",
-    subtitle: "波形 / 热 / 效率 / 保护",
-    detail: "用实测数据修正模型、参数、布局和保护边界。",
+    title: "功率样机",
+    subtitle: "SiC / GaN / Magnetics / PCB",
+    signal: "让硬件约束回流到设计",
+    detail: "用效率、热、尖峰、漏感和布局反馈修正下一轮设计。",
   },
 ];
 
@@ -878,19 +882,27 @@ export default function Home() {
 
         <div className="proof-flow spotlight-card" data-reveal onMouseMove={handleSpotlightMove}>
           <div className="proof-flow-head">
-            <span>Engineering Loop</span>
-            <strong>从“模型可信”到“样机可信”的闭环理解</strong>
+            <span>Power Loop Reactor</span>
+            <strong>用实测波形驱动模型、控制与硬件迭代</strong>
           </div>
           <div className="engineering-loop-console" aria-label="数字电源工程闭环理解图">
-            <div className="loop-orbit" aria-hidden="true">
-              <span />
-              <span />
-              <span />
+            <div className="loop-energy-field" aria-hidden="true">
+              <span className="loop-ring loop-ring-primary" />
+              <span className="loop-ring loop-ring-secondary" />
+              <span className="loop-ring loop-ring-tertiary" />
+              <span className="loop-pulse loop-pulse-a" />
+              <span className="loop-pulse loop-pulse-b" />
+              <span className="loop-pulse loop-pulse-c" />
             </div>
             <div className="loop-core">
-              <span>Closed-loop Mindset</span>
-              <strong>数字电源研发闭环</strong>
-              <em>模型 · 控制 · 硬件 · 实测</em>
+              <span>Evidence Driven Loop</span>
+              <strong>波形 → 模型 → 代码 → 硬件</strong>
+              <em>用实测结果持续校准下一轮设计</em>
+              <div className="loop-core-metrics">
+                <b>Stability</b>
+                <b>Efficiency</b>
+                <b>Protection</b>
+              </div>
             </div>
             <div className="loop-stage-grid">
               {engineeringLoopStages.map((stage) => (
@@ -898,18 +910,19 @@ export default function Home() {
                   <span>{stage.id}</span>
                   <strong>{stage.title}</strong>
                   <em>{stage.subtitle}</em>
+                  <p className="loop-stage-signal">{stage.signal}</p>
                   <p>{stage.detail}</p>
                 </article>
               ))}
             </div>
             <div className="loop-feedback-rail" aria-label="闭环反馈路径">
-              <span>仿真假设</span>
+              <span>实测波形</span>
               <i />
-              <span>DSP 实现</span>
+              <span>模型校准</span>
               <i />
-              <span>硬件约束</span>
+              <span>控制部署</span>
               <i />
-              <span>实测反推</span>
+              <span>硬件迭代</span>
             </div>
           </div>
         </div>
