@@ -377,6 +377,26 @@ h1 {
   align-items: center;
 }
 
+.hero-motto {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: fit-content;
+  margin: -4px 0 0;
+  color: rgba(235, 244, 255, 0.9);
+  font-size: clamp(17px, 1.5vw, 22px);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-shadow: 0 0 24px rgba(99, 242, 255, 0.2);
+}
+
+.hero-motto::before {
+  width: clamp(34px, 4vw, 58px);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0, 255, 209, 0), rgba(0, 255, 209, 0.9));
+  content: "";
+}
+
 h2 {
   margin-bottom: 18px;
   font-size: clamp(34px, 5vw, 64px);
@@ -3708,6 +3728,17 @@ html.mobile-performance-mode .lightbox-panel {
   .hero-role-row {
     gap: 8px;
     margin-top: 12px;
+  }
+
+  .hero-motto {
+    gap: 10px;
+    margin-top: -2px;
+    font-size: clamp(15px, 4.4vw, 18px);
+    letter-spacing: 0.14em;
+  }
+
+  .hero-motto::before {
+    width: 28px;
   }
 
   .hero-role {

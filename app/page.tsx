@@ -745,6 +745,7 @@ export default function Home() {
               <span className="hero-role">电子信息工程专业 硕士研究生</span>
             </span>
           </h1>
+          <p className="hero-motto">保持热爱，奔赴星海</p>
           <div className="hero-actions">
             <a className="primary-button magnetic" href="#projects">
               浏览项目经历
