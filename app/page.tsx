@@ -747,7 +747,7 @@ export default function Home() {
             </span>
           </h1>
           <BlurText
-            text="保持热爱，奔赴星海"
+            text="保持热爱 奔赴星海"
             animateBy="letters"
             direction="top"
             delay={90}
