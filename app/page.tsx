@@ -1,6 +1,7 @@
 "use client";
 
 import { Component, lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent, type ReactNode } from "react";
+import BlurText from "./BlurText";
 import LineSidebar from "./LineSidebar";
 import ProfileCard from "./ProfileCard";
 
@@ -745,7 +746,15 @@ export default function Home() {
               <span className="hero-role">电子信息工程专业 硕士研究生</span>
             </span>
           </h1>
-          <p className="hero-motto">保持热爱，奔赴星海</p>
+          <BlurText
+            text="保持热爱，奔赴星海"
+            animateBy="letters"
+            direction="top"
+            delay={90}
+            stepDuration={0.3}
+            threshold={0.2}
+            className="hero-motto"
+          />
           <div className="hero-actions">
             <a className="primary-button magnetic" href="#projects">
               浏览项目经历
